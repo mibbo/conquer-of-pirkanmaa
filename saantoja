@@ -1,0 +1,8 @@
+
+    
+-yhden tasoisia sotilaita, jotka molemmat kuolee jos törmää vihollisen sotilaaseen
+-5 toimintoa per vuoro (liike, rakentaminen, ukkeleitten teko, yms.) niitä ei voi pantata eli menee hukkana jos ei käytä
+-ukkeleitten tekoon menee yks toiminto ja käyttöön saamiseen kestää x määrä vuoroja (riippuen ukkelista)
+-rakennusten ja ukkeleitten teko maksaa tietyn määrän resursseja
+-rakennukset maksavat materiaaleja ja ukkelit ruokaa ja materiaaleja
+-etuvartiosto lisää vastustajan toimintojen kestoa yhdellä vaikutusalueellaan (etuvartioita max 1)
