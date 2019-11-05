@@ -2,6 +2,8 @@
 #include "ui_mapwindow.h"
 
 #include "graphics/simplemapitem.h"
+#include "gameeventhandler.hh"
+#include "objectmanager.hh"
 
 #include <math.h>
 
@@ -17,6 +19,9 @@ MapWindow::MapWindow(QWidget *parent,
     Course::SimpleGameScene* sgs_rawptr = m_simplescene.get();
 
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
+
+    std::shared_ptr<Student::GameEventHandler> gameEventHandler;
+    std::shared_ptr<Student::ObjectManager> objectHandler;
 }
 
 MapWindow::~MapWindow()
