@@ -8,13 +8,15 @@ CONFIG += c++14
 SOURCES += \
     main.cpp \
     mapwindow.cc \
-    gameeventhandler.cpp \
-    objectmanager.cpp
+    objectmanager.cpp \
+    myworldgenerator.cpp \
+    gameeventhandler.cpp
 
 HEADERS += \
     mapwindow.hh \
     gameeventhandler.hh \
-    objectmanager.hh
+    objectmanager.hh \
+    myworldgenerator.hh
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib

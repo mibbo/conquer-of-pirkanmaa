@@ -7,4 +7,4 @@ GameEventHandler::GameEventHandler()
 
 }
 
-} // namespace Student
+} // Student namespace

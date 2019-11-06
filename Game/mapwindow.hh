@@ -12,6 +12,7 @@
 
 #include "interfaces/igameeventhandler.h"
 #include "graphics/simplegamescene.h"
+#include "objectmanager.hh"
 
 namespace Ui {
 class MapWindow;
@@ -42,6 +43,7 @@ private:
     Ui::MapWindow* m_ui;
     std::shared_ptr<Course::iGameEventHandler> m_GEHandler = nullptr;
     std::shared_ptr<Course::SimpleGameScene> m_simplescene = nullptr;
+    std::shared_ptr<Student::ObjectManager> m_OBManager = nullptr;
 
 };
 
