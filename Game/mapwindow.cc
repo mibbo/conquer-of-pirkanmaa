@@ -4,15 +4,21 @@
 #include "graphics/simplemapitem.h"
 #include "gameeventhandler.hh"
 #include "objectmanager.hh"
+#include "core/worldgenerator.h"
+#include "tiles/forest.h"
+#include "tiles/grassland.h"
 
 #include <math.h>
+#include <memory>
+#include <iostream>
 
 MapWindow::MapWindow(QWidget *parent,
                      std::shared_ptr<Course::iGameEventHandler> handler):
     QMainWindow(parent),
     m_ui(new Ui::MapWindow),
     m_GEHandler(handler),
-    m_simplescene(new Course::SimpleGameScene(this))
+    m_simplescene(new Course::SimpleGameScene(this)),
+    m_OBManager(std::make_shared<Student::ObjectManager>())
 {
     m_ui->setupUi(this);
 
@@ -20,9 +26,18 @@ MapWindow::MapWindow(QWidget *parent,
 
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
 
-    std::shared_ptr<Student::GameEventHandler> gameEventHandler;
-    std::shared_ptr<Student::ObjectManager> objectHandler;
+    Course::WorldGenerator& worldGen = Course::WorldGenerator::getInstance();
+    worldGen.addConstructor<Course::Forest>(1);
+    worldGen.addConstructor<Course::Grassland>(1);
+    worldGen.generateMap(3,3,2, m_OBManager, m_GEHandler);
+    std::vector<std::shared_ptr<Course::TileBase>> tiles = m_OBManager->tiili();
+    std::cout<< tiles.size()<< std::endl;
+    for(auto x: tiles){
+        MapWindow::drawItem(x);
+
+    }
 }
+
 
 MapWindow::~MapWindow()
 {
