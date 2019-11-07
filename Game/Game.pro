@@ -10,13 +10,19 @@ SOURCES += \
     mapwindow.cc \
     objectmanager.cpp \
     myworldgenerator.cpp \
-    gameeventhandler.cpp
+    gameeventhandler.cpp \
+    mymapwindow.cpp \
+    mymapitem.cpp \
+    mygamescene.cpp
 
 HEADERS += \
     mapwindow.hh \
     gameeventhandler.hh \
     objectmanager.hh \
-    myworldgenerator.hh
+    myworldgenerator.hh \
+    mymapwindow.hh \
+    mymapitem.hh \
+    mygamescene.hh
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
