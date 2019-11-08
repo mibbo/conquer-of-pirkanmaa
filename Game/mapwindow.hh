@@ -7,11 +7,15 @@
 #include <QMouseEvent>
 #include <QGraphicsSceneMouseEvent>
 #include <QDebug>
+#include <QDialog>
+#include <QWidget>
 
 #include <map>
 
 #include "interfaces/igameeventhandler.h"
 #include "graphics/simplegamescene.h"
+#include "objectmanager.hh"
+
 
 namespace Ui {
 class MapWindow;
@@ -37,11 +41,18 @@ public:
     void removeItem( std::shared_ptr<Course::GameObject> obj);
     void updateItem( std::shared_ptr<Course::GameObject> obj);
 
+    void startGame(int playerAmount, int mapWidth, int mapHeight);
+
+public slots:
+    void startGameSlot(int playerAmount, int mapWidth, int mapHeight);
 
 private:
     Ui::MapWindow* m_ui;
     std::shared_ptr<Course::iGameEventHandler> m_GEHandler = nullptr;
     std::shared_ptr<Course::SimpleGameScene> m_simplescene = nullptr;
+    std::shared_ptr<Student::ObjectManager> m_OBManager = nullptr;
+
+    QDialog* startwindow_;
 
 };
 
