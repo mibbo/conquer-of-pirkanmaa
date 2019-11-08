@@ -7,6 +7,7 @@ StartWindow::StartWindow(QWidget *parent) :
     ui(new Ui::StartWindow)
 {
     ui->setupUi(this);
+    //conflict!
     ui->mapSizeComboBox->addItem("Small");
     ui->mapSizeComboBox->addItem("Normal");
     ui->mapSizeComboBox->addItem("Huge");
