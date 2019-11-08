@@ -12,7 +12,16 @@ SOURCES += \
     mapitem.cpp \
     mapwindow.cc \
     objectmanager.cpp \
+<<<<<<< HEAD
+    myworldgenerator.cpp \
+    gameeventhandler.cpp \
+    mymapwindow.cpp \
+    mymapitem.cpp \
+    mygamescene.cpp \
+    startwindow.cpp
+=======
     gameeventhandler.cpp
+>>>>>>> dev
 
 HEADERS += \
     game.h \
@@ -20,7 +29,16 @@ HEADERS += \
     mapitem.h \
     mapwindow.hh \
     gameeventhandler.hh \
+<<<<<<< HEAD
+    objectmanager.hh \
+    myworldgenerator.hh \
+    mymapwindow.hh \
+    mymapitem.hh \
+    mygamescene.hh \
+    startwindow.hh
+=======
     objectmanager.hh
+>>>>>>> dev
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -47,5 +65,10 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 FORMS += \
+<<<<<<< HEAD
+    mapwindow.ui \
+    startwindow.ui
+=======
     game.ui \
     mapwindow.ui
+>>>>>>> dev
