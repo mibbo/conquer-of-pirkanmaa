@@ -26,29 +26,14 @@ MapWindow::MapWindow(QWidget *parent,
 
     m_ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    startwindow_ = new StartWindow();
-    connect(startwindow_, SIGNAL(startGame(int, int, int)), this, SLOT(startGameSlot(int,int,int)));
-    startwindow_->exec();
-=======
-=======
->>>>>>> parent of 69c30c6... Added the startwindow
     Course::WorldGenerator& worldGen = Course::WorldGenerator::getInstance();
     worldGen.addConstructor<Course::Forest>(1);
     worldGen.addConstructor<Course::Grassland>(1);
     worldGen.generateMap(3,3,2, m_OBManager, m_GEHandler);
     std::vector<std::shared_ptr<Course::TileBase>> tiles = m_OBManager->tiili();
-<<<<<<< HEAD
     std::cout<< tiles.size()<<   std::endl;
     for(auto x: tiles){
         MapWindow::drawItem(x);
->>>>>>> dev
-=======
-    std::cout<< tiles.size()<< std::endl;
-    for(auto x: tiles){
-        MapWindow::drawItem(x);
->>>>>>> parent of 69c30c6... Added the startwindow
 
     }
 }

@@ -12,20 +12,8 @@ SOURCES += \
     mapitem.cpp \
     mapwindow.cc \
     objectmanager.cpp \
-<<<<<<< HEAD
-    myworldgenerator.cpp \
     gameeventhandler.cpp \
-    mymapwindow.cpp \
-    mymapitem.cpp \
-<<<<<<< HEAD
-    mygamescene.cpp \
     startwindow.cpp
-=======
-    gameeventhandler.cpp
->>>>>>> dev
-=======
-    mygamescene.cpp
->>>>>>> parent of 69c30c6... Added the startwindow
 
 HEADERS += \
     game.h \
@@ -33,20 +21,8 @@ HEADERS += \
     mapitem.h \
     mapwindow.hh \
     gameeventhandler.hh \
-<<<<<<< HEAD
     objectmanager.hh \
-    myworldgenerator.hh \
-    mymapwindow.hh \
-    mymapitem.hh \
-<<<<<<< HEAD
-    mygamescene.hh \
-    startwindow.hh
-=======
-    objectmanager.hh
->>>>>>> dev
-=======
-    mygamescene.hh
->>>>>>> parent of 69c30c6... Added the startwindow
+    startwindow.h
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -73,14 +49,6 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 FORMS += \
-<<<<<<< HEAD
-<<<<<<< HEAD
+    game.ui \
     mapwindow.ui \
     startwindow.ui
-=======
-    game.ui \
-    mapwindow.ui
->>>>>>> dev
-=======
-    mapwindow.ui
->>>>>>> parent of 69c30c6... Added the startwindow
