@@ -14,6 +14,7 @@
 #include "graphics/simplegamescene.h"
 #include "objectmanager.hh"
 
+
 namespace Ui {
 class MapWindow;
 }

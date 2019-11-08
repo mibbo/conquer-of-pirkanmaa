@@ -31,7 +31,7 @@ MapWindow::MapWindow(QWidget *parent,
     worldGen.addConstructor<Course::Grassland>(1);
     worldGen.generateMap(3,3,2, m_OBManager, m_GEHandler);
     std::vector<std::shared_ptr<Course::TileBase>> tiles = m_OBManager->tiili();
-    std::cout<< tiles.size()<< std::endl;
+    std::cout<< tiles.size()<<   std::endl;
     for(auto x: tiles){
         MapWindow::drawItem(x);
 
