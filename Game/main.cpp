@@ -1,4 +1,4 @@
-#include "mapwindow.hh"
+#include "game.h"
 
 #include <QApplication>
 
@@ -8,7 +8,7 @@ int main(int argc, char* argv[])
 
     QApplication app(argc, argv);
 
-    MapWindow mapWindow;
-    mapWindow.show();
+    Game w;
+    w.show();
     return app.exec();
 }
