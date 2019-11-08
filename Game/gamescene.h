@@ -3,6 +3,9 @@
 
 #include <QGraphicsScene>
 
+namespace Student {
+
+
 
 class GameScene : public QGraphicsScene
 {
@@ -19,6 +22,7 @@ private:
 
 };
 
+}
 #endif // GAMESCENE_H
 
 

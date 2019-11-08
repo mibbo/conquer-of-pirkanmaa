@@ -5,6 +5,7 @@
 #include "game.h"
 
 
+
 class MapItem : public QGraphicsRectItem
 {
 public:
@@ -16,8 +17,6 @@ public:
     // tää ehkä mieluummin tile fileen hmmm
     void setColor(QColor color);
 
-    //asettaa laatan
-    //void placeTile(Tile* tile)
 
 private:
     QString owner;
