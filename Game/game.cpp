@@ -11,6 +11,7 @@ Game::Game(QWidget *parent)
 
 
     dialoq_ = new StartWindow();
+
     connect(dialoq_, SIGNAL(startGame(int, int, int)), this, SLOT(startGameSlot(int, int, int)));
 
     dialoq_->exec();

@@ -48,6 +48,12 @@ else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += \
 else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
+#fetch git short commit hash here
+win32:DEFINES += GIT_BIN='C:\\Git\\bin\\git'
+# or 'C:\\Progra~1\\Git\\bin\\git' - ymmv with putting spaces in here
+win32:DEFINES += GIT_REVISION='\\"$$system($${GIT_BIN} rev-parse --short HEAD)\\"'
+unix:DEFINES += GIT_REVISION='\\"$$system(git rev-parse --short HEAD)\\"'
+
 FORMS += \
     game.ui \
     mapwindow.ui \
