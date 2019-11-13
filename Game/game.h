@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include "gamescene.h"
+#include "interfaces/igameeventhandler.h"
+#include "objectmanager.hh"
 
 
 namespace Ui {
@@ -19,13 +21,15 @@ public:
     ~Game();
 
 public slots:
-    void startGameSlot (int playerAmount, int mapWidth, int mapHeight);
+    void startGameSlot (int playerAmount, unsigned int mapWidth, unsigned int mapHeight);
 
 private:
     Ui::Game *ui;
-    QGraphicsScene scene_;               /**< Manages drawable objects. */
     QDialog* dialoq_;
-    Student::GameScene* gameScene_;
+
+    std::shared_ptr<Course::iGameEventHandler> eveHandler_ = nullptr;
+    std::shared_ptr<Student::GameScene> gameScene_ = nullptr;
+    std::shared_ptr<Student::ObjectManager> objManager_ = nullptr;
 };
 
 #endif // GAME_H

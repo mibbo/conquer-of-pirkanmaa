@@ -1,25 +1,59 @@
 #ifndef MAPITEM_H
 #define MAPITEM_H
 
-#include <QGraphicsRectItem>
+#include <QGraphicsItem>
+#include <QPainter>
+#include <memory>
+#include <map>
+#include "core/gameobject.h"
+
+
+
+
 #include "game.h"
 
+namespace Student  {
 
 
-class MapItem : public QGraphicsRectItem
+
+
+class MapItem : public QGraphicsItem
 {
 public:
-    MapItem(QGraphicsItem *parent=0);
-    ~MapItem();
+    /**
+     * @brief Constructor
+     * @param obj shared_ptr to the obj.
+     * @param size of the created item in pixels.
+     * @pre obj must have a valid Coordinate.
+     */
+    MapItem(const std::shared_ptr<Course::GameObject> &obj, int size);
 
-    void mousePressEvent(QGraphicsSceneMouseEvent* event);
+    /**
+     * @brief boundingRect
+     * @return the bounding rectangle of this item.
+     */
+    QRectF boundingRect() const override;
 
-    // tää ehkä mieluummin tile fileen hmmm
-    void setColor(QColor color);
+    /**
+     * @brief getBoundObject
+     * @return the object this item is bound to.
+     */
+    const std::shared_ptr<Course::GameObject> &getBoundObject();
+
+    void paint(QPainter *painter,
+               const QStyleOptionGraphicsItem *option,
+               QWidget *widget);
 
 
 private:
-    QString owner;
-};
+    const std::shared_ptr<Course::GameObject> m_gameobject;
+    QPoint m_scenelocation;
+    int m_size;
 
+    static std::map<std::string, QColor> c_mapcolors;
+    static void addNewColor(std::string type);
+};
+}
 #endif // MAPITEM_H
+
+

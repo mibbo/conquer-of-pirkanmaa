@@ -24,13 +24,13 @@ private slots:
     void on_mapSizeComboBox_currentTextChanged(const QString &value);
 
 signals:
-    void startGame(int playerAmount, int mapWidth, int mapHeight);
+    void startGame(int playerAmount, unsigned int mapWidth, unsigned int mapHeight);
 
 private:
     Ui::StartWindow *ui;
     int playerAmount;
-    int mapWidth;
-    int mapHeight;
+    unsigned int mapWidth;
+    unsigned int mapHeight;
 };
 
 #endif // STARTWINDOW_HH
