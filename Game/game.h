@@ -15,7 +15,9 @@ class Game : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit Game(QWidget *parent = nullptr);
+    explicit Game(QWidget *parent = nullptr,
+                  std::shared_ptr<Course::iGameEventHandler> GEHandler = {}
+                  );
     ~Game();
 
 public slots:
@@ -26,6 +28,11 @@ private:
     QGraphicsScene scene_;               /**< Manages drawable objects. */
     QDialog* dialoq_;
     Student::GameScene* gameScene_;
+
+    std::shared_ptr<Course::iGameEventHandler> m_GEHandler = nullptr;
+    std::shared_ptr<Student::ObjectManager> ObjManager_ = nullptr;
+
+
 };
 
 #endif // GAME_H
