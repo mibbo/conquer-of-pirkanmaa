@@ -9,6 +9,12 @@ class GameEventHandler : public Course::iGameEventHandler
 {
 public:
     GameEventHandler();
+
+    // iGameEventHandler interface
+public:
+    bool modifyResource(std::shared_ptr<Course::PlayerBase> player, Course::BasicResource resource, int amount);
+
+    bool modifyResources(std::shared_ptr<Course::PlayerBase> player, Course::ResourceMap resources);
 };
 
 } // namespace Student

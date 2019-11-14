@@ -6,6 +6,7 @@
 #include "gamescene.h"
 #include "interfaces/igameeventhandler.h"
 #include "objectmanager.hh"
+#include "gameeventhandler.hh"
 
 
 namespace Ui {
@@ -27,7 +28,7 @@ private:
     Ui::Game *ui;
     QDialog* dialoq_;
 
-    std::shared_ptr<Course::iGameEventHandler> eveHandler_ = nullptr;
+    std::shared_ptr<Student::GameEventHandler> eveHandler_ = nullptr;
     std::shared_ptr<Student::GameScene> gameScene_ = nullptr;
     std::shared_ptr<Student::ObjectManager> objManager_ = nullptr;
 };

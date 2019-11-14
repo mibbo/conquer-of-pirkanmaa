@@ -14,7 +14,7 @@
 Game::Game(QWidget *parent):
     QMainWindow(parent),
     ui(new Ui::Game),
-    eveHandler_(std::shared_ptr<Course::iGameEventHandler>()),
+    eveHandler_(std::shared_ptr<Student::GameEventHandler>()),
     gameScene_(new Student::GameScene(this)),
     objManager_(std::make_shared<Student::ObjectManager>())
 {
@@ -38,9 +38,6 @@ Game::Game(QWidget *parent):
     // GameScene
     Student::GameScene* sgs_rawptr = gameScene_.get();
     ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
-
-
-
 }
 
 Game::~Game()
