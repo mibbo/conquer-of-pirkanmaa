@@ -40,9 +40,20 @@ public:
      */
     const std::shared_ptr<Course::GameObject> &getBoundObject();
 
+    /**
+     * @brief paints the item
+     * @param painter
+     * @param option
+     * @param widget
+     * @note The GraphicsView containing the scene this belongs to
+     * usually calls this function.
+     */
     void paint(QPainter *painter,
                const QStyleOptionGraphicsItem *option,
                QWidget *widget);
+
+
+
 
 
 private:
