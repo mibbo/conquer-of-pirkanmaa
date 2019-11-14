@@ -6,6 +6,8 @@
 #include "tiles/forest.h"
 #include "tiles/grassland.h"
 
+#include <QDebug>
+#include <iostream>
 
 #include <math.h>
 #include <memory>
@@ -24,7 +26,8 @@ Game::Game(QWidget *parent):
 
     // StartWindow
     dialoq_ = new StartWindow();
-    connect(dialoq_, SIGNAL(startGame(int, unsigned int, unsigned int)), this, SLOT(startGameSlot(int, unsigned int, unsigned int)));
+    connect(dialoq_, SIGNAL(startGame(int, unsigned int, unsigned int, QString,  QString)),
+            this, SLOT(startGameSlot(int, unsigned int, unsigned int,  QString,  QString)));
     dialoq_->exec();
 
     Game::showMaximized();
@@ -38,6 +41,10 @@ Game::Game(QWidget *parent):
     // GameScene
     Student::GameScene* sgs_rawptr = gameScene_.get();
     ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
+
+    displayMainMenu();
+
+
 }
 
 Game::~Game()
@@ -45,8 +52,59 @@ Game::~Game()
     delete ui;
 }
 
-void Game::startGameSlot(int playerAmount, unsigned int mapWidth, unsigned int mapHeight)
+std::shared_ptr<Student::Player> Game::getTurn()
 {
+    return playerInTurn_;
+}
+
+void Game::setTurn(std::shared_ptr<Student::Player> player)
+{
+
+    playerInTurn_ = player;
+    ui->turnLabel->setText("Turn: " + QString::fromStdString(playerInTurn_->getName()));
+    std::cout << "Turn: " << playerInTurn_->getName() << std::endl;
+
+}
+
+void Game::changeTurn()
+{
+    playerInTurn_->getName();
+
+    if(getTurn() == playerTwo_) {
+        setTurn(playerOne_);
+    } else {
+        setTurn(playerTwo_);
+    }
+}
+
+
+
+void Game::setupPlayers(QString playerOneName, QString playerTwoName)
+{
+    playerOne_ = std::make_shared<Student::Player>(playerOneName.toStdString());
+    playerOne_->setName(playerOneName.toStdString());
+    playerTwo_ = std::make_shared<Student::Player>(playerTwoName.toStdString());
+    playerTwo_->setName(playerTwoName.toStdString());
+
+    std::cout << "p1: " << playerOne_->getName()<< std::endl;
+    std::cout << "p2: " << playerTwo_->getName()<< std::endl;
+    setTurn(playerOne_);
+}
+
+void Game::displayMainMenu()
+{
+    qDebug() << "displaymainemenu";
+}
+
+void Game::startGameSlot(int playerAmount, unsigned int mapWidth, unsigned int mapHeight, QString playerOneName, QString playerTwoName)
+{
+    setupPlayers(playerOneName, playerTwoName);
     gameScene_->drawGameBoard(mapWidth, mapHeight, 2, objManager_, eveHandler_);
+}
+
+
+void Game::on_turnButton_clicked()
+{
+    changeTurn();
 }
 

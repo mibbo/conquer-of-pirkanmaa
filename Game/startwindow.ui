@@ -98,6 +98,45 @@
     <string>git_commit_hash</string>
    </property>
   </widget>
+  <widget class="QLineEdit" name="playerOne">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>20</y>
+     <width>80</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Player1</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="playerTwo">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>20</y>
+     <width>80</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Player1</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="playerAmountLabel_2">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>22</y>
+     <width>131</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Player names:</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections>
