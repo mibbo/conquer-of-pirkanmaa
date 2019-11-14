@@ -44,5 +44,8 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
     painter->drawRect(boundingRect());
 }
 
-}
+
+
+
+} // namespace Student
 

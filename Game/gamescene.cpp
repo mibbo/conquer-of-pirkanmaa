@@ -8,7 +8,7 @@
 #include "graphics/simplemapitem.h"
 
 
-
+#include <QDebug>
 #include <QEvent>
 #include <QGraphicsSceneMouseEvent>
 #include <memory>
@@ -33,16 +33,19 @@ GameScene::GameScene(QWidget* parent,
 
 void GameScene::drawGameBoard(unsigned int size_x,
                               unsigned int size_y,
-                              unsigned int seed, //randomoidaan jossain kohtaa
+                              unsigned int seed,
                               const std::shared_ptr<ObjectManager> &objectmanager,
                               const std::shared_ptr<Course::iGameEventHandler> &eventhandler) {
 
+    // asettaa skaalan
     m_scale = 800/size_x;
     Course::WorldGenerator& worldGen = Course::WorldGenerator::getInstance();
     worldGen.addConstructor<Course::Forest>(1);
     worldGen.addConstructor<Course::Grassland>(1);
     worldGen.generateMap(size_x, size_y, 2, objectmanager, eventhandler);
     std::vector<std::shared_ptr<Course::TileBase>> tiles = objectmanager->tiili();
+
+    // Prints tiles amount
     std::cout << tiles.size() << std::endl;
 
     for(auto x: tiles){
@@ -57,6 +60,44 @@ void GameScene::drawObject(std::shared_ptr<Course::GameObject> obj) {
     MapItem* newItem = new MapItem(obj, m_scale);
     addItem(newItem);
 
+}
+
+bool GameScene::event(QEvent *event)
+{
+    if(event->type() == QEvent::GraphicsSceneMousePress)
+    {
+        QGraphicsSceneMouseEvent* mouse_event =
+                dynamic_cast<QGraphicsSceneMouseEvent*>(event);
+
+        if ( sceneRect().contains(mouse_event->scenePos())){
+
+            QPointF point = mouse_event->scenePos() / m_scale;
+
+            point.rx() = floor(point.rx());
+            point.ry() = floor(point.ry());
+
+            QGraphicsItem* pressed = itemAt(point * m_scale, QTransform());
+
+            if ( pressed == m_mapBoundRect ){
+                qDebug() << "Click on map area.";
+            }else{
+                qDebug() << "ObjID: " <<
+                            static_cast<Student::MapItem*>(pressed)
+                            ->getBoundObject()->ID << " pressed.";
+                qDebug() << " - Coordinates: (" <<
+                            static_cast<Student::MapItem*>(pressed)
+                            ->getBoundObject()->getCoordinate().x() <<
+                            "," <<
+                            static_cast<Student::MapItem*>(pressed)
+                            ->getBoundObject()->getCoordinate().y() << ") pressed.";
+
+                return true;
+            }
+
+        }
+    }
+
+    return false;
 }
 
 void GameScene::reset()

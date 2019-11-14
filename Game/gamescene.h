@@ -50,6 +50,16 @@ public:
 
     void drawObject(std::shared_ptr<Course::GameObject> obj);
 
+    /**
+     * @brief simple event handler that notifies when objects or the play
+     * area is clicked.
+     * @param event that has happened.
+     * @return True: if event was  handled in the handler.
+     * False: if the event handling was passed over.
+     */
+    virtual bool event(QEvent* event) override;
+
+
     void reset();
 
 private:
