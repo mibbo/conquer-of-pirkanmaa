@@ -14,7 +14,7 @@
 Game::Game(QWidget *parent):
     QMainWindow(parent),
     ui(new Ui::Game),
-    eveHandler_(std::shared_ptr<Student::GameEventHandler>()),
+    eveHandler_(std::make_shared<Student::GameEventHandler>()),
     gameScene_(new Student::GameScene(this)),
     objManager_(std::make_shared<Student::ObjectManager>())
 {

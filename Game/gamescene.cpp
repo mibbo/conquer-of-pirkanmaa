@@ -8,7 +8,6 @@
 #include "core/playerbase.h"
 #include "core/resourcemaps.h"
 #include "core/basicresources.h"
-#include "gameeventhandler.hh"
 
 #include "graphics/simplemapitem.h"
 
@@ -43,8 +42,8 @@ void GameScene::drawGameBoard(unsigned int size_x,
 
                               unsigned int seed, //randomoidaan jossain kohtaa ja poistetaan parametreista
 
-                              const std::shared_ptr<ObjectManager> &objectmanager,
-                              const std::shared_ptr<Course::iGameEventHandler> &eventhandler) {
+                              const std::shared_ptr<Student::ObjectManager> &objectmanager,
+                              const std::shared_ptr<Student::GameEventHandler> &eventhandler) {
 
     // asettaa skaalan
     m_scale = 800/size_x;
@@ -68,7 +67,14 @@ void GameScene::drawGameBoard(unsigned int size_x,
 
     std::shared_ptr<Course::HeadQuarters> hq = std::make_shared<Course::HeadQuarters>(eventhandler, objectmanager, player1);
 
-
+    // tiles.at(0)->addBuilding(hq);
+    std::vector<Course::Coordinate> tili;
+    tili.push_back(Course::Coordinate(0,0));
+    tili.push_back(Course::Coordinate(1,2));
+    tili.push_back(Course::Coordinate(6,6));
+    for (auto x : objectmanager->getTiles(tili)) {
+        std::cout << x->getType();
+    }
 }
 
 void GameScene::drawObject(std::shared_ptr<Course::GameObject> obj) {

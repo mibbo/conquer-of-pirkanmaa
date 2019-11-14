@@ -11,6 +11,7 @@
 #include "interfaces/igameeventhandler.h"
 #include "objectmanager.hh"
 #include "tiles/tilebase.h"
+#include "gameeventhandler.hh"
 
 
 #include "core/gameobject.h"
@@ -46,7 +47,7 @@ public:
                        unsigned int size_y,
                        unsigned int seed,
                        const std::shared_ptr<Student::ObjectManager>& objectmanager,
-                       const std::shared_ptr<Course::iGameEventHandler>& eventhandler);
+                       const std::shared_ptr<Student::GameEventHandler>& eventhandler);
 
     void drawObject(std::shared_ptr<Course::GameObject> obj);
 
