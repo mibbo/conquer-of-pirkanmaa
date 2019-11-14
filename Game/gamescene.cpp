@@ -25,7 +25,7 @@ GameScene::GameScene(QWidget* parent,
     m_mapBoundRect(nullptr),
     m_width(10),
     m_height(10),
-    m_scale(50)
+    m_scale(80)
 
 {
 
@@ -37,6 +37,7 @@ void GameScene::drawGameBoard(unsigned int size_x,
                               const std::shared_ptr<ObjectManager> &objectmanager,
                               const std::shared_ptr<Course::iGameEventHandler> &eventhandler) {
 
+    m_scale = 800/size_x;
     Course::WorldGenerator& worldGen = Course::WorldGenerator::getInstance();
     worldGen.addConstructor<Course::Forest>(1);
     worldGen.addConstructor<Course::Grassland>(1);

@@ -38,10 +38,10 @@ void StartWindow::on_mapSizeComboBox_currentTextChanged(const QString &value)
         mapWidth = 10;
         mapHeight = 10;
     } else if (valueString == "Normal") {
+        mapWidth = 16;
+        mapHeight = 16;
+    } else if (valueString == "Huge") {
         mapWidth = 20;
         mapHeight = 20;
-    } else if (valueString == "Huge") {
-        mapWidth = 30;
-        mapHeight = 30;
     }
 }

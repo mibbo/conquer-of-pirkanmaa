@@ -28,18 +28,18 @@ Game::Game(QWidget *parent):
     dialoq_->exec();
 
     Game::showMaximized();
-    ui->graphicsView->setFixedSize(1400,800);
-    gameScene_->setSceneRect(0,0,1400,800);
+    gameScene_->setSceneRect(0,0,795,795);
+    ui->graphicsView->setFixedSize(805,805);
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setAlignment(Qt::AlignTop|Qt::AlignLeft);
+    //ui->graphicsView->centerOn()
 
     // GameScene
     Student::GameScene* sgs_rawptr = gameScene_.get();
     ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
 
 
-    // singe tile test
-    //
-    //MapItem *box = new MapItem();
-    //gameScene_->addItem(box);
 
 }
 
