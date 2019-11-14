@@ -13,6 +13,7 @@ SOURCES += \
     mapwindow.cc \
     objectmanager.cpp \
     gameeventhandler.cpp \
+    player.cpp \
     startwindow.cpp
 
 HEADERS += \
@@ -22,6 +23,7 @@ HEADERS += \
     mapwindow.hh \
     gameeventhandler.hh \
     objectmanager.hh \
+    player.h \
     startwindow.h
 
 win32:CONFIG(release, debug|release): LIBS += \

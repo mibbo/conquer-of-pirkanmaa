@@ -90,7 +90,6 @@ bool GameScene::event(QEvent *event)
                             "," <<
                             static_cast<Student::MapItem*>(pressed)
                             ->getBoundObject()->getCoordinate().y() << ") pressed.";
-
                 return true;
             }
 

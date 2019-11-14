@@ -1,6 +1,5 @@
 #include "startwindow.h"
 #include "ui_startwindow.h"
-#include <string>
 
 StartWindow::StartWindow(QWidget *parent) :
     QDialog(parent),
@@ -14,6 +13,7 @@ StartWindow::StartWindow(QWidget *parent) :
     ui->mapSizeComboBox->addItem("Small");
     ui->mapSizeComboBox->addItem("Normal");
     ui->mapSizeComboBox->addItem("Huge");
+
 }
 
 StartWindow::~StartWindow()
@@ -23,7 +23,9 @@ StartWindow::~StartWindow()
 
 void StartWindow::on_playButton_clicked()
 {
-    emit startGame(playerAmount, mapWidth, mapHeight);
+    playerOne_ = ui->playerOne->text();
+    playerTwo_ = ui->playerTwo->text();
+    emit startGame(playerAmount, mapWidth, mapHeight, playerOne_, playerTwo_);
 }
 
 void StartWindow::on_spinBox_valueChanged(int value)
