@@ -12,6 +12,8 @@
 #include "objectmanager.hh"
 #include "tiles/tilebase.h"
 #include "gameeventhandler.hh"
+#include "player.h"
+#include "workers/workerbase.h"
 
 
 #include "core/gameobject.h"
@@ -47,7 +49,9 @@ public:
                        unsigned int size_y,
                        unsigned int seed,
                        const std::shared_ptr<Student::ObjectManager>& objectmanager,
-                       const std::shared_ptr<Student::GameEventHandler>& eventhandler);
+                       const std::shared_ptr<Student::GameEventHandler>& eventhandler,
+                       const std::shared_ptr<Student::Player>& playerOne,
+                       const std::shared_ptr<Student::Player>& playerTwo);
 
     void drawObject(std::shared_ptr<Course::GameObject> obj);
 
@@ -60,15 +64,26 @@ public:
      */
     virtual bool event(QEvent* event) override;
 
+    void generateHeadQuarters();
+
+    void updateItem(std::shared_ptr<Course::GameObject> obj);
 
     void reset();
+
+signals:
+    void updateViewSignal();
 
 private:
     QGraphicsItem* m_mapBoundRect;
     int m_width;
     int m_height;
     int m_scale;
-
+    std::shared_ptr<Student::GameEventHandler> eventHandler_ = nullptr;
+    std::shared_ptr<Student::ObjectManager> objectManager_ = nullptr;
+    std::shared_ptr<Student::Player> playerOne_ = nullptr;
+    std::shared_ptr<Student::Player> playerTwo_ = nullptr;
+    bool movableObjectSelected_ = false;
+    std::shared_ptr<Course::WorkerBase> movableObject_ = nullptr;
 };
 
 }

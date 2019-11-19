@@ -32,9 +32,12 @@ public:
 
     void displayMainMenu();
 
+    void updateView();
+
 
 public slots:
     void startGameSlot (int playerAmount, unsigned int mapWidth, unsigned int mapHeight, QString playerOne, QString playerTwo);
+    void updateViewSlot();
 
 private slots:
     void on_turnButton_clicked();

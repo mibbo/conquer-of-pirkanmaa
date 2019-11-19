@@ -52,9 +52,20 @@ public:
                const QStyleOptionGraphicsItem *option,
                QWidget *widget);
 
+    QRect boundingRectForImages();
 
+    /**
+     * @brief updateLoc moves the item if the position has changed.
+     */
+    void updateLoc();
 
-
+    /**
+     * @brief checks if this instance has obj as bound obj.
+     * @param obj to compare to.
+     * @return True: if obj is pointing to the same object as this item.
+     * False otherwise.
+     */
+    bool isSameObj(std::shared_ptr<Course::GameObject> obj);
 
 private:
     const std::shared_ptr<Course::GameObject> m_gameobject;

@@ -60,3 +60,6 @@ FORMS += \
     game.ui \
     mapwindow.ui \
     startwindow.ui
+
+RESOURCES += \
+    resources.qrc

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>HQ.png</file>
+        <file>fedora.jpg</file>
+    </qresource>
+</RCC>

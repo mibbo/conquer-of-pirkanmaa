@@ -4,6 +4,7 @@
 #include "interfaces/iobjectmanager.h"
 #include "tiles/tilebase.h"
 #include "core/coordinate.h"
+#include "core/gameobject.h"
 
 #include <vector>
 #include <memory>
@@ -32,6 +33,7 @@ public:
 
 private:
     std::vector<std::shared_ptr<Course::TileBase>> tileVector;
+    std::vector<std::shared_ptr<Course::GameObject>> objectVector;
 };
 
 } // namespace Student

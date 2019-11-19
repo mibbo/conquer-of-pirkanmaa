@@ -23,12 +23,12 @@ Game::Game(QWidget *parent):
     ui->setupUi(this);
 
 
-
     // StartWindow
     dialoq_ = new StartWindow();
     connect(dialoq_, SIGNAL(startGame(int, unsigned int, unsigned int, QString,  QString)),
             this, SLOT(startGameSlot(int, unsigned int, unsigned int,  QString,  QString)));
     dialoq_->exec();
+
 
     Game::showMaximized();
     gameScene_->setSceneRect(0,0,795,795);
@@ -42,8 +42,9 @@ Game::Game(QWidget *parent):
     Student::GameScene* sgs_rawptr = gameScene_.get();
     ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
 
-    displayMainMenu();
+    connect(sgs_rawptr, SIGNAL(updateViewSignal()), this, SLOT(updateViewSlot()));
 
+    displayMainMenu();
 
 }
 
@@ -96,10 +97,20 @@ void Game::displayMainMenu()
     qDebug() << "displaymainemenu";
 }
 
+void Game::updateView()
+{
+    update();
+}
+
 void Game::startGameSlot(int playerAmount, unsigned int mapWidth, unsigned int mapHeight, QString playerOneName, QString playerTwoName)
 {
     setupPlayers(playerOneName, playerTwoName);
-    gameScene_->drawGameBoard(mapWidth, mapHeight, 2, objManager_, eveHandler_);
+    gameScene_->drawGameBoard(mapWidth, mapHeight, 2, objManager_, eveHandler_, playerOne_, playerTwo_);
+}
+
+void Game::updateViewSlot()
+{
+    ui->graphicsView->viewport()->update();
 }
 
 
