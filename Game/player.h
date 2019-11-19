@@ -2,6 +2,7 @@
 #define PLAYER_H
 #include "core/playerbase.h"
 //#include "core/gameobject.h"
+#include "core/basicresources.h"
 
 
 namespace Student {
@@ -32,9 +33,14 @@ public:
      */
     bool operator==(const Player& other) const;
 
+    bool modifyResource(Course::BasicResource resource, int amount);
+
+    bool modifyResources(Course::ResourceMap resources);
+
 private:
     std::string m_name;
     std::vector<std::weak_ptr<Course::GameObject> > m_objects;
+    Course::ResourceMap m_resources;
 };
 
 }
