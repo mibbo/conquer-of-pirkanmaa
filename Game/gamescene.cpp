@@ -134,16 +134,6 @@ bool GameScene::event(QEvent *event)
                     movableObjectSelected_ = false;
                     vec.clear();
                     GameScene::updateViewSignal();
-
-                    Course::ResourceMap resursseja = {
-                        {Course::BasicResource::MONEY, 200},
-                        {Course::BasicResource::FOOD, 200},
-                        {Course::BasicResource::WOOD, 300},
-                        {Course::BasicResource::STONE, 400},
-                        {Course::BasicResource::ORE, 500}
-                    };
-                    bool test = eventHandler_->modifyResources(playerOne_, resursseja);
-                    if(!test) {std::cout << "töihi" << std::endl;}
                 }
             }
         }
