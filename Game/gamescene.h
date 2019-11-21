@@ -64,14 +64,14 @@ public:
      */
     virtual bool event(QEvent* event) override;
 
-    void generateHeadQuarters();
+    void generateStartingObjects();
 
     void updateItem(std::shared_ptr<Course::GameObject> obj);
 
     void reset();
 
 public slots:
-
+    void playerInTurnSlot(std::shared_ptr<Student::Player> playerInTurn);
     void addBuilding(std::string building);
 
 
@@ -87,9 +87,10 @@ private:
     std::shared_ptr<Student::ObjectManager> objectManager_ = nullptr;
     std::shared_ptr<Student::Player> playerOne_ = nullptr;
     std::shared_ptr<Student::Player> playerTwo_ = nullptr;
+    std::shared_ptr<Student::Player> playerInTurn_ = nullptr;
     bool movableObjectSelected_ = false;
     std::shared_ptr<Course::WorkerBase> movableObject_ = nullptr;
-
+    int playerMovesLeft_;
     //rakennusnapin hommat
     bool buildingButtonClicked = false;
     std::shared_ptr<Course::BuildingBase> buildingToAdd = nullptr;

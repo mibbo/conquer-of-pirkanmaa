@@ -10,7 +10,6 @@
 #include "player.h"
 #include "gameeventhandler.hh"
 #include "QPushButton"
-#include "QVector"
 #include "vector"
 
 
@@ -26,7 +25,6 @@ public:
     explicit Game(QWidget *parent = nullptr);
     ~Game();
 
-
     // turn
     std::shared_ptr<Student::Player> getTurn();
     void setTurn(std::shared_ptr<Student::Player> player);
@@ -38,27 +36,23 @@ public:
     void displayMainMenu();
 
     void updateView();
+	void connectButtons();
 
-    void connectButtons();
-
-
+signals:
+    void playInTurnSignal(std::shared_ptr<Student::Player> playerInTurn_);
+    void buildingSignal(std::string building);
 public slots:
-    void startGameSlot (int playerAmount, unsigned int mapWidth, unsigned int mapHeight, QString playerOne, QString playerTwo);
+    void startGameSlot (unsigned int mapWidth, unsigned int mapHeight, QString playerOne, QString playerTwo);
     void updateViewSlot();
-    // Slot that prints button text.
-    void printButtonText();
-
 
 private slots:
     void on_turnButton_clicked();
 
-signals:
-    void buildingSignal(std::string building);
+
 
 private:
     Ui::Game *ui;
     QDialog* dialoq_;
-    //QVector<QPushButton>* buildingButtons;
     std::vector<QPushButton*> buildingButtons_;
 
     std::shared_ptr<Student::Player> playerInTurn_ = nullptr;

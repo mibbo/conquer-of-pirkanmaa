@@ -19,16 +19,13 @@ public:
 private slots:
     void on_playButton_clicked();
 
-    void on_spinBox_valueChanged(int value);
-
     void on_mapSizeComboBox_currentTextChanged(const QString &value);
 
 signals:
-    void startGame(int playerAmount, unsigned int mapWidth, unsigned int mapHeight, QString playerOne, QString playerTwo);
+    void startGame(unsigned int mapWidth, unsigned int mapHeight, QString playerOne, QString playerTwo);
 
 private:
     Ui::StartWindow *ui;
-    int playerAmount;
     unsigned int mapWidth;
     unsigned int mapHeight;
     QString playerOne_;

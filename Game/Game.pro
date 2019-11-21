@@ -14,7 +14,14 @@ SOURCES += \
     objectmanager.cpp \
     gameeventhandler.cpp \
     player.cpp \
-    startwindow.cpp
+    startwindow.cpp \
+    mountain.cpp \
+    cobblestone.cpp \
+    river.cpp \
+    constructionworker.cpp \
+    warrior.cpp \
+    quarry.cpp \
+    mine.cpp
 
 HEADERS += \
     game.h \
@@ -24,7 +31,15 @@ HEADERS += \
     gameeventhandler.hh \
     objectmanager.hh \
     player.h \
-    startwindow.h
+    startwindow.h \
+    mountain.hh \
+    resourcemaps.hh \
+    cobblestone.hh \
+    river.hh \
+    constructionworker.hh \
+    warrior.hh \
+    quarry.hh \
+    mine.hh
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
