@@ -47,6 +47,7 @@ public slots:
     void updateViewSlot();
     // Slot that prints button text.
     void printButtonText();
+    void updateInformationSlot(int movesLeft);
 
 private slots:
     void on_turnButton_clicked();

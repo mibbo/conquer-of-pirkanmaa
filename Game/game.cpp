@@ -2,6 +2,7 @@
 #include "ui_game.h"
 #include "mapitem.h"
 #include "startwindow.h"
+#include "core/basicresources.h"
 
 #include "tiles/forest.h"
 #include "tiles/grassland.h"
@@ -45,7 +46,7 @@ Game::Game(QWidget *parent):
     ui->graphicsView->setScene(dynamic_cast<QGraphicsScene*>(sgs_rawptr));
 
     connect(sgs_rawptr, SIGNAL(updateViewSignal()), this, SLOT(updateViewSlot()));
-
+    connect(sgs_rawptr, SIGNAL(updateInformationSignal(int)), this, SLOT(updateInformationSlot(int)));
 
     //tekee ja piirtää UI setit (nappulat summuut)
     displayMainMenu();
@@ -122,6 +123,17 @@ void Game::printButtonText() {
           emit buildingSignal(button->text().toStdString());
         }
       }
+}
+
+void Game::updateInformationSlot(int movesLeft)
+{
+    Course::ResourceMap resources = playerInTurn_->getResources();
+    ui->moves->display(movesLeft);
+    ui->money->display(resources[Course::MONEY]);
+    ui->food->display(resources[Course::FOOD]);
+    ui->wood->display(resources[Course::WOOD]);
+    ui->stone->display(resources[Course::STONE]);
+    ui->ore->display(resources[Course::ORE]);
 }
 
 void Game::connectButtons() {

@@ -49,4 +49,9 @@ bool Player::modifyResources(Course::ResourceMap resources)
     return true;
 }
 
+Course::ResourceMap Player::getResources()
+{
+    return m_resources;
+}
+
 }

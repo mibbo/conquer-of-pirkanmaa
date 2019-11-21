@@ -172,7 +172,7 @@ bool GameScene::event(QEvent *event)
             }
         }
     }
-
+    emit updateInformationSignal(playerMovesLeft_);
      return QGraphicsScene::event(event);
 }
 
@@ -241,6 +241,7 @@ void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)
 {
     playerInTurn_ = playerInTurn;
     playerMovesLeft_ = 3;
+    emit updateInformationSignal(playerMovesLeft_);
 }
 
 }

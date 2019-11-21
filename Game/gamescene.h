@@ -72,6 +72,7 @@ public:
 
 signals:
     void updateViewSignal();
+    void updateInformationSignal(int movesLeft);
 
 public slots:
     void playerInTurnSlot(std::shared_ptr<Student::Player> playerInTurn);

@@ -37,6 +37,8 @@ public:
 
     bool modifyResources(Course::ResourceMap resources);
 
+    Course::ResourceMap getResources();
+
 private:
     std::string m_name;
     std::vector<std::weak_ptr<Course::GameObject> > m_objects;
