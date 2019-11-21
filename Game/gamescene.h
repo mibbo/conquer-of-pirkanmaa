@@ -70,6 +70,9 @@ public:
 
     void reset();
 
+signals:
+    void updateViewSignal();
+
 public slots:
     void playerInTurnSlot(std::shared_ptr<Student::Player> playerInTurn);
     void addBuilding(std::string building);
