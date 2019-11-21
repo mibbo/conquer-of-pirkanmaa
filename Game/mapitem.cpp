@@ -14,6 +14,9 @@ MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, int size ):
 {
     c_mapcolors["Forest"] = Qt::darkGreen;
     c_mapcolors["Grassland"] = Qt::green;
+    c_mapcolors["Mountain"] = Qt::darkGray;
+    c_mapcolors["Cobblestone"] = Qt::gray;
+    c_mapcolors["River"] = Qt::blue;
 
     addNewColor(m_gameobject->getType());
 }

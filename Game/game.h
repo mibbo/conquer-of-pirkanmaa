@@ -34,9 +34,11 @@ public:
 
     void updateView();
 
+signals:
+    void playInTurnSignal(std::shared_ptr<Student::Player> playerInTurn_);
 
 public slots:
-    void startGameSlot (int playerAmount, unsigned int mapWidth, unsigned int mapHeight, QString playerOne, QString playerTwo);
+    void startGameSlot (unsigned int mapWidth, unsigned int mapHeight, QString playerOne, QString playerTwo);
     void updateViewSlot();
 
 private slots:

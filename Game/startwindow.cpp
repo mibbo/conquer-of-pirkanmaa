@@ -25,12 +25,7 @@ void StartWindow::on_playButton_clicked()
 {
     playerOne_ = ui->playerOne->text();
     playerTwo_ = ui->playerTwo->text();
-    emit startGame(playerAmount, mapWidth, mapHeight, playerOne_, playerTwo_);
-}
-
-void StartWindow::on_spinBox_valueChanged(int value)
-{
-    playerAmount = value;
+    emit startGame(mapWidth, mapHeight, playerOne_, playerTwo_);
 }
 
 void StartWindow::on_mapSizeComboBox_currentTextChanged(const QString &value)

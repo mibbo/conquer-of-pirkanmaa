@@ -22,11 +22,10 @@ Game::Game(QWidget *parent):
 {
     ui->setupUi(this);
 
-
     // StartWindow
     dialoq_ = new StartWindow();
-    connect(dialoq_, SIGNAL(startGame(int, unsigned int, unsigned int, QString,  QString)),
-            this, SLOT(startGameSlot(int, unsigned int, unsigned int,  QString,  QString)));
+    connect(dialoq_, SIGNAL(startGame(unsigned int, unsigned int, QString,  QString)),
+            this, SLOT(startGameSlot(unsigned int, unsigned int,  QString,  QString)));
     dialoq_->exec();
 
 
@@ -64,7 +63,7 @@ void Game::setTurn(std::shared_ptr<Student::Player> player)
     playerInTurn_ = player;
     ui->turnLabel->setText("Turn: " + QString::fromStdString(playerInTurn_->getName()));
     std::cout << "Turn: " << playerInTurn_->getName() << std::endl;
-
+    emit playInTurnSignal(playerInTurn_);
 }
 
 void Game::changeTurn()
@@ -102,7 +101,7 @@ void Game::updateView()
     update();
 }
 
-void Game::startGameSlot(int playerAmount, unsigned int mapWidth, unsigned int mapHeight, QString playerOneName, QString playerTwoName)
+void Game::startGameSlot(unsigned int mapWidth, unsigned int mapHeight, QString playerOneName, QString playerTwoName)
 {
     setupPlayers(playerOneName, playerTwoName);
     gameScene_->drawGameBoard(mapWidth, mapHeight, 2, objManager_, eveHandler_, playerOne_, playerTwo_);

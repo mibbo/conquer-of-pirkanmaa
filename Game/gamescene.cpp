@@ -10,9 +10,14 @@
 #include "core/basicresources.h"
 #include "workers/basicworker.h"
 #include "game.h"
-
+#include "mountain.hh"
+#include "cobblestone.hh"
 #include "graphics/simplemapitem.h"
-
+#include "river.hh"
+#include "constructionworker.hh"
+#include "warrior.hh"
+#include "quarry.hh"
+#include "mine.hh"
 
 #include <QDebug>
 #include <QEvent>
@@ -36,7 +41,8 @@ GameScene::GameScene(QWidget* parent,
     m_scale(80)
 
 {
-
+    connect(parent, SIGNAL(playInTurnSignal(std::shared_ptr<Student::Player>)), this, SLOT(playerInTurnSlot(std::shared_ptr<Student::Player>)));
+    playerMovesLeft_ = 3;
 }
 
 void GameScene::drawGameBoard(unsigned int size_x,
@@ -60,10 +66,12 @@ void GameScene::drawGameBoard(unsigned int size_x,
 
     seed = rand();
 
-
+    // Create the map with worldGenerator
     Course::WorldGenerator& worldGen = Course::WorldGenerator::getInstance();
     worldGen.addConstructor<Course::Forest>(1);
     worldGen.addConstructor<Course::Grassland>(1);
+    worldGen.addConstructor<Student::Mountain>(1);
+    worldGen.addConstructor<Student::Cobblestone>(1);
     worldGen.generateMap(m_width, m_height, seed, objectManager_, eventHandler_);
     std::vector<std::shared_ptr<Course::TileBase>> tiles = objectManager_->tiili();
 
@@ -73,14 +81,7 @@ void GameScene::drawGameBoard(unsigned int size_x,
     for(auto x: tiles){
         GameScene::drawObject(x);
     }
-    GameScene::generateHeadQuarters();
-
-    std::shared_ptr<Course::BasicWorker> ukko = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerOne_);
-    objectManager_->getTile(44)->setOwner(playerOne_);
-    ukko->setOwner(playerOne_);
-    objectManager_->getTile(44)->addWorker(ukko);
-    GameScene::drawObject(ukko);
-    movableObject_ = ukko;
+    GameScene::generateStartingObjects();
 }
 
 void GameScene::drawObject(std::shared_ptr<Course::GameObject> obj) {
@@ -118,19 +119,31 @@ bool GameScene::event(QEvent *event)
                             static_cast<Student::MapItem*>(pressed)
                             ->getBoundObject()->getCoordinate().y() << ") pressed.";
 
-                // worker move testing
-                auto coor = static_cast<Student::MapItem*>(pressed)->getBoundObject()->getCoordinate();
+                // Worker moving
+                auto coor = static_cast<Student::MapItem*>(pressed)->getBoundObject()->getCoordinate(); // Coordinate for the pressed object
+                auto vec = objectManager_->getTile(coor)->getWorkers(); // Get the vector that has all the workers on the tile (maximum of 1
 
-                auto vec = objectManager_->getTile(coor)->getWorkers();
-                qDebug() << vec.size();
-                if (vec.size() > 0) {
+                // Check if the tile had any of in-turn player's workers
+                if (vec.size() > 0 && vec.at(0)->getOwner() == playerInTurn_ && playerMovesLeft_ > 0) {
                     movableObjectSelected_ = true;
                     movableObject_ = vec.at(0);
-                } else if (movableObjectSelected_ == true) {
-                    objectManager_->getTile(coor)->setOwner(playerOne_);
-                    objectManager_->getTile(movableObject_->getCoordinate())->removeWorker(movableObject_);
-                    objectManager_->getTile(coor)->addWorker(movableObject_);
-                    GameScene::updateItem(movableObject_);
+
+                // Check if a worker has been "selected" and if the clicked tile has any other workers
+                } else if (movableObjectSelected_ == true && objectManager_->getTile(coor)->getWorkers().size() == 0) {
+                    // Calculate the distance in tiles that player chose
+                    int distance = abs(movableObject_->getCoordinate().x() - coor.x()) +
+                            abs(movableObject_->getCoordinate().y() - coor.y());
+                    // If the player has enough moves left move the object
+                    if (distance <= playerMovesLeft_) {
+                        playerMovesLeft_ -= distance;
+                        objectManager_->getTile(coor)->setOwner(playerInTurn_);
+                        objectManager_->getTile(movableObject_->getCoordinate())->removeWorker(movableObject_);
+                        objectManager_->getTile(coor)->addWorker(movableObject_);
+                        GameScene::updateItem(movableObject_);
+                    } else {
+                        qDebug() << "Too far!";
+                    }
+                    // Clear the player's selection and update the view
                     movableObjectSelected_ = false;
                     vec.clear();
                     GameScene::updateViewSignal();
@@ -139,10 +152,10 @@ bool GameScene::event(QEvent *event)
         }
     }
 
-     return QGraphicsScene::event(event);;
+     return QGraphicsScene::event(event);
 }
 
-void GameScene::generateHeadQuarters()
+void GameScene::generateStartingObjects()
 {
     // Randomize the coordinates for the leftside player and mirror the coordinates for rightside player
     int xBoundary = floor(m_width / 5);
@@ -151,13 +164,23 @@ void GameScene::generateHeadQuarters()
     int leftY = floor(rand() % (m_height));
     int rightY = m_height - 1 - leftY;
 
+    // Add and draw the HQ's
     std::shared_ptr<Course::HeadQuarters> hq1 = std::make_shared<Course::HeadQuarters>(eventHandler_, objectManager_, playerOne_);
     objectManager_->getTile(Course::Coordinate(leftX, leftY))->addBuilding(hq1);
     GameScene::drawObject(hq1);
-
     std::shared_ptr<Course::HeadQuarters> hq2 = std::make_shared<Course::HeadQuarters>(eventHandler_, objectManager_, playerTwo_);
     objectManager_->getTile(Course::Coordinate(rightX, rightY))->addBuilding(hq2);
     GameScene::drawObject(hq2);
+
+    // Add and draw the BasicWorkers
+    std::shared_ptr<Course::BasicWorker> bw1 = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerOne_);
+    objectManager_->getTile(Course::Coordinate(leftX + 1, leftY))->setOwner(playerOne_);
+    objectManager_->getTile(Course::Coordinate(leftX + 1, leftY))->addWorker(bw1);
+    GameScene::drawObject(bw1);
+    std::shared_ptr<Course::BasicWorker> bw2 = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerTwo_);
+    objectManager_->getTile(Course::Coordinate(rightX - 1, rightY))->setOwner(playerTwo_);
+    objectManager_->getTile(Course::Coordinate(rightX - 1, rightY))->addWorker(bw2);
+    GameScene::drawObject(bw2);
 }
 
 void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
@@ -178,6 +201,12 @@ void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
 void GameScene::reset()
 {
 
+}
+
+void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)
+{
+    playerInTurn_ = playerInTurn;
+    playerMovesLeft_ = 3;
 }
 
 }

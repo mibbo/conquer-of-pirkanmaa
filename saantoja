@@ -7,3 +7,14 @@
 -rakennukset maksavat materiaaleja ja ukkelit ruokaa ja materiaaleja
 -etuvartiosto lisää vastustajan toimintojen kestoa yhdellä vaikutusalueellaan (etuvartioita max 1)
 - testi
+
+laatat:
+	cobblestone
+	river
+	mountain
+rakennukset:
+	mine (orea ja ehkä rahaa)
+	quarry (kiveä)
+ukkelit:
+	constructor
+	warrior
