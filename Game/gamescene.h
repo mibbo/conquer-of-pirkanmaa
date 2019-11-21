@@ -93,7 +93,7 @@ private:
     std::shared_ptr<Course::WorkerBase> movableObject_ = nullptr;
     int playerMovesLeft_;
     //rakennusnapin hommat
-    bool buildingButtonClicked = false;
+    bool buildingButtonClicked_ = false;
     std::shared_ptr<Course::BuildingBase> buildingToAdd = nullptr;
 
 
