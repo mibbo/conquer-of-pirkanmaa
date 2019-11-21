@@ -13,6 +13,8 @@
 #include <memory>
 #include <iostream>
 
+#include <QWidget>
+
 Game::Game(QWidget *parent):
     QMainWindow(parent),
     ui(new Ui::Game),
@@ -44,36 +46,8 @@ Game::Game(QWidget *parent):
 
     connect(sgs_rawptr, SIGNAL(updateViewSignal()), this, SLOT(updateViewSlot()));
 
-    //add buildingButtons to vector
-//    buildingButtons_.push_back());
-//    buildingButtons_->push_back();
-//    buildingButtons_.push_back()
-    buildingButtons_.push_back(ui->farmButton);
-    buildingButtons_.push_back(ui->mineButton);
-    buildingButtons_.push_back(ui->outpostButton);
-    buildingButtons_.push_back(ui->quarryButton);
 
-    for (unsigned long i=0; i<buildingButtons_.size(); ++i) {
-        qDebug() << "button: " << buildingButtons_.at(i);
-
-    }
-
-    //for (ui->buildingsLayout->itemAt(0); ) {
-    qDebug() << "layout: " << ui->buildingsLayout->count();
-    qDebug() << "farmibutton: " << ui->farmButton->text();
-
-
-//    // käy gridlayoutin läpi ja tulostaa
-//    for (int i = 0; i < ui->buildingsLayout->count(); ++i) {
-//        qDebug() << "button: " << ui->buildingsLayout->itemAt(i);
-//        //buildingButtons_.push_back(ui->buildingsLayout->itemAt(i));
-//    }
-
-
-
-
-
-
+    //tekee ja piirtää UI setit (nappulat summuut)
     displayMainMenu();
 
 }
@@ -127,11 +101,36 @@ void Game::setupPlayers(QString playerOneName, QString playerTwoName)
 void Game::displayMainMenu()
 {
     qDebug() << "displaymainemenu";
+    //add buildingButtons to vector
+    buildingButtons_.push_back(ui->farmButton);
+    buildingButtons_.push_back(ui->mineButton);
+    buildingButtons_.push_back(ui->outpostButton);
+    buildingButtons_.push_back(ui->quarryButton);
+    //
+    connectButtons();
 }
 
 void Game::updateView()
 {
     update();
+}
+
+void Game::printButtonText() {
+    QObject* sender = QObject::sender();
+      if (sender != NULL) {
+        QAbstractButton* button = dynamic_cast<QAbstractButton*>(sender);
+        if (button != NULL) {
+          qDebug() << button->text();
+          emit buildingSignal(button->text().toStdString());
+        }
+      }
+}
+
+void Game::connectButtons() {
+    for (unsigned long i=0; i<buildingButtons_.size(); ++i) {
+      qDebug() << "button: " << buildingButtons_.at(i);
+      connect(buildingButtons_[i], SIGNAL(clicked()), this, SLOT(printButtonText()));
+    }
 }
 
 void Game::startGameSlot(int playerAmount, unsigned int mapWidth, unsigned int mapHeight, QString playerOneName, QString playerTwoName)
@@ -151,9 +150,3 @@ void Game::on_turnButton_clicked()
     changeTurn();
 }
 
-
-void Game::on_farmButton_clicked()
-{
-    emit buildingSignal("Farm");
-    qDebug() << ui->farmButton->text();
-}

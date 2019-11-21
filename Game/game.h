@@ -34,19 +34,23 @@ public:
 
     void setupPlayers(QString playerOneName, QString playerTwoName);
 
+    //tekee ja piirtää UI setit (nappulat summuut)
     void displayMainMenu();
 
     void updateView();
+
+    void connectButtons();
 
 
 public slots:
     void startGameSlot (int playerAmount, unsigned int mapWidth, unsigned int mapHeight, QString playerOne, QString playerTwo);
     void updateViewSlot();
+    // Slot that prints button text.
+    void printButtonText();
+
 
 private slots:
     void on_turnButton_clicked();
-
-    void on_farmButton_clicked();
 
 signals:
     void buildingSignal(std::string building);
