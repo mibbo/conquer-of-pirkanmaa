@@ -19,6 +19,7 @@
 #include "warrior.hh"
 #include "quarry.hh"
 #include "mine.hh"
+#include "buildings/outpost.h"
 
 #include <QDebug>
 #include <QEvent>
@@ -156,15 +157,16 @@ bool GameScene::event(QEvent *event)
                     GameScene::updateViewSignal();
                 }
 
-                // kun rakennusnappia painaa
-                if (buildingButtonClicked == true) {
-                    std::cout << "rakennetaan: " << buildingToAdd->getType() << std::endl;
-                    objectManager_->getTile(coor)->setOwner(playerOne_);
+                // kun rakennusnappia painaa niin rakentaa halutun rakennuksen (temporary variable buildingToAdd)
+                // Prevents the player from adding multiple buildings to a single tile.
+                if (buildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0) {
+                    std::cout << "Pelaaja: " << playerInTurn_->getName()<< " --- rakentaa: " << buildingToAdd->getType() << std::endl;
+                    objectManager_->getTile(coor)->setOwner(playerInTurn_);
                     objectManager_->getTile(coor)->addBuilding(buildingToAdd);
                     GameScene::drawObject(buildingToAdd);
-                    buildingButtonClicked = false;
+                    // Tunnistaa, että rakennettavaa paikkaa on painettu -> asettaa false
+                    buildingButtonClicked_ = false;
                     GameScene::updateViewSignal();
-
 
                 }
 
@@ -222,19 +224,26 @@ void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
 
 void GameScene::addBuilding(std::string building)
 {
-    buildingButtonClicked = true;
-    // playerOne tilalle playerInTurn
-    buildingToAdd = std::make_shared<Course::Farm>(eventHandler_, objectManager_, playerOne_);
+    qDebug() << "asd";
+    // poistaa muiden nappien painallukset
+    movableObjectSelected_ = false;
+    //tunnistaa, että buildingButtonia on painettu->
+    buildingButtonClicked_ = true;
+    if (building == "Farm") {
+        buildingToAdd = std::make_shared<Course::Farm>(eventHandler_, objectManager_, playerInTurn_);
+    } else if (building == "Mine") {
+        buildingToAdd = std::make_shared<Student::Mine>(eventHandler_, objectManager_, playerInTurn_);
+    } else if (building == "Outpost") {
+        buildingToAdd = std::make_shared<Course::Outpost>(eventHandler_, objectManager_, playerInTurn_);
+    } else if (building == "Quarry") {
+        buildingToAdd = std::make_shared<Student::Quarry>(eventHandler_, objectManager_, playerInTurn_);
+    }
+
 
 
 }
 void GameScene::reset()
 {
-    buildingButtonClicked = true;
-    // playerOne tilalle playerInTurn
-    buildingToAdd = std::make_shared<Course::Farm>(eventHandler_, objectManager_, playerOne_);
-
-
 }
 
 void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)

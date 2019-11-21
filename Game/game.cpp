@@ -120,6 +120,7 @@ void Game::printButtonText() {
         QAbstractButton* button = dynamic_cast<QAbstractButton*>(sender);
         if (button != NULL) {
           qDebug() << button->text();
+          //emits buildingButtons name
           emit buildingSignal(button->text().toStdString());
         }
       }
