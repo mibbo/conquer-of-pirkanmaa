@@ -221,7 +221,13 @@ void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
 }
 
 void GameScene::addBuilding(std::string building)
+{
+    buildingButtonClicked = true;
+    // playerOne tilalle playerInTurn
+    buildingToAdd = std::make_shared<Course::Farm>(eventHandler_, objectManager_, playerOne_);
 
+
+}
 void GameScene::reset()
 {
     buildingButtonClicked = true;
