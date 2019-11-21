@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1213</width>
+    <width>1576</width>
     <height>882</height>
    </rect>
   </property>
@@ -50,13 +50,53 @@
      <string>Turn: </string>
     </property>
    </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>1270</x>
+      <y>10</y>
+      <width>151</width>
+      <height>171</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="buildingsLayout">
+     <item row="0" column="0">
+      <widget class="QPushButton" name="farmButton">
+       <property name="text">
+        <string>Farm</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QPushButton" name="outpostButton">
+       <property name="text">
+        <string>Outpost</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="mineButton">
+       <property name="text">
+        <string>Mine</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QPushButton" name="quarryButton">
+       <property name="text">
+        <string>Quarry</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1213</width>
+     <width>1576</width>
      <height>23</height>
     </rect>
    </property>

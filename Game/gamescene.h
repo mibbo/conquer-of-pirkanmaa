@@ -70,6 +70,11 @@ public:
 
     void reset();
 
+public slots:
+
+    void addBuilding(std::string building);
+
+
 signals:
     void updateViewSignal();
 
@@ -84,6 +89,12 @@ private:
     std::shared_ptr<Student::Player> playerTwo_ = nullptr;
     bool movableObjectSelected_ = false;
     std::shared_ptr<Course::WorkerBase> movableObject_ = nullptr;
+
+    //rakennusnapin hommat
+    bool buildingButtonClicked = false;
+    std::shared_ptr<Course::BuildingBase> buildingToAdd = nullptr;
+
+
 };
 
 }

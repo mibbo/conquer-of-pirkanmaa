@@ -10,6 +10,7 @@
 #include "core/basicresources.h"
 #include "workers/basicworker.h"
 #include "game.h"
+#include "buildings/farm.h"
 
 #include "graphics/simplemapitem.h"
 
@@ -36,6 +37,12 @@ GameScene::GameScene(QWidget* parent,
     m_scale(80)
 
 {
+
+    //saa signaalin rakennusnapista ja lähettää metodiin rakennuksen nimen (string)
+    // metodi muuttaa private muuttujat buildingToAdd (rakennettava rakennus) ja rakennusnappibool (onko raknnusnappia painettu)
+    connect(parent, SIGNAL(buildingSignal(std::string)), this, SLOT(addBuilding(std::string)));
+
+
 
 }
 
@@ -81,6 +88,10 @@ void GameScene::drawGameBoard(unsigned int size_x,
     objectManager_->getTile(44)->addWorker(ukko);
     GameScene::drawObject(ukko);
     movableObject_ = ukko;
+
+
+
+
 }
 
 void GameScene::drawObject(std::shared_ptr<Course::GameObject> obj) {
@@ -135,6 +146,20 @@ bool GameScene::event(QEvent *event)
                     vec.clear();
                     GameScene::updateViewSignal();
                 }
+
+                // kun rakennusnappia painaa
+                if (buildingButtonClicked == true) {
+                    std::cout << "rakennetaan: " << buildingToAdd->getType() << std::endl;
+                    objectManager_->getTile(coor)->setOwner(playerOne_);
+                    objectManager_->getTile(coor)->addBuilding(buildingToAdd);
+                    GameScene::drawObject(buildingToAdd);
+                    buildingButtonClicked = false;
+                    GameScene::updateViewSignal();
+
+
+                }
+
+
             }
         }
     }
@@ -173,6 +198,15 @@ void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
             }
         }
     }
+}
+
+void GameScene::addBuilding(std::string building)
+{
+    buildingButtonClicked = true;
+    // playerOne tilalle playerInTurn
+    buildingToAdd = std::make_shared<Course::Farm>(eventHandler_, objectManager_, playerOne_);
+
+
 }
 
 void GameScene::reset()

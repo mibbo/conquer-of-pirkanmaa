@@ -44,6 +44,36 @@ Game::Game(QWidget *parent):
 
     connect(sgs_rawptr, SIGNAL(updateViewSignal()), this, SLOT(updateViewSlot()));
 
+    //add buildingButtons to vector
+//    buildingButtons_.push_back());
+//    buildingButtons_->push_back();
+//    buildingButtons_.push_back()
+    buildingButtons_.push_back(ui->farmButton);
+    buildingButtons_.push_back(ui->mineButton);
+    buildingButtons_.push_back(ui->outpostButton);
+    buildingButtons_.push_back(ui->quarryButton);
+
+    for (unsigned long i=0; i<buildingButtons_.size(); ++i) {
+        qDebug() << "button: " << buildingButtons_.at(i);
+
+    }
+
+    //for (ui->buildingsLayout->itemAt(0); ) {
+    qDebug() << "layout: " << ui->buildingsLayout->count();
+    qDebug() << "farmibutton: " << ui->farmButton->text();
+
+
+//    // käy gridlayoutin läpi ja tulostaa
+//    for (int i = 0; i < ui->buildingsLayout->count(); ++i) {
+//        qDebug() << "button: " << ui->buildingsLayout->itemAt(i);
+//        //buildingButtons_.push_back(ui->buildingsLayout->itemAt(i));
+//    }
+
+
+
+
+
+
     displayMainMenu();
 
 }
@@ -76,6 +106,8 @@ void Game::changeTurn()
     } else {
         setTurn(playerTwo_);
     }
+
+
 }
 
 
@@ -119,3 +151,9 @@ void Game::on_turnButton_clicked()
     changeTurn();
 }
 
+
+void Game::on_farmButton_clicked()
+{
+    emit buildingSignal("Farm");
+    qDebug() << ui->farmButton->text();
+}

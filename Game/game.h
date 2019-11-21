@@ -9,6 +9,9 @@
 #include "core/playerbase.h"
 #include "player.h"
 #include "gameeventhandler.hh"
+#include "QPushButton"
+#include "QVector"
+#include "vector"
 
 
 namespace Ui {
@@ -22,6 +25,7 @@ class Game : public QMainWindow
 public:
     explicit Game(QWidget *parent = nullptr);
     ~Game();
+
 
     // turn
     std::shared_ptr<Student::Player> getTurn();
@@ -42,9 +46,17 @@ public slots:
 private slots:
     void on_turnButton_clicked();
 
+    void on_farmButton_clicked();
+
+signals:
+    void buildingSignal(std::string building);
+
 private:
     Ui::Game *ui;
     QDialog* dialoq_;
+    //QVector<QPushButton>* buildingButtons;
+    std::vector<QPushButton*> buildingButtons_;
+
     std::shared_ptr<Student::Player> playerInTurn_ = nullptr;
     std::shared_ptr<Student::Player> playerOne_ = nullptr;
     std::shared_ptr<Student::Player> playerTwo_ = nullptr;
