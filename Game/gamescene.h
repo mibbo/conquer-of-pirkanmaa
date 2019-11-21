@@ -78,8 +78,6 @@ public slots:
     void addBuilding(std::string building);
 
 
-signals:
-    void updateViewSignal();
 
 private:
     QGraphicsItem* m_mapBoundRect;

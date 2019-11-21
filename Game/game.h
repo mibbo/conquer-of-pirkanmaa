@@ -41,9 +41,12 @@ public:
 signals:
     void playInTurnSignal(std::shared_ptr<Student::Player> playerInTurn_);
     void buildingSignal(std::string building);
+
 public slots:
     void startGameSlot (unsigned int mapWidth, unsigned int mapHeight, QString playerOne, QString playerTwo);
     void updateViewSlot();
+    // Slot that prints button text.
+    void printButtonText();
 
 private slots:
     void on_turnButton_clicked();

@@ -131,7 +131,7 @@ void Game::connectButtons() {
     }
 }
 
-void Game::startGameSlot(unsigned int playerAmount, unsigned int mapWidth, unsigned int mapHeight, QString playerOneName, QString playerTwoName)
+void Game::startGameSlot(unsigned int mapWidth, unsigned int mapHeight, QString playerOneName, QString playerTwoName)
 {
     setupPlayers(playerOneName, playerTwoName);
     gameScene_->drawGameBoard(mapWidth, mapHeight, 2, objManager_, eveHandler_, playerOne_, playerTwo_);
