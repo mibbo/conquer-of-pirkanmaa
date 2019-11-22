@@ -18,6 +18,8 @@ Player::Player(const std::string& name,
         {Course::BasicResource::STONE, 1000},
         {Course::BasicResource::ORE, 1000}
     };
+
+    m_color = Qt::black;
 }
 bool Player::operator==(const Player& other) const
 {
@@ -52,6 +54,16 @@ bool Player::modifyResources(Course::ResourceMap resources)
 Course::ResourceMap Player::getResources()
 {
     return m_resources;
+}
+
+QColor Player::getColor()
+{
+    return m_color;
+}
+
+void Player::setColor(QColor color)
+{
+    m_color = color;
 }
 
 }

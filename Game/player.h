@@ -3,7 +3,7 @@
 #include "core/playerbase.h"
 //#include "core/gameobject.h"
 #include "core/basicresources.h"
-
+#include <QColor>
 
 namespace Student {
 
@@ -39,10 +39,15 @@ public:
 
     Course::ResourceMap getResources();
 
+    QColor getColor();
+
+    void setColor(QColor color);
+
 private:
     std::string m_name;
     std::vector<std::weak_ptr<Course::GameObject> > m_objects;
     Course::ResourceMap m_resources;
+    QColor m_color;
 };
 
 }

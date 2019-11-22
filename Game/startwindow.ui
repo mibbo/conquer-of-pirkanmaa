@@ -91,14 +91,14 @@
   <widget class="QLineEdit" name="playerTwo">
    <property name="geometry">
     <rect>
-     <x>280</x>
+     <x>290</x>
      <y>20</y>
      <width>80</width>
      <height>26</height>
     </rect>
    </property>
    <property name="text">
-    <string>Player1</string>
+    <string>Player2</string>
    </property>
   </widget>
   <widget class="QLabel" name="playerAmountLabel_2">
@@ -112,6 +112,45 @@
    </property>
    <property name="text">
     <string>Player names:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="colorLabel">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>50</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Select player colors:</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="playerOneColor">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>50</y>
+     <width>84</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Player1</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="playerTwoColor">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>50</y>
+     <width>84</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Player2</string>
    </property>
   </widget>
  </widget>

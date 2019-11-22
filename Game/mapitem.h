@@ -26,7 +26,7 @@ public:
      * @param size of the created item in pixels.
      * @pre obj must have a valid Coordinate.
      */
-    MapItem(const std::shared_ptr<Course::GameObject> &obj, int size);
+    MapItem(const std::shared_ptr<Course::GameObject> &obj, int size, QColor color = Qt::black);
 
     /**
      * @brief boundingRect
@@ -67,10 +67,13 @@ public:
      */
     bool isSameObj(std::shared_ptr<Course::GameObject> obj);
 
+    QPixmap getPixMap(std::string type);
+
 private:
     const std::shared_ptr<Course::GameObject> m_gameobject;
     QPoint m_scenelocation;
     int m_size;
+    QColor m_color;
 
     static std::map<std::string, QColor> c_mapcolors;
     static void addNewColor(std::string type);

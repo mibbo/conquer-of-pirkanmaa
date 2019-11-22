@@ -2,5 +2,14 @@
     <qresource prefix="/images">
         <file>HQ.png</file>
         <file>fedora.jpg</file>
+        <file>warrior.png</file>
+        <file>quarry.png</file>
+        <file>outpost.png</file>
+        <file>mine.png</file>
+        <file>farm.jpg</file>
+        <file>constructionworker.jpg</file>
+        <file>basicworker.png</file>
+        <file>farm.png</file>
+        <file>constructionworker.png</file>
     </qresource>
 </RCC>

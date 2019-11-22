@@ -93,20 +93,13 @@
    <widget class="QWidget" name="formLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>170</y>
+      <x>20</x>
+      <y>50</y>
       <width>160</width>
-      <height>191</height>
+      <height>196</height>
      </rect>
     </property>
     <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="0">
-      <widget class="QLabel" name="labelMoves">
-       <property name="text">
-        <string>Moves</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="1">
       <widget class="QLCDNumber" name="moves"/>
      </item>
@@ -120,15 +113,15 @@
      <item row="1" column="1">
       <widget class="QLCDNumber" name="money"/>
      </item>
-     <item row="2" column="1">
-      <widget class="QLCDNumber" name="food"/>
-     </item>
      <item row="2" column="0">
       <widget class="QLabel" name="labelFood">
        <property name="text">
         <string>Food</string>
        </property>
       </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLCDNumber" name="food"/>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="labelWood">
@@ -147,6 +140,9 @@
        </property>
       </widget>
      </item>
+     <item row="4" column="1">
+      <widget class="QLCDNumber" name="stone"/>
+     </item>
      <item row="5" column="0">
       <widget class="QLabel" name="labelOre">
        <property name="text">
@@ -154,11 +150,15 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="1">
-      <widget class="QLCDNumber" name="stone"/>
-     </item>
      <item row="5" column="1">
       <widget class="QLCDNumber" name="ore"/>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelMoves">
+       <property name="text">
+        <string>Moves</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </widget>

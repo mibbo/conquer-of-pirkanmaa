@@ -28,8 +28,8 @@ Game::Game(QWidget *parent):
 
     // StartWindow
     dialoq_ = new StartWindow();
-    connect(dialoq_, SIGNAL(startGame(unsigned int, unsigned int, QString,  QString)),
-            this, SLOT(startGameSlot(unsigned int, unsigned int,  QString,  QString)));
+    connect(dialoq_, SIGNAL(startGame(unsigned int, unsigned int, QString,  QString, QColor, QColor)),
+            this, SLOT(startGameSlot(unsigned int, unsigned int,  QString,  QString, QColor, QColor)));
     dialoq_->exec();
 
 
@@ -144,9 +144,12 @@ void Game::connectButtons() {
     }
 }
 
-void Game::startGameSlot(unsigned int mapWidth, unsigned int mapHeight, QString playerOneName, QString playerTwoName)
+void Game::startGameSlot(unsigned int mapWidth, unsigned int mapHeight, QString playerOneName, QString playerTwoName,
+                         QColor playerOneColor, QColor playerTwoColor)
 {
     setupPlayers(playerOneName, playerTwoName);
+    playerOne_->setColor(playerOneColor);
+    playerTwo_->setColor(playerTwoColor);
     gameScene_->drawGameBoard(mapWidth, mapHeight, 2, objManager_, eveHandler_, playerOne_, playerTwo_);
 }
 

@@ -21,8 +21,17 @@ private slots:
 
     void on_mapSizeComboBox_currentTextChanged(const QString &value);
 
+    void on_playerOneColor_clicked();
+
+    void on_playerTwoColor_clicked();
+
+    void on_playerOne_textChanged(const QString &arg1);
+
+    void on_playerTwo_textChanged(const QString &arg1);
+
 signals:
-    void startGame(unsigned int mapWidth, unsigned int mapHeight, QString playerOne, QString playerTwo);
+    void startGame(unsigned int mapWidth, unsigned int mapHeight, QString playerOne, QString playerTwo,
+                   QColor playerOneColor, QColor playerTwoColor);
 
 private:
     Ui::StartWindow *ui;
@@ -30,6 +39,8 @@ private:
     unsigned int mapHeight;
     QString playerOne_;
     QString playerTwo_;
+    QColor playerOneColor_ = Qt::darkBlue;
+    QColor playerTwoColor_ = Qt::darkRed;
 };
 
 #endif // STARTWINDOW_HH

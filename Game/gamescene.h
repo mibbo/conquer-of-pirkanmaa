@@ -53,7 +53,7 @@ public:
                        const std::shared_ptr<Student::Player>& playerOne,
                        const std::shared_ptr<Student::Player>& playerTwo);
 
-    void drawObject(std::shared_ptr<Course::GameObject> obj);
+    void drawObject(std::shared_ptr<Course::GameObject> obj, QColor color = Qt::black);
 
     /**
      * @brief simple event handler that notifies when objects or the play
@@ -96,7 +96,6 @@ private:
     //rakennusnapin hommat
     bool buildingButtonClicked_ = false;
     std::shared_ptr<Course::BuildingBase> buildingToAdd = nullptr;
-
 
 };
 
