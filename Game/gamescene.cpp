@@ -23,6 +23,7 @@
 #include "workers/basicworker.h"
 #include "constructionworker.hh"
 #include "warrior.hh"
+#include "resourcemaps.hh"
 
 #include <QDebug>
 #include <QEvent>
@@ -33,6 +34,8 @@
 #include <QColor>
 
 #include <math.h>
+
+#define stringify( name ) # name
 
 namespace Student {
 
@@ -166,7 +169,12 @@ bool GameScene::event(QEvent *event)
 
                 // kun rakennusnappia painaa niin rakentaa halutun rakennuksen (temporary variable buildingToAdd)
                 // Prevents the player from adding multiple buildings to a single tile.
-                if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0) {
+                if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0 && playerInTurn_->modifyResources(buildingToAdd_->BUILD_COST) == true) {
+                    std::cout <<  playerInTurn_->getName() << "Resources: " << std::endl;
+
+                    for (auto resource : playerInTurn_->getResources()) {
+                        std::cout << resource.first << ": " << resource.second << std::endl;
+                    }
                     std::cout << "Pelaaja: " << playerInTurn_->getName()<< " --- rakentaa: " << buildingToAdd_->getType() << std::endl;
                     objectManager_->getTile(coor)->setOwner(playerInTurn_);
                     objectManager_->getTile(coor)->addBuilding(buildingToAdd_);
@@ -177,9 +185,31 @@ bool GameScene::event(QEvent *event)
                     menuBuildingButtonClicked_ = false;
                     GameScene::updateViewSignal();
 
+
+                // TULOSTAA puuttuvien resurssien määrän
+                } else if (playerInTurn_->modifyResources(buildingToAdd_->BUILD_COST) == false) {
+                    std::cout <<  playerInTurn_->getName() << " ei pygee rakentaa ko ";
+                    if (playerInTurn_->getName() == "mibbo") {
+                        std::cout << playerInTurn_->getName() << " on niin jumala, et sen ei tarvi rakentaa tommotteisii paskahuussei" << std::endl;
+                    } else if (playerInTurn_->getName() == "brutus") {
+                        std::cout << playerInTurn_->getName() << " on niin vammane, känsärunkku, kyrpäyrjö, kullilutka ja persaukine luuskapillu et ei osaa ees vittu pelaa" << std::endl;
+                    }
+                    const char* resourceNames[] =
+                      {
+                      stringify( Money ),
+                      stringify( Food ),
+                      stringify( Wood ),
+                      stringify( Stone ),
+                      stringify( Ore )
+                      };
+                    for (auto resource : playerInTurn_->getResources()) {
+                        for (auto cost : buildingToAdd_->BUILD_COST) {
+                            if (resource.first == cost.first && resource.second < cost.second) {
+                                std::cout << "resurssia " << resourceNames[cost.first-1] << " puuttuu: " << cost.second-resource.second << " yksikköä" << std::endl;
+                            }
+                        }
+                    }
                 }
-
-
             }
         }
     }

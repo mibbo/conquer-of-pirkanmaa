@@ -1,4 +1,4 @@
-#ifndef MAPITEM_H
+    #ifndef MAPITEM_H
 #define MAPITEM_H
 
 #include <QGraphicsItem>

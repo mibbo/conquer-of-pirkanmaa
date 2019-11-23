@@ -33,7 +33,6 @@ bool Player::modifyResource(Course::BasicResource resource, int amount)
         return false;
     } else {
         m_resources[resource] -= amount;
-        std::cout << m_resources[resource] << std::endl;
         return true;
     }
 }

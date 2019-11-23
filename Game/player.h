@@ -47,6 +47,7 @@ private:
     std::string m_name;
     std::vector<std::weak_ptr<Course::GameObject> > m_objects;
     Course::ResourceMap m_resources;
+    std::vector<std::weak_ptr<Course::GameObject> > m_tiles;
     QColor m_color;
 };
 
