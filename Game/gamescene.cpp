@@ -185,9 +185,10 @@ bool GameScene::event(QEvent *event)
                     menuBuildingButtonClicked_ = false;
                     GameScene::updateViewSignal();
 
+                }
 
                 // TULOSTAA puuttuvien resurssien määrän
-                } else if (playerInTurn_->modifyResources(buildingToAdd_->BUILD_COST) == false) {
+                 if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0 && playerInTurn_->modifyResources(buildingToAdd_->BUILD_COST) == false) {
                     std::cout <<  playerInTurn_->getName() << " ei pygee rakentaa ko ";
                     if (playerInTurn_->getName() == "mibbo") {
                         std::cout << playerInTurn_->getName() << " on niin jumala, et sen ei tarvi rakentaa tommotteisii paskahuussei" << std::endl;
