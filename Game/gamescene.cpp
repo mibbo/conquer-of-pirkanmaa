@@ -197,11 +197,11 @@ void GameScene::generateStartingObjects()
     GameScene::drawObject(hq2, playerTwo_->getColor());
 
     // Add and draw the BasicWorkers
-    std::shared_ptr<Student::ConstrutionWorker> bw1 = std::make_shared<Student::ConstrutionWorker>(eventHandler_, objectManager_, playerOne_);
-//    std::shared_ptr<Course::BasicWorker> bw1 = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerOne_);
+    std::shared_ptr<Course::BasicWorker> bw1 = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerOne_);
     objectManager_->getTile(Course::Coordinate(leftX + 1, leftY))->setOwner(playerOne_);
     objectManager_->getTile(Course::Coordinate(leftX + 1, leftY))->addWorker(bw1);
     GameScene::drawObject(bw1, playerOne_->getColor());
+    
     std::shared_ptr<Course::BasicWorker> bw2 = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerTwo_);
     objectManager_->getTile(Course::Coordinate(rightX - 1, rightY))->setOwner(playerTwo_);
     objectManager_->getTile(Course::Coordinate(rightX - 1, rightY))->addWorker(bw2);
