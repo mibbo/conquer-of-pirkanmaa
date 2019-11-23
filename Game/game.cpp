@@ -51,6 +51,9 @@ Game::Game(QWidget *parent):
     //tekee ja piirtää UI setit (nappulat summuut)
     displayMainMenu();
 
+    // LOG
+    ui->log->setReadOnly(true);
+
 }
 
 Game::~Game()
@@ -100,12 +103,9 @@ void Game::setupPlayers(QString playerOneName, QString playerTwoName)
 void Game::displayMainMenu()
 {
     qDebug() << "displaymainemenu";
-    //add buildingButtons to vector
-    buildingButtons_.push_back(ui->farmButton);
-    buildingButtons_.push_back(ui->mineButton);
-    buildingButtons_.push_back(ui->outpostButton);
-    buildingButtons_.push_back(ui->quarryButton);
-    //
+    //add buildingButtons and workerButtons to vector
+    buildingButtonsVector_ = {ui->farmButton, ui->mineButton, ui->outpostButton, ui->quarryButton,
+                              ui->basicWorkerButton, ui->constWorkerButton, ui->warriorButton};
     connectButtons();
 }
 
@@ -114,12 +114,11 @@ void Game::updateView()
     update();
 }
 
-void Game::printButtonText() {
+void Game::sendButtonText() {
     QObject* sender = QObject::sender();
-      if (sender != NULL) {
+      if (sender != nullptr) {
         QAbstractButton* button = dynamic_cast<QAbstractButton*>(sender);
-        if (button != NULL) {
-          qDebug() << button->text();
+        if (button != nullptr) {
           //emits buildingButtons name
           emit buildingSignal(button->text().toStdString());
         }
@@ -138,10 +137,21 @@ void Game::updateInformationSlot(int movesLeft)
 }
 
 void Game::connectButtons() {
-    for (unsigned long i=0; i<buildingButtons_.size(); ++i) {
-      qDebug() << "button: " << buildingButtons_.at(i);
-      connect(buildingButtons_[i], SIGNAL(clicked()), this, SLOT(printButtonText()));
+    for (auto button : buildingButtonsVector_) {
+        connect(button, SIGNAL(clicked()), this, SLOT(sendButtonText()));
+
     }
+}
+
+void Game::logMessage(std::string message)
+{
+    ui->log->setPlainText(QString::fromStdString(message));
+}
+
+void Game::logMessage(QString message)
+{
+    ui->log->setPlainText(message);
+
 }
 
 void Game::startGameSlot(unsigned int mapWidth, unsigned int mapHeight, QString playerOneName, QString playerTwoName,

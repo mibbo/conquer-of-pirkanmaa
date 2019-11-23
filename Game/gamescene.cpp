@@ -20,6 +20,9 @@
 #include "quarry.hh"
 #include "mine.hh"
 #include "buildings/outpost.h"
+#include "workers/basicworker.h"
+#include "constructionworker.hh"
+#include "warrior.hh"
 
 #include <QDebug>
 #include <QEvent>
@@ -46,8 +49,11 @@ GameScene::GameScene(QWidget* parent,
 {
 
     //saa signaalin rakennusnapista ja lähettää metodiin rakennuksen nimen (string)
-    // metodi muuttaa private muuttujat buildingToAdd (rakennettava rakennus) ja rakennusnappibool (onko raknnusnappia painettu)
-    connect(parent, SIGNAL(buildingSignal(std::string)), this, SLOT(addBuilding(std::string)));
+    connect(parent, SIGNAL(buildingSignal(std::string)), this, SLOT(addButtonObject(std::string)));
+
+
+
+
 
     connect(parent, SIGNAL(playInTurnSignal(std::shared_ptr<Student::Player>)), this, SLOT(playerInTurnSlot(std::shared_ptr<Student::Player>)));
     playerMovesLeft_ = 3;
@@ -72,6 +78,7 @@ void GameScene::drawGameBoard(unsigned int size_x,
     objectManager_ = objectmanager;
     playerOne_ = playerOne;
     playerTwo_ = playerTwo;
+
     seed = rand();
 
     // Create the map with worldGenerator
@@ -159,13 +166,15 @@ bool GameScene::event(QEvent *event)
 
                 // kun rakennusnappia painaa niin rakentaa halutun rakennuksen (temporary variable buildingToAdd)
                 // Prevents the player from adding multiple buildings to a single tile.
-                if (buildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0) {
-                    std::cout << "Pelaaja: " << playerInTurn_->getName()<< " --- rakentaa: " << buildingToAdd->getType() << std::endl;
+                if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0) {
+                    std::cout << "Pelaaja: " << playerInTurn_->getName()<< " --- rakentaa: " << buildingToAdd_->getType() << std::endl;
                     objectManager_->getTile(coor)->setOwner(playerInTurn_);
-                    objectManager_->getTile(coor)->addBuilding(buildingToAdd);
-                    GameScene::drawObject(buildingToAdd, playerInTurn_->getColor());
+                    objectManager_->getTile(coor)->addBuilding(buildingToAdd_);
+                    //asettaa pelaajan tietoihin rakennuksen
+                    playerInTurn_->addObject(buildingToAdd_);
+                    GameScene::drawObject(buildingToAdd_, playerInTurn_->getColor());
                     // Tunnistaa, että rakennettavaa paikkaa on painettu -> asettaa false
-                    buildingButtonClicked_ = false;
+                    menuBuildingButtonClicked_ = false;
                     GameScene::updateViewSignal();
 
                 }
@@ -191,10 +200,12 @@ void GameScene::generateStartingObjects()
     std::shared_ptr<Course::HeadQuarters> hq1 = std::make_shared<Course::HeadQuarters>(eventHandler_, objectManager_, playerOne_);
     objectManager_->getTile(Course::Coordinate(leftX, leftY))->addBuilding(hq1);
     GameScene::drawObject(hq1, playerOne_->getColor());
+    playerOne_->addObject(hq1);
 
     std::shared_ptr<Course::HeadQuarters> hq2 = std::make_shared<Course::HeadQuarters>(eventHandler_, objectManager_, playerTwo_);
     objectManager_->getTile(Course::Coordinate(rightX, rightY))->addBuilding(hq2);
     GameScene::drawObject(hq2, playerTwo_->getColor());
+    playerTwo_->addObject(hq2);
 
     // Add and draw the BasicWorkers
     std::shared_ptr<Course::BasicWorker> bw1 = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerOne_);
@@ -223,21 +234,73 @@ void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
     }
 }
 
-void GameScene::addBuilding(std::string building)
+
+std::shared_ptr<Course::GameObject> GameScene::returnPlayerObject(std::string objectName)  // tähän olis voinu asettaa mahdollisuudeksi laittaa myös player parametriksi: player = playerInTurn_, mutta paska ei toiminu ulisee vaa jotai
 {
-    qDebug() << "asd";
+    for (auto object : playerInTurn_->getObjects()) {
+        if (object->getType() == objectName)
+            return object;
+    }
+}
+
+void GameScene::addButtonObject(std::string buttonString)
+{
+    // DEBUG honmaa
+    // tulostaa pelaajan omistamat objektit
+    if (playerInTurn_->getObjects().size() == 0) {
+        std::cout << "pelaajalla " << playerInTurn_->getName() << " ei objekteja" << std::endl;
+    } else {
+        std::cout << playerInTurn_->getName() << " -- Objects: ";
+        for (auto object : playerInTurn_->getObjects()) {
+            std::cout << object->getType() << ", ";
+        }
+        std::cout << std::endl;
+    }
+
     // poistaa muiden nappien painallukset
     movableObjectSelected_ = false;
+    menuBuildingButtonClicked_ = false;
     //tunnistaa, että buildingButtonia on painettu->
-    buildingButtonClicked_ = true;
-    if (building == "Farm") {
-        buildingToAdd = std::make_shared<Course::Farm>(eventHandler_, objectManager_, playerInTurn_);
-    } else if (building == "Mine") {
-        buildingToAdd = std::make_shared<Student::Mine>(eventHandler_, objectManager_, playerInTurn_);
-    } else if (building == "Outpost") {
-        buildingToAdd = std::make_shared<Course::Outpost>(eventHandler_, objectManager_, playerInTurn_);
-    } else if (building == "Quarry") {
-        buildingToAdd = std::make_shared<Student::Quarry>(eventHandler_, objectManager_, playerInTurn_);
+    // Buildings
+    if (buttonString == "Farm") {
+        menuBuildingButtonClicked_ = true;
+        buildingToAdd_ = std::make_shared<Course::Farm>(eventHandler_, objectManager_, playerInTurn_);
+    } else if (buttonString == "Mine") {
+        menuBuildingButtonClicked_ = true;
+        buildingToAdd_ = std::make_shared<Student::Mine>(eventHandler_, objectManager_, playerInTurn_);
+    } else if (buttonString == "Outpost") {
+        menuBuildingButtonClicked_ = true;
+        buildingToAdd_ = std::make_shared<Course::Outpost>(eventHandler_, objectManager_, playerInTurn_);
+    } else if (buttonString == "Quarry") {
+        menuBuildingButtonClicked_ = true;
+        buildingToAdd_ = std::make_shared<Student::Quarry>(eventHandler_, objectManager_, playerInTurn_);
+    // Workers
+        //pitää tehä näihin erikseen että addaa ne HQ läheisyyteen
+    } else if (buttonString == "Basic Worker") {
+        workerToAdd_ = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerInTurn_);
+        //etsii spawnauspaikan(hq) coordinaatit
+        Course::Coordinate hqCoordinates = returnPlayerObject("HeadQuarters")->getCoordinate();
+
+        // etsii lähimmän mahdollisen koordinaatin
+        objectManager_->getTile(hqCoordinates)->setOwner(playerInTurn_);
+        objectManager_->getTile(hqCoordinates)->addWorker(workerToAdd_);
+        GameScene::drawObject(workerToAdd_, playerInTurn_->getColor());
+
+    } else if (buttonString == "Construction Worker") {
+        workerToAdd_ = std::make_shared<Student::ConstrutionWorker>(eventHandler_, objectManager_, playerInTurn_);
+
+        Course::Coordinate hqCoordinates = returnPlayerObject("HeadQuarters")->getCoordinate();
+        objectManager_->getTile(hqCoordinates)->setOwner(playerInTurn_);
+        objectManager_->getTile(hqCoordinates)->addWorker(workerToAdd_);
+        GameScene::drawObject(workerToAdd_, playerInTurn_->getColor());
+
+    } else if (buttonString == "Warrior") {
+        workerToAdd_ = std::make_shared<Student::Warrior>(eventHandler_, objectManager_, playerInTurn_);
+
+        Course::Coordinate hqCoordinates = returnPlayerObject("HeadQuarters")->getCoordinate();
+        objectManager_->getTile(hqCoordinates)->setOwner(playerInTurn_);
+        objectManager_->getTile(hqCoordinates)->addWorker(workerToAdd_);
+        GameScene::drawObject(workerToAdd_, playerInTurn_->getColor());
     }
 
 

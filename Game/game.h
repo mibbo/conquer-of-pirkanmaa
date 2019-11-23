@@ -37,6 +37,9 @@ public:
 
     void updateView();
 	void connectButtons();
+    void logMessage(std::string message);
+    void logMessage(QString message);
+
 
 signals:
     void playInTurnSignal(std::shared_ptr<Student::Player> playerInTurn_);
@@ -46,8 +49,8 @@ public slots:
     void startGameSlot (unsigned int mapWidth, unsigned int mapHeight, QString playerOne, QString playerTwo,
                         QColor playerOneColor, QColor playerTwoColor);
     void updateViewSlot();
-    // Slot that prints button text.
-    void printButtonText();
+    // Slot that sends button text.
+    void sendButtonText();
     void updateInformationSlot(int movesLeft);
 
 private slots:
@@ -58,7 +61,7 @@ private slots:
 private:
     Ui::Game *ui;
     QDialog* dialoq_;
-    std::vector<QPushButton*> buildingButtons_;
+    std::vector<QPushButton*> buildingButtonsVector_;
 
     std::shared_ptr<Student::Player> playerInTurn_ = nullptr;
     std::shared_ptr<Student::Player> playerOne_ = nullptr;
