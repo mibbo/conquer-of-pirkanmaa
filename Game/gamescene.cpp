@@ -317,12 +317,12 @@ void GameScene::reset()
 
 void GameScene::drawTileOwners()
 {
-    auto coor = playerOne_->getObjects().at(0)->getCoordinate();
-    QPointF point(coor.x(), coor.y());
-    QGraphicsItem* graphitem = itemAt(point * m_scale, QTransform());
-    auto mapitem = static_cast<Student::MapItem*>(graphitem);
-    this->addRect(QRectF(mapitem->boundingRect()),
-                  QPen(playerOne_->getColor(), 3));
+
+//    auto coor = playerOne_->getObjects().at(0)->getCoordinate();
+//    QPointF point(coor.x(), coor.y());
+//    QGraphicsItem* graphitem = itemAt(point * m_scale, QTransform());
+//    this->addRect(QRectF(static_cast<Student::MapItem*>(graphitem)->boundingRect()),
+//                  QPen(playerOne_->getColor(), 3));
 }
 
 void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)
