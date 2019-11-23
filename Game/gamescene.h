@@ -68,6 +68,9 @@ public:
 
     void updateItem(std::shared_ptr<Course::GameObject> obj);
 
+    //palauttaa pelaajan object-vektorista halutun objectin (vertailee nimiä eli jos pelaajalla usea samanniminen objekti niin homma KUSEE)
+    std::shared_ptr<Course::GameObject> returnPlayerObject(std::string objectName);
+
     void reset();
 
 signals:
@@ -76,7 +79,7 @@ signals:
 
 public slots:
     void playerInTurnSlot(std::shared_ptr<Student::Player> playerInTurn);
-    void addBuilding(std::string building);
+    void addButtonObject(std::string building);
 
 
 
@@ -93,9 +96,13 @@ private:
     bool movableObjectSelected_ = false;
     std::shared_ptr<Course::WorkerBase> movableObject_ = nullptr;
     int playerMovesLeft_;
-    //rakennusnapin hommat
-    bool buildingButtonClicked_ = false;
-    std::shared_ptr<Course::BuildingBase> buildingToAdd = nullptr;
+    //rakennus ja worker hommat
+    bool menuBuildingButtonClicked_ = false;
+    std::shared_ptr<Course::BuildingBase> buildingToAdd_ = nullptr;
+    std::shared_ptr<Course::WorkerBase> workerToAdd_ = nullptr;
+
+
+
 
 
 };

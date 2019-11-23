@@ -85,7 +85,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Player1</string>
+    <string>mibbo</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="playerTwo">
@@ -98,7 +98,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Player1</string>
+    <string>brutus</string>
    </property>
   </widget>
   <widget class="QLabel" name="playerAmountLabel_2">
