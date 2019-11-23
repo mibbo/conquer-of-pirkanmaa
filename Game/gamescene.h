@@ -73,6 +73,8 @@ public:
 
     void reset();
 
+    void drawTileOwners();
+
 signals:
     void updateViewSignal();
     void updateInformationSignal(int movesLeft);

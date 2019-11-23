@@ -60,7 +60,7 @@ void StartWindow::on_playerOneColor_clicked()
 void StartWindow::on_playerTwoColor_clicked()
 {
     // Open color selection, save the selected color to variable and update the buttoncolor
-    QColor color = QColorDialog::getColor(Qt::white, this, "Choose player 1 color");
+    QColor color = QColorDialog::getColor(Qt::white, this, "Choose player 2 color");
     if(color.isValid()) {
         playerTwoColor_ = color;
         ui->playerTwoColor->setStyleSheet(QString("background-color: %1").arg(color.name()));
