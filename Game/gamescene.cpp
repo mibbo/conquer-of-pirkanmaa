@@ -239,14 +239,19 @@ void GameScene::generateStartingObjects()
 
     // Add and draw the BasicWorkers
     std::shared_ptr<Course::BasicWorker> bw1 = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerOne_);
-    objectManager_->getTile(Course::Coordinate(leftX + 1, leftY))->setOwner(playerOne_);
-    objectManager_->getTile(Course::Coordinate(leftX + 1, leftY))->addWorker(bw1);
+    objectManager_->getTile(Course::Coordinate(Course::Coordinate(leftX, leftY), Course::Direction::E))->setOwner(playerOne_);
+    objectManager_->getTile(Course::Coordinate(Course::Coordinate(leftX, leftY), Course::Direction::E))->addWorker(bw1);
     GameScene::drawObject(bw1, playerOne_->getColor());
+    playerOne_->addObject(bw1);
     
     std::shared_ptr<Course::BasicWorker> bw2 = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerTwo_);
-    objectManager_->getTile(Course::Coordinate(rightX - 1, rightY))->setOwner(playerTwo_);
-    objectManager_->getTile(Course::Coordinate(rightX - 1, rightY))->addWorker(bw2);
+    objectManager_->getTile(Course::Coordinate(Course::Coordinate(rightX, rightY), Course::Direction::W))->setOwner(playerTwo_);
+    objectManager_->getTile(Course::Coordinate(Course::Coordinate(rightX, rightY), Course::Direction::W))->addWorker(bw2);
     GameScene::drawObject(bw2, playerTwo_->getColor());
+    playerTwo_->addObject(bw2);
+
+    //Test
+    GameScene::drawTileOwners();
 }
 
 void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
@@ -338,6 +343,16 @@ void GameScene::addButtonObject(std::string buttonString)
 }
 void GameScene::reset()
 {
+}
+
+void GameScene::drawTileOwners()
+{
+    auto coor = playerOne_->getObjects().at(0)->getCoordinate();
+    QPointF point(coor.x(), coor.y());
+    QGraphicsItem* graphitem = itemAt(point * m_scale, QTransform());
+    auto mapitem = static_cast<Student::MapItem*>(graphitem);
+    this->addRect(QRectF(mapitem->boundingRect()),
+                  QPen(playerOne_->getColor(), 3));
 }
 
 void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)
