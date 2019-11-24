@@ -69,6 +69,8 @@ public:
 
     QPixmap getPixMap(std::string type);
 
+    void drawOwnership(QColor color);
+
 private:
     const std::shared_ptr<Course::GameObject> m_gameobject;
     QPoint m_scenelocation;

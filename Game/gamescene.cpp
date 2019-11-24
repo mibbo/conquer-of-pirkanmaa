@@ -59,7 +59,7 @@ GameScene::GameScene(QWidget* parent,
 
 
     connect(parent, SIGNAL(playInTurnSignal(std::shared_ptr<Student::Player>)), this, SLOT(playerInTurnSlot(std::shared_ptr<Student::Player>)));
-    playerMovesLeft_ = 3;
+    playerMovesLeft_ = 5;
 
 }
 
@@ -112,6 +112,12 @@ bool GameScene::event(QEvent *event)
 {
     if(event->type() == QEvent::GraphicsSceneMousePress)
     {
+        for (auto object : possibleMovementTiles_) {
+            removeItem(object);
+            delete object;
+        }
+        possibleMovementTiles_.clear();
+
         QGraphicsSceneMouseEvent* mouse_event =
                 dynamic_cast<QGraphicsSceneMouseEvent*>(event);
 
@@ -145,6 +151,32 @@ bool GameScene::event(QEvent *event)
                 if (vec.size() > 0 && vec.at(0)->getOwner() == playerInTurn_ && playerMovesLeft_ > 0) {
                     movableObjectSelected_ = true;
                     movableObject_ = vec.at(0);
+
+                    // Possible moving directions
+
+                    for (int y = playerMovesLeft_; y >= -playerMovesLeft_; y--) {
+                        for (int x = playerMovesLeft_ - abs(y); x >= -(playerMovesLeft_ - abs(y)); x--) {
+                            int x_coor = movableObject_->getCoordinate().x() + x;
+                            int y_coor = movableObject_->getCoordinate().y() + y;
+                            std::cout << x_coor << y_coor << std::endl;
+                            auto coor = Course::Coordinate(x_coor, y_coor);
+                            if (x_coor >= 0 && y_coor >= 0 && x_coor <= m_width - 1 && y_coor <= m_height - 1
+                                    && movableObject_->getCoordinate() != coor
+                                    && objectManager_->getTile(coor)->getWorkerCount() == 0) {
+                                QPointF point(coor.x(), coor.y());
+                                auto graphitems = items(point * m_scale);
+                                auto graphitem = graphitems.at(graphitems.size()-1);
+                                auto rect = static_cast<Student::MapItem*>(graphitem)->boundingRect();
+                                auto juu = this->addRect(QRect(rect.x(),
+                                                     rect.y(),
+                                                     rect.width()-3,
+                                                     rect.height()-3),
+                                              QPen(),
+                                              QBrush(playerInTurn_->getColor(), Qt::Dense3Pattern));
+                                possibleMovementTiles_.push_back(juu);
+                            }
+                        }
+                    }
 
                 // Check if a worker has been "selected" and if the clicked tile has any other workers
                 } else if (movableObjectSelected_ == true && objectManager_->getTile(coor)->getWorkers().size() == 0) {
@@ -296,6 +328,13 @@ void GameScene::addButtonObject(std::string buttonString)
     // poistaa muiden nappien painallukset
     movableObjectSelected_ = false;
     menuBuildingButtonClicked_ = false;
+
+    // poistaa mahdollisten liikkeiden paikat
+    for (auto object : possibleMovementTiles_) {
+        removeItem(object);
+        delete object;
+    }
+    possibleMovementTiles_.clear();
     //tunnistaa, että buildingButtonia on painettu->
     // Buildings
     if (buttonString == "Farm") {
@@ -349,18 +388,30 @@ void GameScene::reset()
 void GameScene::drawTileOwners()
 {
 
-//    auto coor = playerOne_->getObjects().at(0)->getCoordinate();
-//    QPointF point(coor.x(), coor.y());
-//    QGraphicsItem* graphitem = itemAt(point * m_scale, QTransform());
-//    this->addRect(QRectF(static_cast<Student::MapItem*>(graphitem)->boundingRect()),
-//                  QPen(playerOne_->getColor(), 3));
+    // Testing for one tile -- need to implement for all player's tiles
+    auto coor = objectManager_->getTile(15)->getCoordinate();
+    QPointF point(coor.x(), coor.y());
+    auto graphitems = items(point * m_scale);
+    auto graphitem = graphitems.at(graphitems.size()-1);
+    static_cast<Student::MapItem*>(graphitem)->drawOwnership(playerOne_->getColor());
 }
 
 void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)
 {
     playerInTurn_ = playerInTurn;
-    playerMovesLeft_ = 3;
+    playerMovesLeft_ = 5;
     emit updateInformationSignal(playerMovesLeft_);
+
+    // poistaa muiden nappien painallukset
+    movableObjectSelected_ = false;
+    menuBuildingButtonClicked_ = false;
+
+    // poistaa mahdollisten liikkeiden paikat
+    for (auto object : possibleMovementTiles_) {
+        removeItem(object);
+        delete object;
+    }
+    possibleMovementTiles_.clear();
 }
 
 }

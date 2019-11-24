@@ -13,6 +13,7 @@ std::map<std::string, QColor> MapItem::c_mapcolors = {};
 MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, int size, QColor color ):
     m_gameobject(obj), m_scenelocation(m_gameobject->getCoordinatePtr()->asQpoint()), m_size(size)
 {
+    // Set tile colors
     c_mapcolors["Forest"] = Qt::darkGreen;
     c_mapcolors["Grassland"] = Qt::green;
     c_mapcolors["Mountain"] = Qt::darkGray;
@@ -47,20 +48,43 @@ void MapItem::addNewColor(std::string type)
 void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED( option ); Q_UNUSED( widget );
+    // Check if the object to be drawn is a tile
     if (m_gameobject->getType() == "Grassland" ||
                 m_gameobject->getType() == "Forest" ||
                 m_gameobject->getType() == "Mountain" ||
                 m_gameobject->getType() == "Cobblestone" ||
                 m_gameobject->getType() == "River") {
-            painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
-            painter->drawRect(MapItem::boundingRect());
-        } else {
-            QPixmap px = MapItem::getPixMap(m_gameobject->getType());
-            auto mask = px.createMaskFromColor(Qt::black, Qt::MaskOutColor);
-            px.fill(m_color);
-            px.setMask(mask);
-            painter->drawPixmap(boundingRectForImages(), px);
-        }
+
+        // Create and set the pen for painter (to have "frames" in tiles)
+        QPen pen(m_color);
+        pen.setWidth(6);
+        painter->setPen(pen);
+
+        // Set the brush color to tile's color
+        painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
+
+        // Create and paint a new rect from mapitem's boundingRect with few graphical adjustments
+        QRect rect(MapItem::boundingRect().x(),
+                   MapItem::boundingRect().y(),
+                   MapItem::boundingRect().width()-3,
+                   MapItem::boundingRect().height()-3);
+        painter->drawRoundedRect(rect, 2, 2);
+    } else {
+        // Get the right pixmap for the object that is not a tile
+        QPixmap px = MapItem::getPixMap(m_gameobject->getType());
+
+        // Create a mask for the pixmap so it can be colored with player's color
+        auto mask = px.createMaskFromColor(Qt::black, Qt::MaskOutColor);
+        px.fill(m_color);
+        px.setMask(mask);
+
+        // Paint the pixmap
+        QRect rect(MapItem::boundingRectForImages().x(),
+                   MapItem::boundingRectForImages().y(),
+                   MapItem::boundingRectForImages().width()-3,
+                   MapItem::boundingRectForImages().height()-3);
+        painter->drawPixmap(rect, px);
+    }
 }
 
 QRect MapItem::boundingRectForImages()
@@ -104,6 +128,12 @@ QPixmap MapItem::getPixMap(std::string type)
     } else {
         return QPixmap();
     }
+}
+
+void MapItem::drawOwnership(QColor color)
+{
+    m_color = color;
+    update();
 }
 
 

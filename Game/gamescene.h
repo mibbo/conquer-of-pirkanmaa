@@ -53,11 +53,10 @@ public:
                        const std::shared_ptr<Student::Player>& playerOne,
                        const std::shared_ptr<Student::Player>& playerTwo);
 
-    void drawObject(std::shared_ptr<Course::GameObject> obj, QColor color = Qt::black);
+    void drawObject(std::shared_ptr<Course::GameObject> obj, QColor color = Qt::transparent);
 
     /**
-     * @brief simple event handler that notifies when objects or the play
-     * area is clicked.
+     * @brief simple event handler that notifies when objects or the play     * area is clicked.
      * @param event that has happened.
      * @return True: if event was  handled in the handler.
      * False: if the event handling was passed over.
@@ -102,9 +101,7 @@ private:
     bool menuBuildingButtonClicked_ = false;
     std::shared_ptr<Course::BuildingBase> buildingToAdd_ = nullptr;
     std::shared_ptr<Course::WorkerBase> workerToAdd_ = nullptr;
-
-
-
+    std::vector<QGraphicsRectItem*> possibleMovementTiles_;
 
 };
 
