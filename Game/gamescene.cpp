@@ -186,6 +186,8 @@ bool GameScene::event(QEvent *event)
                     GameScene::updateViewSignal();
 
 
+
+
                     // saa tarvittavat laatat (naapurit + rakennuksen laatta)
                     std::vector<std::shared_ptr<Course::GameObject>> tiles = objectManager_->getNeighbourTiles(buildingToAdd_);
 
@@ -198,9 +200,9 @@ bool GameScene::event(QEvent *event)
 
                     qDebug() << "------";
                     //tulostaa pelaajan laatat
-//                    for (auto tile : playerInTurn_->getTiles()) {
-//                        std::cout << "tiili: " << tile->getCoordinate().x() << "," << tile->getCoordinate().y() << std::endl;
-//                    }
+                    for (auto tile : playerInTurn_->getTiles()) {
+                        std::cout << "tiili ID: " << tile->ID << "---coord(" << tile->getCoordinate().x() << "," << tile->getCoordinate().y() <<")" << std::endl;
+                    }
                 }
 
                 // TULOSTAA puuttuvien resurssien määrän

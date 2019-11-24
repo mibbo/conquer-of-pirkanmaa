@@ -1,4 +1,5 @@
 #include "player.h"
+#include "algorithm"
 #include <iostream>
 
 namespace Student {
@@ -57,11 +58,29 @@ void Player::addTile(std::shared_ptr<Course::TileBase> tile)
 }
 
 void Player::addTiles(const std::vector<std::shared_ptr<Course::GameObject> > &tiles)
-{
-    m_tiles.insert(m_objects.end(), tiles.begin(), tiles.end());
-    for (auto tile : tiles) {
-        std::cout << "tiili: " << tile->getCoordinate().x() << "," << tile->getCoordinate().y() << std::endl;
-    }
+{  
+//    for (auto tile : tiles) {
+//        for (auto m_tile : m_tiles) {
+
+
+
+
+
+
+//        if (std::find(m_tiles.begin(), m_tiles.end(), tile) != m_tiles.end() ) {
+
+//        } else {
+//            m_tiles.push_back(tile);
+
+//        }
+
+//    }
+
+//    }
+
+
+//tää toimii mut ei kato samoja laattoja
+m_tiles.insert(m_tiles.end(), tiles.begin(), tiles.end());
 }
 
 std::vector<std::shared_ptr<Course::GameObject> > Player::getTiles() const
