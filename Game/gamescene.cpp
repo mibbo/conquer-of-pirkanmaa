@@ -189,12 +189,12 @@ bool GameScene::event(QEvent *event)
                     // saa tarvittavat laatat (naapurit + rakennuksen laatta)
                     std::vector<std::shared_ptr<Course::GameObject>> tiles = objectManager_->getNeighbourTiles(buildingToAdd_);
 
-                    for (auto tile : tiles) {
-                        std::cout << "playa Tiles: " << tile->getCoordinate().x() << "," << tile->getCoordinate().y() << std::endl;
-                    }
+//                    for (auto tile : tiles) {
+//                        std::cout << "playa Tiles: " << tile->getCoordinate().x() << "," << tile->getCoordinate().y() << std::endl;
+//                    }
 
                     // lisää ne pelaajan omistukseen
-                    //playerInTurn_->addTiles(tiles);
+                    playerInTurn_->addTiles(tiles);
 
                     qDebug() << "------";
                     //tulostaa pelaajan laatat
