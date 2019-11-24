@@ -1,9 +1,10 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "core/playerbase.h"
-//#include "core/gameobject.h"
+#include "core/gameobject.h"
 #include "core/basicresources.h"
 #include <QColor>
+#include <tiles/tilebase.h>
 
 namespace Student {
 
@@ -36,6 +37,30 @@ public:
     bool modifyResource(Course::BasicResource resource, int amount);
 
     bool modifyResources(Course::ResourceMap resources);
+
+    /**
+     * @brief Stores a weak GameObject-pointer.
+     * @param object Is a weak pointer to the stored GameObject
+     * @post Exception guarantee: Strong
+     * @exception See std::vector::push_back()
+     */
+    void addTile(std::shared_ptr<Course::TileBase> tile);
+
+    /**
+     * @brief Stores a vector of weak GameObject-pointers.
+     * @param objects Is an std::vector of weak GameObject-pointers.
+     * @post Exception guarantee: Strong
+     * @exception See std::vector::insert()
+     */
+    void addTiles(const std::vector<std::shared_ptr<Course::GameObject>> &tiles);
+
+    /**
+     * @brief Returns the vector of weak TileBase-pointers
+     *  that are currently stored in the Player-object.
+     * @return Copy of m_tiles -vector
+     * @post Exception guarantee: Strong
+     */
+    std::vector<std::shared_ptr<Course::GameObject>> getTiles() const;
 
     Course::ResourceMap getResources();
 

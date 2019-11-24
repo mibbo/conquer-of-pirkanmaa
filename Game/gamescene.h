@@ -67,7 +67,7 @@ public:
 
     void updateItem(std::shared_ptr<Course::GameObject> obj);
 
-    //palauttaa pelaajan object-vektorista halutun objectin (vertailee nimiä eli jos pelaajalla usea samanniminen objekti niin homma KUSEE)
+    //palauttaa pelaajan object-vektorista halutun objectin (vertailee nimiä eli jos pelaajalla usea samanniminen objekti niin HOMMA KUSEE)
     std::shared_ptr<Course::GameObject> returnPlayerObject(std::string objectName);
 
     void reset();

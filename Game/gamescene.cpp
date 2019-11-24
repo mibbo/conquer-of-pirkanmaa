@@ -217,6 +217,24 @@ bool GameScene::event(QEvent *event)
                     menuBuildingButtonClicked_ = false;
                     GameScene::updateViewSignal();
 
+
+
+
+                    // saa tarvittavat laatat (naapurit + rakennuksen laatta)
+                    std::vector<std::shared_ptr<Course::GameObject>> tiles = objectManager_->getNeighbourTiles(buildingToAdd_);
+
+//                    for (auto tile : tiles) {
+//                        std::cout << "playa Tiles: " << tile->getCoordinate().x() << "," << tile->getCoordinate().y() << std::endl;
+//                    }
+
+                    // lisää ne pelaajan omistukseen
+                    playerInTurn_->addTiles(tiles);
+
+                    qDebug() << "------";
+                    //tulostaa pelaajan laatat
+                    for (auto tile : playerInTurn_->getTiles()) {
+                        std::cout << "tiili ID: " << tile->ID << "---coord(" << tile->getCoordinate().x() << "," << tile->getCoordinate().y() <<")" << std::endl;
+                    }
                 }
 
                 // TULOSTAA puuttuvien resurssien määrän
@@ -320,7 +338,17 @@ void GameScene::addButtonObject(std::string buttonString)
     } else {
         std::cout << playerInTurn_->getName() << " -- Objects: ";
         for (auto object : playerInTurn_->getObjects()) {
-            std::cout << object->getType() << ", ";
+            std::cout << "ID:" << object->ID << object->getType() << ", ";
+//-----------------------------------------------------------------------------------------------
+              // asettaa objektille uuden descriptionin ja tulostaa sen
+//            object->setDescription("on", "kiva");
+//            for (auto desc : object->getDescriptions()) {
+//                std::cout << "      desc: " << desc.first << " - " << desc.second << std::endl;
+//            }
+            //std::cout << "ID:" << object->getDescriptions() << object->getType() << ", ";
+//-----------------------------------------------------------------------------------------------
+
+
         }
         std::cout << std::endl;
     }
@@ -360,6 +388,8 @@ void GameScene::addButtonObject(std::string buttonString)
         objectManager_->getTile(hqCoordinates)->setOwner(playerInTurn_);
         objectManager_->getTile(hqCoordinates)->addWorker(workerToAdd_);
         GameScene::drawObject(workerToAdd_, playerInTurn_->getColor());
+        playerInTurn_->addObject(workerToAdd_);
+
 
     } else if (buttonString == "Construction Worker") {
         workerToAdd_ = std::make_shared<Student::ConstrutionWorker>(eventHandler_, objectManager_, playerInTurn_);
@@ -368,6 +398,8 @@ void GameScene::addButtonObject(std::string buttonString)
         objectManager_->getTile(hqCoordinates)->setOwner(playerInTurn_);
         objectManager_->getTile(hqCoordinates)->addWorker(workerToAdd_);
         GameScene::drawObject(workerToAdd_, playerInTurn_->getColor());
+        playerInTurn_->addObject(workerToAdd_);
+
 
     } else if (buttonString == "Warrior") {
         workerToAdd_ = std::make_shared<Student::Warrior>(eventHandler_, objectManager_, playerInTurn_);
@@ -376,6 +408,8 @@ void GameScene::addButtonObject(std::string buttonString)
         objectManager_->getTile(hqCoordinates)->setOwner(playerInTurn_);
         objectManager_->getTile(hqCoordinates)->addWorker(workerToAdd_);
         GameScene::drawObject(workerToAdd_, playerInTurn_->getColor());
+        playerInTurn_->addObject(workerToAdd_);
+
     }
 
 
