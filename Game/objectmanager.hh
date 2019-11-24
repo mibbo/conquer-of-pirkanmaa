@@ -29,6 +29,16 @@ public:
     std::vector<std::shared_ptr<Course::TileBase>> getTiles(
             const std::vector<Course::Coordinate>& coordinates);
 
+    /**
+     * @brief Returns a vector of all the neighbourTiles and the tile under the object
+     * @param GameObject for the requested neighbour Tiles
+     *
+     * @return vector of Coordinates in the order of directions.
+     * @post Exception guarantee: Strong
+     */
+    std::vector<std::shared_ptr<Course::GameObject>> getNeighbourTiles(std::shared_ptr<Course::GameObject> object,
+                                                                    const int &radius = 1);
+
     std::vector<std::shared_ptr<Course::TileBase>> tiili();
 
 private:

@@ -50,6 +50,36 @@ bool Player::modifyResources(Course::ResourceMap resources)
     return true;
 }
 
+void Player::addTile(std::shared_ptr<Course::TileBase> tile)
+{
+    m_tiles.push_back(std::weak_ptr<Course::GameObject>(tile));
+
+}
+
+void Player::addTiles(const std::vector<std::shared_ptr<Course::GameObject> > &tiles)
+{
+    m_tiles.insert(m_objects.end(), tiles.begin(), tiles.end());
+    for (auto tile : tiles) {
+        std::cout << "tiili: " << tile->getCoordinate().x() << "," << tile->getCoordinate().y() << std::endl;
+    }
+}
+
+std::vector<std::shared_ptr<Course::GameObject> > Player::getTiles() const
+{
+    std::vector<std::shared_ptr<Course::GameObject>> tiles;
+    for(auto it = m_tiles.begin(); it != m_tiles.end(); ++it)
+    {
+        if(not it->expired())
+        {
+            tiles.push_back(it->lock());
+        }
+    }
+
+    return tiles;
+}
+
+
+
 Course::ResourceMap Player::getResources()
 {
     return m_resources;
