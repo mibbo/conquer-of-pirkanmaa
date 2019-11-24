@@ -72,7 +72,7 @@ public:
 
     void reset();
 
-    void drawTileOwners();
+    void updateAndDrawTileOwners();
 
 signals:
     void updateViewSignal();

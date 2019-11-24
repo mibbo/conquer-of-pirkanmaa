@@ -53,48 +53,35 @@ bool Player::modifyResources(Course::ResourceMap resources)
 
 void Player::addTile(std::shared_ptr<Course::TileBase> tile)
 {
-    m_tiles.push_back(std::weak_ptr<Course::GameObject>(tile));
-
+    for (auto m_tile : m_tiles) {
+        if (tile->hasSameCoordinateAs(m_tile)) {
+            return;
+        }
+    }
+    if (tile->getOwner() == nullptr) {
+        m_tiles.push_back(tile);
+    }
 }
 
 void Player::addTiles(const std::vector<std::shared_ptr<Course::GameObject> > &tiles)
 {  
-//    for (auto tile : tiles) {
-//        for (auto m_tile : m_tiles) {
-
-
-
-
-
-
-//        if (std::find(m_tiles.begin(), m_tiles.end(), tile) != m_tiles.end() ) {
-
-//        } else {
-//            m_tiles.push_back(tile);
-
-//        }
-
-//    }
-
-//    }
-
-
-//tää toimii mut ei kato samoja laattoja
-m_tiles.insert(m_tiles.end(), tiles.begin(), tiles.end());
-}
-
-std::vector<std::shared_ptr<Course::GameObject> > Player::getTiles() const
-{
-    std::vector<std::shared_ptr<Course::GameObject>> tiles;
-    for(auto it = m_tiles.begin(); it != m_tiles.end(); ++it)
-    {
-        if(not it->expired())
-        {
-            tiles.push_back(it->lock());
+    for (auto tile : tiles) {
+        bool tileFound = false;
+        for (auto m_tile : m_tiles) {
+            if (tile->hasSameCoordinateAs(m_tile)) {
+                tileFound = true;
+                break;
+            }
+        }
+        if (!tileFound && tile->getOwner() == nullptr) {
+            m_tiles.push_back(tile);
         }
     }
+}
 
-    return tiles;
+std::vector<std::shared_ptr<Course::GameObject>> Player::getTiles() const
+{
+    return m_tiles;
 }
 
 

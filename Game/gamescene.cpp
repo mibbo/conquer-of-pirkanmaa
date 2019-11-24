@@ -201,14 +201,15 @@ bool GameScene::event(QEvent *event)
 
                 // kun rakennusnappia painaa niin rakentaa halutun rakennuksen (temporary variable buildingToAdd)
                 // Prevents the player from adding multiple buildings to a single tile.
-                if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0 && playerInTurn_->modifyResources(buildingToAdd_->BUILD_COST) == true) {
+                if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0 &&
+                        objectManager_->getTile(coor)->getOwner() == playerInTurn_ &&
+                        playerInTurn_->modifyResources(buildingToAdd_->BUILD_COST) == true) {
                     std::cout <<  playerInTurn_->getName() << "Resources: " << std::endl;
 
                     for (auto resource : playerInTurn_->getResources()) {
                         std::cout << resource.first << ": " << resource.second << std::endl;
                     }
                     std::cout << "Pelaaja: " << playerInTurn_->getName()<< " --- rakentaa: " << buildingToAdd_->getType() << std::endl;
-                    objectManager_->getTile(coor)->setOwner(playerInTurn_);
                     objectManager_->getTile(coor)->addBuilding(buildingToAdd_);
                     //asettaa pelaajan tietoihin rakennuksen
                     playerInTurn_->addObject(buildingToAdd_);
@@ -217,28 +218,13 @@ bool GameScene::event(QEvent *event)
                     menuBuildingButtonClicked_ = false;
                     GameScene::updateViewSignal();
 
-
-
-
                     // saa tarvittavat laatat (naapurit + rakennuksen laatta)
                     std::vector<std::shared_ptr<Course::GameObject>> tiles = objectManager_->getNeighbourTiles(buildingToAdd_);
-
-//                    for (auto tile : tiles) {
-//                        std::cout << "playa Tiles: " << tile->getCoordinate().x() << "," << tile->getCoordinate().y() << std::endl;
-//                    }
-
-                    // lisää ne pelaajan omistukseen
                     playerInTurn_->addTiles(tiles);
+                    GameScene::updateAndDrawTileOwners();
 
-                    qDebug() << "------";
-                    //tulostaa pelaajan laatat
-                    for (auto tile : playerInTurn_->getTiles()) {
-                        std::cout << "tiili ID: " << tile->ID << "---coord(" << tile->getCoordinate().x() << "," << tile->getCoordinate().y() <<")" << std::endl;
-                    }
-                }
-
-                // TULOSTAA puuttuvien resurssien määrän
-                 if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0 && playerInTurn_->modifyResources(buildingToAdd_->BUILD_COST) == false) {
+                    // TULOSTAA puuttuvien resurssien määrän
+                } else if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0 /*&& playerInTurn_->modifyResources(buildingToAdd_->BUILD_COST) == false*/) {
                     std::cout <<  playerInTurn_->getName() << " ei pygee rakentaa ko ";
                     if (playerInTurn_->getName() == "mibbo") {
                         std::cout << playerInTurn_->getName() << " on niin jumala, et sen ei tarvi rakentaa tommotteisii paskahuussei" << std::endl;
@@ -282,11 +268,13 @@ void GameScene::generateStartingObjects()
     objectManager_->getTile(Course::Coordinate(leftX, leftY))->addBuilding(hq1);
     GameScene::drawObject(hq1, playerOne_->getColor());
     playerOne_->addObject(hq1);
+    playerOne_->addTiles(objectManager_->getNeighbourTiles(hq1));
 
     std::shared_ptr<Course::HeadQuarters> hq2 = std::make_shared<Course::HeadQuarters>(eventHandler_, objectManager_, playerTwo_);
     objectManager_->getTile(Course::Coordinate(rightX, rightY))->addBuilding(hq2);
     GameScene::drawObject(hq2, playerTwo_->getColor());
     playerTwo_->addObject(hq2);
+    playerTwo_->addTiles(objectManager_->getNeighbourTiles(hq2));
 
     // Add and draw the BasicWorkers
     std::shared_ptr<Course::BasicWorker> bw1 = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerOne_);
@@ -302,7 +290,7 @@ void GameScene::generateStartingObjects()
     playerTwo_->addObject(bw2);
 
     //Test
-    GameScene::drawTileOwners();
+    GameScene::updateAndDrawTileOwners();
 }
 
 void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
@@ -411,23 +399,30 @@ void GameScene::addButtonObject(std::string buttonString)
         playerInTurn_->addObject(workerToAdd_);
 
     }
-
-
-
 }
 void GameScene::reset()
 {
 }
 
-void GameScene::drawTileOwners()
+void GameScene::updateAndDrawTileOwners()
 {
+    for (auto tile : playerOne_->getTiles()) {
+        tile->setOwner(playerOne_);
+        auto coor = tile->getCoordinate();
+        QPointF point(coor.x(), coor.y());
+        auto graphitems = items(point * m_scale);
+        auto graphitem = graphitems.at(graphitems.size()-1);
+        static_cast<Student::MapItem*>(graphitem)->drawOwnership(playerOne_->getColor());
+    }
 
-    // Testing for one tile -- need to implement for all player's tiles
-    auto coor = objectManager_->getTile(15)->getCoordinate();
-    QPointF point(coor.x(), coor.y());
-    auto graphitems = items(point * m_scale);
-    auto graphitem = graphitems.at(graphitems.size()-1);
-    static_cast<Student::MapItem*>(graphitem)->drawOwnership(playerOne_->getColor());
+    for (auto tile : playerTwo_->getTiles()) {
+        tile->setOwner(playerTwo_);
+        auto coor = tile->getCoordinate();
+        QPointF point(coor.x(), coor.y());
+        auto graphitems = items(point * m_scale);
+        auto graphitem = graphitems.at(graphitems.size()-1);
+        static_cast<Student::MapItem*>(graphitem)->drawOwnership(playerTwo_->getColor());
+    }
 }
 
 void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)

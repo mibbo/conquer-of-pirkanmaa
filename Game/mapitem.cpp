@@ -57,7 +57,7 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
         // Create and set the pen for painter (to have "frames" in tiles)
         QPen pen(m_color);
-        pen.setWidth(6);
+        pen.setWidth(5);
         painter->setPen(pen);
 
         // Set the brush color to tile's color
@@ -66,9 +66,9 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         // Create and paint a new rect from mapitem's boundingRect with few graphical adjustments
         QRect rect(MapItem::boundingRect().x(),
                    MapItem::boundingRect().y(),
-                   MapItem::boundingRect().width()-3,
-                   MapItem::boundingRect().height()-3);
-        painter->drawRoundedRect(rect, 2, 2);
+                   MapItem::boundingRect().width()-2,
+                   MapItem::boundingRect().height()-2);
+        painter->drawRoundedRect(rect, 1, 1);
     } else {
         // Get the right pixmap for the object that is not a tile
         QPixmap px = MapItem::getPixMap(m_gameobject->getType());
@@ -81,8 +81,8 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         // Paint the pixmap
         QRect rect(MapItem::boundingRectForImages().x(),
                    MapItem::boundingRectForImages().y(),
-                   MapItem::boundingRectForImages().width()-3,
-                   MapItem::boundingRectForImages().height()-3);
+                   MapItem::boundingRectForImages().width()-2,
+                   MapItem::boundingRectForImages().height()-2);
         painter->drawPixmap(rect, px);
     }
 }
