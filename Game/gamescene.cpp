@@ -484,6 +484,8 @@ void GameScene::generateResources()
                     playerInTurn_->modifyResources(Student::ConstResourceMaps::MINE_PRODUCTION);
                 } else if (building->getType() == "Quarry") {
                     playerInTurn_->modifyResources(Student::ConstResourceMaps::QUARRY_PRODUCTION);
+                } else if (building->getType() == "Sawmill") {
+                    playerInTurn_->modifyResources(Student::ConstResourceMaps::SAWMILL_PRODUCTION);
                 }
             }
         }
