@@ -104,7 +104,7 @@ void Game::displayMainMenu()
 {
     qDebug() << "displaymainemenu";
     //add buildingButtons and workerButtons to vector
-    buildingButtonsVector_ = {ui->farmButton, ui->mineButton, ui->outpostButton, ui->quarryButton,
+    buildingButtonsVector_ = {ui->farmButton, ui->mineButton, ui->outpostButton, ui->quarryButton, ui->sawmillButton,
                               ui->basicWorkerButton, ui->constWorkerButton, ui->warriorButton};
     connectButtons();
 }

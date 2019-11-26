@@ -70,6 +70,8 @@ public:
     //palauttaa pelaajan object-vektorista halutun objectin (vertailee nimiä eli jos pelaajalla usea samanniminen objekti niin HOMMA KUSEE)
     std::shared_ptr<Course::GameObject> returnPlayerObject(std::string objectName);
 
+    bool BuildingTileIsCorrect(std::shared_ptr<Course::GameObject> building, std::shared_ptr<Course::TileBase> tile);
+
     void reset();
 
     void updateAndDrawTileOwners();

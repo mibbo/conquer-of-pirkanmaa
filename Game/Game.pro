@@ -14,6 +14,7 @@ SOURCES += \
     objectmanager.cpp \
     gameeventhandler.cpp \
     player.cpp \
+    sawmill.cpp \
     startwindow.cpp \
     mountain.cpp \
     cobblestone.cpp \
@@ -31,6 +32,7 @@ HEADERS += \
     gameeventhandler.hh \
     objectmanager.hh \
     player.h \
+    sawmill.h \
     startwindow.h \
     mountain.hh \
     resourcemaps.hh \

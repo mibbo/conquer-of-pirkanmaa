@@ -125,6 +125,8 @@ QPixmap MapItem::getPixMap(std::string type)
         return QPixmap(":/images/constructionworker.png");
     } else if (type == "Mine") {
         return QPixmap(":/images/mine.png");
+    } else if (type == "Sawmill") {
+        return QPixmap(":/images/player2.png");
     } else {
         return QPixmap();
     }
