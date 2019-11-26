@@ -91,6 +91,22 @@ const Course::ResourceMap MINE_PRODUCTION = {
     {Course::ORE, 0},
 };
 
+const Course::ResourceMap SAWMILL_BUILD_COST = {
+    {Course::MONEY, 2},
+    {Course::FOOD, 5},
+    {Course::WOOD, 1},
+    {Course::STONE, 1},
+    {Course::ORE, 0},
+};
+
+const Course::ResourceMap SAWMILL_PRODUCTION = {
+    {Course::MONEY, 2},
+    {Course::FOOD, 5},
+    {Course::WOOD, 1},
+    {Course::STONE, 1},
+    {Course::ORE, 0},
+};
+
 }
 }
 

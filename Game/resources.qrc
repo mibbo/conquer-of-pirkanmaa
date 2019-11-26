@@ -11,5 +11,6 @@
         <file>basicworker.png</file>
         <file>farm.png</file>
         <file>constructionworker.png</file>
+        <file>player2.png</file>
     </qresource>
 </RCC>

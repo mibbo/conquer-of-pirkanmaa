@@ -67,13 +67,6 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="0">
-      <widget class="QPushButton" name="outpostButton">
-       <property name="text">
-        <string>Outpost</string>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="0">
       <widget class="QPushButton" name="mineButton">
        <property name="text">
@@ -81,10 +74,24 @@
        </property>
       </widget>
      </item>
+     <item row="4" column="0">
+      <widget class="QPushButton" name="outpostButton">
+       <property name="text">
+        <string>Outpost</string>
+       </property>
+      </widget>
+     </item>
      <item row="5" column="0">
       <widget class="QPushButton" name="quarryButton">
        <property name="text">
         <string>Quarry</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QPushButton" name="sawmillButton">
+       <property name="text">
+        <string>Sawmill</string>
        </property>
       </widget>
      </item>

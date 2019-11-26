@@ -24,6 +24,8 @@
 #include "constructionworker.hh"
 #include "warrior.hh"
 #include "resourcemaps.hh"
+#include "sawmill.h"
+#include "workers/workerbase.h"
 
 #include <QDebug>
 #include <QEvent>
@@ -147,12 +149,15 @@ bool GameScene::event(QEvent *event)
                 auto coor = static_cast<Student::MapItem*>(pressed)->getBoundObject()->getCoordinate(); // Coordinate for the pressed object
                 auto vec = objectManager_->getTile(coor)->getWorkers(); // Get the vector that has all the workers on the tile (maximum of 1
 
+
                 // Check if the tile had any of in-turn player's workers
                 if (vec.size() > 0 && vec.at(0)->getOwner() == playerInTurn_ && playerMovesLeft_ > 0) {
                     movableObjectSelected_ = true;
                     movableObject_ = vec.at(0);
 
                     // Possible moving directions
+
+                    // lisää HIGHLIGHITIT workeriä painaessa
 
                     for (int y = playerMovesLeft_; y >= -playerMovesLeft_; y--) {
                         for (int x = playerMovesLeft_ - abs(y); x >= -(playerMovesLeft_ - abs(y)); x--) {
@@ -178,8 +183,11 @@ bool GameScene::event(QEvent *event)
                         }
                     }
 
+
                 // Check if a worker has been "selected" and if the clicked tile has any other workers
                 } else if (movableObjectSelected_ == true && objectManager_->getTile(coor)->getWorkers().size() == 0) {
+                    // tää esti rakentamisen kun oli jo klikattu const workeriä
+                    menuBuildingButtonClicked_ = false;
                     // Calculate the distance in tiles that player chose
                     int distance = abs(movableObject_->getCoordinate().x() - coor.x()) +
                             abs(movableObject_->getCoordinate().y() - coor.y());
@@ -203,7 +211,10 @@ bool GameScene::event(QEvent *event)
                 // Prevents the player from adding multiple buildings to a single tile.
                 if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0 &&
                         objectManager_->getTile(coor)->getOwner() == playerInTurn_ &&
-                        playerInTurn_->modifyResources(buildingToAdd_->BUILD_COST) == true) {
+                        BuildingTileIsCorrect(buildingToAdd_, objectManager_->getTile(coor)) == true &&
+                        playerInTurn_->modifyResources(buildingToAdd_->BUILD_COST) == true
+                        ) {
+
                     std::cout <<  playerInTurn_->getName() << "Resources: " << std::endl;
 
                     for (auto resource : playerInTurn_->getResources()) {
@@ -317,6 +328,41 @@ std::shared_ptr<Course::GameObject> GameScene::returnPlayerObject(std::string ob
     }
 }
 
+
+// tarkistaa voiko rakentaa kyseistä rakennusta valitulle tiilelle ja että onko siinä construction workkeriä
+bool GameScene::BuildingTileIsCorrect(std::shared_ptr<Course::GameObject> building, std::shared_ptr<Course::TileBase> tile)
+{
+    if (tile->getWorkerCount() == 0) {
+        return false;
+    } else if (tile->getWorkers().at(0)->getType() == "ConstructionWorker"){
+        bool wasCorrectTile = false;
+       if (building->getType() == "Farm" && tile->getType() == "Grassland") {
+           wasCorrectTile = true;
+       } else if (building->getType() == "Mine" && tile->getType() == "Mountain") {
+           wasCorrectTile = true;
+       }else if (building->getType() == "Quarry" && tile->getType() == "Cobblestone") {
+           wasCorrectTile = true;
+       }else if (building->getType() == "Sawmill" && tile->getType() == "Forest") {
+           wasCorrectTile = true;
+       }else if (building->getType() == "Outpost") {
+           wasCorrectTile = true;
+       }
+
+       if (wasCorrectTile) {
+           movableObjectSelected_ = false;
+           // poistaa mahdollisten liikkeiden paikat
+           for (auto object : possibleMovementTiles_) {
+               removeItem(object);
+               delete object;
+           }
+           possibleMovementTiles_.clear();
+           return true;
+       }
+    }
+
+    return false;
+}
+
 void GameScene::addButtonObject(std::string buttonString)
 {
     // DEBUG honmaa
@@ -365,8 +411,10 @@ void GameScene::addButtonObject(std::string buttonString)
     } else if (buttonString == "Quarry") {
         menuBuildingButtonClicked_ = true;
         buildingToAdd_ = std::make_shared<Student::Quarry>(eventHandler_, objectManager_, playerInTurn_);
+    } else if (buttonString == "Sawmill") {
+        menuBuildingButtonClicked_ = true;
+        buildingToAdd_ = std::make_shared<Student::Sawmill>(eventHandler_, objectManager_, playerInTurn_);
     // Workers
-        //pitää tehä näihin erikseen että addaa ne HQ läheisyyteen
     } else if (buttonString == "Basic Worker") {
         workerToAdd_ = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerInTurn_);
         //etsii spawnauspaikan(hq) coordinaatit
