@@ -238,12 +238,7 @@ bool GameScene::event(QEvent *event)
 
                     // TULOSTAA puuttuvien resurssien määrän
                 } else if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0 /*&& playerInTurn_->modifyResources(buildingToAdd_->BUILD_COST) == false*/) {
-                    std::cout <<  playerInTurn_->getName() << " ei pygee rakentaa ko ";
-                    if (playerInTurn_->getName() == "mibbo") {
-                        std::cout << playerInTurn_->getName() << " on niin jumala, et sen ei tarvi rakentaa tommotteisii paskahuussei" << std::endl;
-                    } else if (playerInTurn_->getName() == "brutus") {
-                        std::cout << playerInTurn_->getName() << " on niin vammane, känsärunkku, kyrpäyrjö, kullilutka ja persaukine luuskapillu et ei osaa ees vittu pelaa" << std::endl;
-                    }
+                    std::cout <<  playerInTurn_->getName() << " ei pysty rakentamaan ";
                     const char* resourceNames[] =
                       {
                       stringify( Money ),
