@@ -166,14 +166,14 @@ bool GameScene::event(QEvent *event)
                                 QPointF point(coor.x(), coor.y());
                                 auto graphitems = items(point * m_scale);
                                 auto graphitem = graphitems.at(graphitems.size()-1);
-                                auto rect = static_cast<Student::MapItem*>(graphitem)->boundingRect();
-                                auto juu = this->addRect(QRect(rect.x(),
-                                                     rect.y(),
-                                                     rect.width()-3,
-                                                     rect.height()-3),
+                                auto boundrect = static_cast<Student::MapItem*>(graphitem)->boundingRect();
+                                auto movementrect = this->addRect(QRect(boundrect.x(),
+                                                     boundrect.y(),
+                                                     boundrect.width()-3,
+                                                     boundrect.height()-3),
                                               QPen(),
                                               QBrush(playerInTurn_->getColor(), Qt::Dense3Pattern));
-                                possibleMovementTiles_.push_back(juu);
+                                possibleMovementTiles_.push_back(movementrect);
                             }
                         }
                     }
@@ -186,9 +186,11 @@ bool GameScene::event(QEvent *event)
                     // If the player has enough moves left move the object
                     if (distance <= playerMovesLeft_) {
                         playerMovesLeft_ -= distance;
+                        auto realTileOwner = objectManager_->getTile(coor)->getOwner();
                         objectManager_->getTile(coor)->setOwner(playerInTurn_);
                         objectManager_->getTile(movableObject_->getCoordinate())->removeWorker(movableObject_);
                         objectManager_->getTile(coor)->addWorker(movableObject_);
+                        objectManager_->getTile(coor)->setOwner(realTileOwner);
                         GameScene::updateItem(movableObject_);
                     } else {
                         qDebug() << "Too far!";
@@ -251,7 +253,7 @@ bool GameScene::event(QEvent *event)
         }
     }
     emit updateInformationSignal(playerMovesLeft_);
-     return QGraphicsScene::event(event);
+    return QGraphicsScene::event(event);
 }
 
 void GameScene::generateStartingObjects()
@@ -425,6 +427,26 @@ void GameScene::updateAndDrawTileOwners()
     }
 }
 
+void GameScene::generateResources()
+{
+    for (auto object : playerInTurn_->getObjects()) {
+        if (object->getType() == "BasicWorker") {
+            auto buildingVector =
+                    objectManager_->getTile(object->getCoordinate())->getBuildings();
+            if (buildingVector.size() > 0) {
+                auto building = buildingVector.at(0);
+                if (building->getType() == "Farm") {
+                    playerInTurn_->modifyResources(Student::ConstResourceMaps::FARM_PRODUCTION);
+                } else if (building->getType() == "Mine") {
+                    playerInTurn_->modifyResources(Student::ConstResourceMaps::MINE_PRODUCTION);
+                } else if (building->getType() == "Quarry") {
+                    playerInTurn_->modifyResources(Student::ConstResourceMaps::QUARRY_PRODUCTION);
+                }
+            }
+        }
+    }
+}
+
 void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)
 {
     playerInTurn_ = playerInTurn;
@@ -441,6 +463,8 @@ void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)
         delete object;
     }
     possibleMovementTiles_.clear();
+
+    generateResources();
 }
 
 }

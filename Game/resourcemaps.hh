@@ -68,10 +68,10 @@ const Course::ResourceMap QUARRY_BUILD_COST = {
 };
 
 const Course::ResourceMap QUARRY_PRODUCTION = {
-    {Course::MONEY, 2},
-    {Course::FOOD, 5},
-    {Course::WOOD, 1},
-    {Course::STONE, 1},
+    {Course::MONEY, -10},
+    {Course::FOOD, 0},
+    {Course::WOOD, -10},
+    {Course::STONE, -100},
     {Course::ORE, 0},
 };
 
@@ -84,11 +84,19 @@ const Course::ResourceMap MINE_BUILD_COST = {
 };
 
 const Course::ResourceMap MINE_PRODUCTION = {
-    {Course::MONEY, 2},
-    {Course::FOOD, 5},
-    {Course::WOOD, 1},
-    {Course::STONE, 1},
-    {Course::ORE, 0},
+    {Course::MONEY, -10},
+    {Course::FOOD, 0},
+    {Course::WOOD, 0},
+    {Course::STONE, -20},
+    {Course::ORE, -100},
+};
+
+const Course::ResourceMap FARM_PRODUCTION = {
+    {Course::MONEY, -10},
+    {Course::FOOD, 0},
+    {Course::WOOD, 0},
+    {Course::STONE, -20},
+    {Course::ORE, -100},
 };
 
 }

@@ -74,6 +74,8 @@ public:
 
     void updateAndDrawTileOwners();
 
+    void generateResources();
+
 signals:
     void updateViewSignal();
     void updateInformationSignal(int movesLeft);

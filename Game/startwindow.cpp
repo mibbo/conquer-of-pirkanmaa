@@ -11,13 +11,16 @@ StartWindow::StartWindow(QWidget *parent) :
     // fetch git version here
     ui->hashLabel->setText(GIT_REVISION);
 
+    // Setup the combobox
     ui->mapSizeComboBox->addItem("Small");
     ui->mapSizeComboBox->addItem("Normal");
     ui->mapSizeComboBox->addItem("Huge");
 
-    // Set colorselection buttons to right colors
+    // Set colorselection buttons
     ui->playerOneColor->setStyleSheet(QString("background-color: %1").arg(playerOneColor_.name()));
     ui->playerTwoColor->setStyleSheet(QString("background-color: %1").arg(playerTwoColor_.name()));
+    ui->playerOneColor->setText(ui->playerOne->text());
+    ui->playerTwoColor->setText(ui->playerTwo->text());
 }
 
 StartWindow::~StartWindow()
