@@ -78,6 +78,10 @@ public:
 
     void generateResources();
 
+    // Returns true if x is in range [low..high], else false
+    bool inRange(int low, int high, int x) ;
+
+
 signals:
     void updateViewSignal();
     void updateInformationSignal(int movesLeft);

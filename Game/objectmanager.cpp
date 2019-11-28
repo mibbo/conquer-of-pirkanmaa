@@ -65,10 +65,11 @@ std::vector<std::shared_ptr<Course::GameObject> > ObjectManager::getNeighbourTil
     {
         for( int y = y_lower; y <= y_upper; ++y )
         {
+            //tulostaa onko naapurilaatta yli rajojen vai ei
             if (ObjectManager::getTile(Course::Coordinate(x,y)) == nullptr) {
-                std::cout << "yli rajojen (" << x << "," << y << ")" <<std::endl;
+                //std::cout << "yli rajojen (" << x << "," << y << ")" <<std::endl;
             } else {
-                std::cout << "sallittu    (" << x << "," << y << ")" << std::endl;
+                //std::cout << "sallittu    (" << x << "," << y << ")" << std::endl;
                 neighbourTiles.push_back(ObjectManager::getTile(Course::Coordinate(x,y)));
             }
         }

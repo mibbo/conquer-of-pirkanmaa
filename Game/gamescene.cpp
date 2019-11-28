@@ -37,7 +37,12 @@
 
 #include <math.h>
 
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
 #define stringify( name ) # name
+
 
 namespace Student {
 
@@ -84,6 +89,7 @@ void GameScene::drawGameBoard(unsigned int size_x,
     playerOne_ = playerOne;
     playerTwo_ = playerTwo;
 
+    srand(time(NULL));
     seed = rand();
 
     // Create the map with worldGenerator
@@ -98,9 +104,77 @@ void GameScene::drawGameBoard(unsigned int size_x,
     // Prints tiles amount
     std::cout << tiles.size() << std::endl;
 
+    int four = m_width/2-1;    //4
+    int three = m_width/2-2;   //3
+    int two = m_width/2-3;   //2
+    int one = m_width/2-4;   //1
+
+    int randNum = (rand() % 3) + 1; // you don't need the (...) surrounding rand() % 3 but it helps for clarity
+
+
+
+    std:: cout << randNum << ":"<< four << ":"<< three << ":"<< two << ":"<< one << ":" << std::endl;
+
+    unsigned long int randX = size_x/2-1;
+
+    // käy läpi ruudukon Y-arvot
+    for (unsigned long int y = 0; y < m_height; y++) {
+        // käy läpi ruudukon X_-arvot
+        for (unsigned long int x = 0; x < m_width; x++) {
+            // Kun löytää halutun x arvon --> asettaa jokilaatan siihen
+            if (x == randX) {
+                for (unsigned long int i = 0; i < tiles.size(); i++) {
+                    std::shared_ptr<Course::TileBase> tiili1 = objectManager_->getTile(Course::Coordinate(randX, y));
+                    std::shared_ptr<Course::TileBase> tiili2 = objectManager_->getTile(Course::Coordinate(randX+1, y));
+
+                    if (tiles.at(i) == tiili1) {
+                        tiles.at(i) = std::make_shared<Student::River>(Course::Coordinate(randX,y), eventHandler_, objectManager_);
+                    }
+                    if (tiles.at(i) == tiili2) {
+                        tiles.at(i) = std::make_shared<Student::River>(Course::Coordinate(randX+1,y), eventHandler_, objectManager_);
+                    }
+                }
+            }
+        }
+        // 20% että pysyy paikallaan
+        if(rand() <= RAND_MAX * 0.20) {
+            randX = randX;
+        //jos keskellä niin 50% liikkua sivuille
+        }else if (randX == four) {
+            if(rand() <= RAND_MAX * 0.5) {
+                randX++;
+            } else  {
+                randX--;
+            }
+        // jos yhden vasemmalla niin 70% tsäänssi mennä keskemmälle
+        }else if (inRange(one, three, randX)) {
+            if(rand() <= RAND_MAX * 0.7) {
+                randX++;
+            } else  {
+                randX--;
+            }
+        // jos yhden oikealla niin 70& tsäänssi mennä keskemmälle
+        }else if (inRange(four+1, four+3, randX)) {
+            if(rand() <= RAND_MAX * 0.7) {
+                randX--;
+            } else  {
+                randX++;
+            }
+        } else {
+            if (inRange(0, one, randX)) {
+                randX++;
+            } else {
+                randX--;
+            }
+        }
+    }
+
+
+
     for(auto x: tiles){
         GameScene::drawObject(x);
     }
+
     GameScene::generateStartingObjects();
 }
 
@@ -148,6 +222,7 @@ bool GameScene::event(QEvent *event)
                 // Worker moving
                 auto coor = static_cast<Student::MapItem*>(pressed)->getBoundObject()->getCoordinate(); // Coordinate for the pressed object
                 auto vec = objectManager_->getTile(coor)->getWorkers(); // Get the vector that has all the workers on the tile (maximum of 1
+
 
 
                 // Check if the tile had any of in-turn player's workers
@@ -490,6 +565,11 @@ void GameScene::generateResources()
             }
         }
     }
+}
+
+bool GameScene::inRange(int low, int high, int x)
+{
+    return ((x-high)*(x-low) <= 0);
 }
 
 void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)
