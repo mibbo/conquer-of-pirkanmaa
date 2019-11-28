@@ -78,9 +78,12 @@ public:
 
     void generateResources();
 
+    void removeItem(std::shared_ptr<Course::GameObject> obj);
+
 signals:
     void updateViewSignal();
     void updateInformationSignal(int movesLeft);
+    void gameOverSignal(std::shared_ptr<Student::Player> player);
 
 public slots:
     void playerInTurnSlot(std::shared_ptr<Student::Player> playerInTurn);
