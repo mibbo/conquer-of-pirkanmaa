@@ -47,6 +47,7 @@ Game::Game(QWidget *parent):
 
     connect(sgs_rawptr, SIGNAL(updateViewSignal()), this, SLOT(updateViewSlot()));
     connect(sgs_rawptr, SIGNAL(updateInformationSignal(int)), this, SLOT(updateInformationSlot(int)));
+    connect(sgs_rawptr, SIGNAL(gameOverSignal(std::shared_ptr<Student::Player>)), this, SLOT(gameOverSlot(std::shared_ptr<Student::Player>)));
 
     //tekee ja piirtää UI setit (nappulat summuut)
     displayMainMenu();
@@ -134,6 +135,11 @@ void Game::updateInformationSlot(int movesLeft)
     ui->wood->display(resources[Course::WOOD]);
     ui->stone->display(resources[Course::STONE]);
     ui->ore->display(resources[Course::ORE]);
+}
+
+void Game::gameOverSlot(std::shared_ptr<Student::Player> winner)
+{
+    std::cout << "Olet viineri - " << winner->getName()  << std::endl;
 }
 
 void Game::connectButtons() {

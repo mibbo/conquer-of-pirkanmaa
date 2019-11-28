@@ -19,6 +19,7 @@ Warrior::Warrior(const std::shared_ptr<Course::iGameEventHandler>& eventhandler,
         cost,
         efficiency)
 {
+    hitPoints_ = 5;
 }
 
 std::string Warrior::getType() const
@@ -40,6 +41,16 @@ void Warrior::doSpecialAction()
 const Course::ResourceMapDouble Warrior::tileWorkAction()
 {
 
+}
+
+int Warrior::getHitPoints()
+{
+    return hitPoints_;
+}
+
+void Warrior::setHitPoints(int amount)
+{
+    hitPoints_ = amount;
 }
 
 

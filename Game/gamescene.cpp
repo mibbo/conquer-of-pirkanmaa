@@ -34,6 +34,7 @@
 #include <stdlib.h>
 #include <map>
 #include <QColor>
+#include <random>
 
 #include <math.h>
 
@@ -42,7 +43,6 @@
 #include <ctime>
 
 #define stringify( name ) # name
-
 
 namespace Student {
 
@@ -68,7 +68,6 @@ GameScene::GameScene(QWidget* parent,
     connect(parent, SIGNAL(playInTurnSignal(std::shared_ptr<Student::Player>)), this, SLOT(playerInTurnSlot(std::shared_ptr<Student::Player>)));
     playerMovesLeft_ = 5;
     srand(time(NULL));
-
 
 }
 
@@ -199,7 +198,7 @@ bool GameScene::event(QEvent *event)
     if(event->type() == QEvent::GraphicsSceneMousePress)
     {
         for (auto object : possibleMovementTiles_) {
-            removeItem(object);
+//            removeItem(object);
             delete object;
         }
         possibleMovementTiles_.clear();
@@ -232,7 +231,6 @@ bool GameScene::event(QEvent *event)
                 // Worker moving
                 auto coor = static_cast<Student::MapItem*>(pressed)->getBoundObject()->getCoordinate(); // Coordinate for the pressed object
                 auto vec = objectManager_->getTile(coor)->getWorkers(); // Get the vector that has all the workers on the tile (maximum of 1
-
 
 
                 // Check if the tile had any of in-turn player's workers
@@ -288,10 +286,92 @@ bool GameScene::event(QEvent *event)
                     } else {
                         qDebug() << "Too far!";
                     }
+                    if (movableObject_->getType() == "Warrior" &&
+                            objectManager_->getTile(coor)->getBuildingCount() == 1 &&
+                            objectManager_->getTile(coor)->getBuildings().at(0)->getType() == "HeadQuarters" &&
+                            objectManager_->getTile(coor)->getBuildings().at(0)->getOwner() != playerInTurn_) {
+                        emit gameOverSignal(playerInTurn_);
+                    }
                     // Clear the player's selection and update the view
                     movableObjectSelected_ = false;
                     vec.clear();
                     GameScene::updateViewSignal();
+
+                // Check if two opponent warriors meet
+                } else if (movableObjectSelected_ == true && objectManager_->getTile(coor)->getWorkers().size() == 1
+                           && objectManager_->getTile(coor)->getWorkers().at(0)->getType() == "Warrior"
+                           && movableObject_->getType() == "Warrior"
+                           && objectManager_->getTile(coor)->getWorkers().at(0)->getOwner() != playerInTurn_
+                           && (abs(movableObject_->getCoordinate().x() - coor.x()) +
+                               abs(movableObject_->getCoordinate().y() - coor.y())) <= playerMovesLeft_) {
+
+                    // Remove the moves from player
+                    playerMovesLeft_ -= (abs(movableObject_->getCoordinate().x() - coor.x()) +
+                            abs(movableObject_->getCoordinate().y() - coor.y()));
+
+                    // Create a vector with both players' vectors to randomize the battle's winner
+                    // with a weight on player's owned tiles
+                    auto playerOneTiles = playerOne_->getTiles();
+                    auto playerTwoTiles = playerTwo_->getTiles();
+                    playerOneTiles.insert(playerOneTiles.end(), playerTwoTiles.begin(), playerTwoTiles.end());
+
+                    // Create the neccessary pointers
+                    std::shared_ptr<Student::Player> winner = nullptr;
+                    std::shared_ptr<Student::Warrior> warrior1 = nullptr;
+                    std::shared_ptr<Student::Warrior> warrior2 = nullptr;
+
+                    // Set the pointers to right players' warriors
+                    if (objectManager_->getTile(coor)->getWorkers().at(0)->getOwner() == playerOne_) {
+                        warrior1 = std::dynamic_pointer_cast<Student::Warrior>(objectManager_->getTile(coor)->getWorkers().at(0));
+                        warrior2 = std::dynamic_pointer_cast<Student::Warrior>(movableObject_);
+                    } else {
+                        warrior1 = std::dynamic_pointer_cast<Student::Warrior>(movableObject_);
+                        warrior2 = std::dynamic_pointer_cast<Student::Warrior>(objectManager_->getTile(coor)->getWorkers().at(0));
+                    }
+
+                    // Loop until one of the warriors dies
+                    while (true) {
+                        // Randomize the damage taking warrior by getting a random tile from the vector with both players' tiles
+                        // and then check its owner
+                        int randNum = rand()%(playerOneTiles.size());
+                        if (playerOneTiles.at(randNum)->getOwner() == playerOne_) {
+                            warrior2->setHitPoints(warrior2->getHitPoints() - 1);
+                        } else {
+                            warrior1->setHitPoints(warrior1->getHitPoints() - 1);
+                        }
+                        // Break when either one of the warriors has died
+                        if (warrior2->getHitPoints() <= 0) {
+                            winner = playerOne_;
+                            break;
+                        }
+                        if (warrior1->getHitPoints() <= 0) {
+                            winner = playerTwo_;
+                            break;
+                        }
+                    }
+
+                    // If winning player was the player in turn, move the object to the new tile and remove the
+                    // other player's warrior
+                    if (winner == playerInTurn_) {
+                        auto realTileOwner = objectManager_->getTile(coor)->getOwner();
+                        auto worker = objectManager_->getTile(coor)->getWorkers().at(0);
+                        objectManager_->getTile(coor)->removeWorker(worker);
+                        objectManager_->getTile(coor)->setOwner(playerInTurn_);
+                        objectManager_->getTile(movableObject_->getCoordinate())->removeWorker(movableObject_);
+                        objectManager_->getTile(coor)->addWorker(movableObject_);
+                        objectManager_->getTile(coor)->setOwner(realTileOwner);
+                        GameScene::updateItem(movableObject_);
+                        GameScene::removeItem(worker);
+                        GameScene::updateViewSignal();
+                    // Otherwise just simply remove the in turn player's warrior
+                    } else {
+                        objectManager_->getTile(movableObject_->getCoordinate())->removeWorker(movableObject_);
+                        GameScene::removeItem(movableObject_);
+                        GameScene::updateViewSignal();
+                    }
+                    movableObjectSelected_ = false;
+                } else {
+                    movableObjectSelected_ = false;
                 }
 
                 // kun rakennusnappia painaa niin rakentaa halutun rakennuksen (temporary variable buildingToAdd)
@@ -317,7 +397,13 @@ bool GameScene::event(QEvent *event)
                     GameScene::updateViewSignal();
 
                     // saa tarvittavat laatat (naapurit + rakennuksen laatta)
-                    std::vector<std::shared_ptr<Course::GameObject>> tiles = objectManager_->getNeighbourTiles(buildingToAdd_);
+                    std::vector<std::shared_ptr<Course::GameObject>> tiles;
+                    if (buildingToAdd_->getType() == "Outpost") {
+                        tiles = objectManager_->getNeighbourTiles(buildingToAdd_, 3);
+                    } else {
+                        tiles = objectManager_->getNeighbourTiles(buildingToAdd_);
+
+                    }
                     playerInTurn_->addTiles(tiles);
                     GameScene::updateAndDrawTileOwners();
 
@@ -434,7 +520,7 @@ bool GameScene::BuildingTileIsCorrect(std::shared_ptr<Course::GameObject> buildi
            movableObjectSelected_ = false;
            // poistaa mahdollisten liikkeiden paikat
            for (auto object : possibleMovementTiles_) {
-               removeItem(object);
+//               removeItem(object);
                delete object;
            }
            possibleMovementTiles_.clear();
@@ -475,7 +561,7 @@ void GameScene::addButtonObject(std::string buttonString)
 
     // poistaa mahdollisten liikkeiden paikat
     for (auto object : possibleMovementTiles_) {
-        removeItem(object);
+//        removeItem(object);
         delete object;
     }
     possibleMovementTiles_.clear();
@@ -594,12 +680,27 @@ void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)
 
     // poistaa mahdollisten liikkeiden paikat
     for (auto object : possibleMovementTiles_) {
-        removeItem(object);
+//        removeItem(object);
         delete object;
     }
     possibleMovementTiles_.clear();
 
     generateResources();
+}
+
+void GameScene::removeItem(std::shared_ptr<Course::GameObject> obj)
+{
+    QList<QGraphicsItem*> items_list = items();
+    if ( items_list.size() == 1 ){
+        qDebug() << "Nothing to be removed at the location pointed by given obj.";
+    } else {
+        for ( auto item : items_list ){
+            Student::MapItem* mapitem = static_cast<Student::MapItem*>(item);
+            if ( mapitem->isSameObj(obj) ){
+                delete mapitem;
+            }
+        }
+    }
 }
 
 }
