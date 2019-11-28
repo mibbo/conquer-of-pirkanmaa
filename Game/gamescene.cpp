@@ -67,6 +67,8 @@ GameScene::GameScene(QWidget* parent,
 
     connect(parent, SIGNAL(playInTurnSignal(std::shared_ptr<Student::Player>)), this, SLOT(playerInTurnSlot(std::shared_ptr<Student::Player>)));
     playerMovesLeft_ = 5;
+    srand(time(NULL));
+
 
 }
 
@@ -89,7 +91,6 @@ void GameScene::drawGameBoard(unsigned int size_x,
     playerOne_ = playerOne;
     playerTwo_ = playerTwo;
 
-    srand(time(NULL));
     seed = rand();
 
     // Create the map with worldGenerator
@@ -103,78 +104,87 @@ void GameScene::drawGameBoard(unsigned int size_x,
 
     // Prints tiles amount
     std::cout << tiles.size() << std::endl;
+    // keskikohta-muuttuja joelle
+    int center = m_width/2-1;
+    // jokilaatan x muuttuja jota randomoidaan
+    int randX = size_x/2-1;
 
-    int four = m_width/2-1;    //4
-    int three = m_width/2-2;   //3
-    int two = m_width/2-3;   //2
-    int one = m_width/2-4;   //1
-
-    int randNum = (rand() % 3) + 1; // you don't need the (...) surrounding rand() % 3 but it helps for clarity
-
-
-
-    std:: cout << randNum << ":"<< four << ":"<< three << ":"<< two << ":"<< one << ":" << std::endl;
-
-    unsigned long int randX = size_x/2-1;
-
-    // käy läpi ruudukon Y-arvot
-    for (unsigned long int y = 0; y < m_height; y++) {
-        // käy läpi ruudukon X_-arvot
-        for (unsigned long int x = 0; x < m_width; x++) {
+    // käy läpi ruudukon Y-arvot (keskeltä ylös)
+    for (int y = m_height/2-1; y >= 0; y--) {
+        // käy läpi ruudukon X-arvot (vasemmalta oikealle)
+        for (int x = 0; x < m_width; x++) {
             // Kun löytää halutun x arvon --> asettaa jokilaatan siihen
             if (x == randX) {
                 for (unsigned long int i = 0; i < tiles.size(); i++) {
-                    std::shared_ptr<Course::TileBase> tiili1 = objectManager_->getTile(Course::Coordinate(randX, y));
-                    std::shared_ptr<Course::TileBase> tiili2 = objectManager_->getTile(Course::Coordinate(randX+1, y));
-
-                    if (tiles.at(i) == tiili1) {
-                        tiles.at(i) = std::make_shared<Student::River>(Course::Coordinate(randX,y), eventHandler_, objectManager_);
+                    std::shared_ptr<Course::TileBase> tile1 = objectManager_->getTile(Course::Coordinate(randX, y));
+                    std::shared_ptr<Course::TileBase> tile2 = objectManager_->getTile(Course::Coordinate(randX+1, y));
+                    std::shared_ptr<Course::TileBase> tileMirror1 = objectManager_->getTile(Course::Coordinate(m_width-x-2, m_height-y-1));
+                    std::shared_ptr<Course::TileBase> tileMirror2 = objectManager_->getTile(Course::Coordinate(m_width-x-1, m_height-y-1));
+                    if (tiles.at(i) == tile1) {
+                        tiles.at(i) = std::make_shared<Student::River>(Course::Coordinate(x,y), eventHandler_, objectManager_);
                     }
-                    if (tiles.at(i) == tiili2) {
-                        tiles.at(i) = std::make_shared<Student::River>(Course::Coordinate(randX+1,y), eventHandler_, objectManager_);
+                    if (tiles.at(i) == tile2) {
+                        tiles.at(i) = std::make_shared<Student::River>(Course::Coordinate(x+1,y), eventHandler_, objectManager_);
+                    }
+                    if (tiles.at(i) == tileMirror1) {
+                        tiles.at(i) = std::make_shared<Student::River>(Course::Coordinate(m_width-x-2,m_height-y-1), eventHandler_, objectManager_);
+                    }
+                    if (tiles.at(i) == tileMirror2) {
+                        tiles.at(i) = std::make_shared<Student::River>(Course::Coordinate(m_width-x-1,m_height-y-1), eventHandler_, objectManager_);
                     }
                 }
             }
         }
         // 20% että pysyy paikallaan
-        if(rand() <= RAND_MAX * 0.20) {
-            randX = randX;
-        //jos keskellä niin 50% liikkua sivuille
-        }else if (randX == four) {
-            if(rand() <= RAND_MAX * 0.5) {
+        if(rand() <= RAND_MAX * 0.20 or randX < 0 or randX > m_width) {
+            continue;
+        //jos keskellä niin 50% tsäänssiliikkua sivuille
+        }else if (inRange(center-1, center+1, randX)) {
+            if(rand() <= RAND_MAX * 0.5 or randX < 0) {
                 randX++;
             } else  {
                 randX--;
             }
-        // jos yhden vasemmalla niin 70% tsäänssi mennä keskemmälle
-        }else if (inRange(one, three, randX)) {
-            if(rand() <= RAND_MAX * 0.7) {
+        // jos kaksi tai kolme vasemmalla niin 60% tsäänssi mennä keskemmälle
+        }else if (inRange(center-3, center-2, randX)) {
+            if(rand() <= RAND_MAX * 0.6) {
                 randX++;
             } else  {
                 randX--;
             }
-        // jos yhden oikealla niin 70& tsäänssi mennä keskemmälle
-        }else if (inRange(four+1, four+3, randX)) {
-            if(rand() <= RAND_MAX * 0.7) {
+        // jos kaksi tai kolme oikealla niin 60& tsäänssi mennä keskemmälle
+        }else if (inRange(center+2, center+3, randX)) {
+            if(rand() <= RAND_MAX * 0.6  or randX > m_width) {
                 randX--;
             } else  {
                 randX++;
             }
+        // jos neljä vasemmalla niin 70& tsäänssi mennä keskemmälle
+        }else if (inRange(center-4, center-4, randX)) {
+            if(rand() <= RAND_MAX * 0.7  or randX > m_width) {
+                randX--;
+            } else  {
+                randX++;
+            }
+        // jos neljä oikealla niin 70& tsäänssi mennä keskemmälle
+        }else if (inRange(center+4, center+4, randX)) {
+            if(rand() <= RAND_MAX * 0.7  or randX > m_width) {
+                randX--;
+            } else  {
+                randX++;
+            }
+        // muuuten jos liian lähellä reunaa (yli 5 laattaa keskeltä) niin menee keskemmälle
         } else {
-            if (inRange(0, one, randX)) {
+            if (inRange(0, center-5, randX)) {
                 randX++;
             } else {
                 randX--;
             }
         }
     }
-
-
-
     for(auto x: tiles){
         GameScene::drawObject(x);
     }
-
     GameScene::generateStartingObjects();
 }
 
