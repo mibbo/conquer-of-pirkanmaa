@@ -295,12 +295,12 @@ bool GameScene::event(QEvent *event)
                     } else {
                         qDebug() << "Too far!";
                     }
-                    if (movableObject_->getType() == "Warrior" &&
-                            objectManager_->getTile(coor)->getBuildingCount() == 1 &&
-                            objectManager_->getTile(coor)->getBuildings().at(0)->getType() == "HeadQuarters" &&
-                            objectManager_->getTile(coor)->getBuildings().at(0)->getOwner() != playerInTurn_) {
-                        emit gameOverSignal(playerInTurn_);
-                    }
+//                    if (movableObject_->getType() == "Warrior" &&
+//                            objectManager_->getTile(coor)->getBuildingCount() == 1 &&
+//                            objectManager_->getTile(coor)->getBuildings().at(0)->getType() == "HeadQuarters" &&
+//                            objectManager_->getTile(coor)->getBuildings().at(0)->getOwner() != playerInTurn_) {
+//                        emit gameOverSignal(playerInTurn_, turnCount_);
+//                    }
                     // Clear the player's selection and update the view
                     movableObjectSelected_ = false;
                     vec.clear();
@@ -383,11 +383,13 @@ bool GameScene::event(QEvent *event)
                     movableObjectSelected_ = false;
                 }
 
-                if (movableObject_->getType() == "Warrior" &&
-                        objectManager_->getTile(coor)->getBuildingCount() == 1 &&
+                if (objectManager_->getTile(coor)->getBuildingCount() == 1 &&
                         objectManager_->getTile(coor)->getBuildings().at(0)->getType() == "HeadQuarters" &&
+                        objectManager_->getTile(coor)->getWorkerCount() == 1 &&
+                        objectManager_->getTile(coor)->getWorkers().at(0)->getType() == "Warrior" &&
+                        objectManager_->getTile(coor)->getWorkers().at(0)->getOwner() == playerInTurn_ &&
                         objectManager_->getTile(coor)->getBuildings().at(0)->getOwner() != playerInTurn_) {
-                    emit gameOverSignal(playerInTurn_);
+                    emit gameOverSignal(playerInTurn_, turnCount_);
                 }
 
                 // kun rakennusnappia painaa niin rakentaa halutun rakennuksen (temporary variable buildingToAdd)
@@ -536,7 +538,6 @@ bool GameScene::BuildingTileIsCorrect(std::shared_ptr<Course::GameObject> buildi
            movableObjectSelected_ = false;
            // poistaa mahdollisten liikkeiden paikat
            for (auto object : possibleMovementTiles_) {
-//               removeItem(object);
                delete object;
            }
            possibleMovementTiles_.clear();
@@ -598,8 +599,14 @@ void GameScene::addButtonObject(std::string buttonString)
     } else if (buttonString == "Sawmill") {
         menuBuildingButtonClicked_ = true;
         buildingToAdd_ = std::make_shared<Student::Sawmill>(eventHandler_, objectManager_, playerInTurn_);
+    // Check if the HQ already has a worker
+    } else if (objectManager_->getTile(returnPlayerObject("HeadQuarters")->getCoordinate())->getWorkerCount() > 0) {
+        return;
     // Workers
     } else if (buttonString == "Basic Worker") {
+        if (!playerInTurn_->modifyResources(Student::ConstResourceMaps::BW_RECRUITMENT_COST)) {
+            return;
+        }
         workerToAdd_ = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerInTurn_);
         //etsii spawnauspaikan(hq) coordinaatit
         Course::Coordinate hqCoordinates = returnPlayerObject("HeadQuarters")->getCoordinate();
@@ -612,6 +619,9 @@ void GameScene::addButtonObject(std::string buttonString)
 
 
     } else if (buttonString == "Construction Worker") {
+        if (!playerInTurn_->modifyResources(Student::ConstResourceMaps::CW_RECRUITMENT_COST)) {
+            return;
+        }
         workerToAdd_ = std::make_shared<Student::ConstrutionWorker>(eventHandler_, objectManager_, playerInTurn_);
 
         Course::Coordinate hqCoordinates = returnPlayerObject("HeadQuarters")->getCoordinate();
@@ -622,6 +632,9 @@ void GameScene::addButtonObject(std::string buttonString)
 
 
     } else if (buttonString == "Warrior") {
+        if (!playerInTurn_->modifyResources(Student::ConstResourceMaps::WARRIOR_RECRUITMENT_COST)) {
+            return;
+        }
         workerToAdd_ = std::make_shared<Student::Warrior>(eventHandler_, objectManager_, playerInTurn_);
 
         Course::Coordinate hqCoordinates = returnPlayerObject("HeadQuarters")->getCoordinate();
@@ -696,12 +709,13 @@ void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)
 
     // poistaa mahdollisten liikkeiden paikat
     for (auto object : possibleMovementTiles_) {
-//        removeItem(object);
         delete object;
     }
     possibleMovementTiles_.clear();
 
     generateResources();
+
+    turnCount_ += 1;
 }
 
 void GameScene::removeItem(std::shared_ptr<Course::GameObject> obj)

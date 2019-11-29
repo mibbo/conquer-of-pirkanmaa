@@ -52,7 +52,7 @@ public slots:
     // Slot that sends button text.
     void sendButtonText();
     void updateInformationSlot(int movesLeft);
-    void gameOverSlot(std::shared_ptr<Student::Player> winner);
+    void gameOverSlot(std::shared_ptr<Student::Player> winner, int turnCount);
 
 private slots:
     void on_turnButton_clicked();

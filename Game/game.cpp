@@ -9,6 +9,7 @@
 
 #include <QDebug>
 #include <iostream>
+#include <fstream>
 
 #include <math.h>
 #include <memory>
@@ -47,7 +48,7 @@ Game::Game(QWidget *parent):
 
     connect(sgs_rawptr, SIGNAL(updateViewSignal()), this, SLOT(updateViewSlot()));
     connect(sgs_rawptr, SIGNAL(updateInformationSignal(int)), this, SLOT(updateInformationSlot(int)));
-    connect(sgs_rawptr, SIGNAL(gameOverSignal(std::shared_ptr<Student::Player>)), this, SLOT(gameOverSlot(std::shared_ptr<Student::Player>)));
+    connect(sgs_rawptr, SIGNAL(gameOverSignal(std::shared_ptr<Student::Player>, int)), this, SLOT(gameOverSlot(std::shared_ptr<Student::Player>, int)));
 
     //tekee ja piirtää UI setit (nappulat summuut)
     displayMainMenu();
@@ -137,9 +138,20 @@ void Game::updateInformationSlot(int movesLeft)
     ui->ore->display(resources[Course::ORE]);
 }
 
-void Game::gameOverSlot(std::shared_ptr<Student::Player> winner)
+void Game::gameOverSlot(std::shared_ptr<Student::Player> winner, int turn)
 {
     std::cout << "Olet viineri - " << winner->getName()  << std::endl;
+
+//    std::ofstream myfile ("Game/highscores.txt");
+//      if (myfile.is_open())
+//      {
+//        myfile << "This is a line.\n";
+//        myfile << "This is another line.\n";
+//        myfile.close();
+//        myfile.flush();
+//        std::cout << "GIDFIIDOSJFIOJDSIOfjOIJFDOIJSOIFJOIDSJFOIJSODIFJOIDSJFOI ";
+//      }
+//      else std::cout << "Unable to open file";
 }
 
 void Game::connectButtons() {
