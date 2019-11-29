@@ -374,6 +374,13 @@ bool GameScene::event(QEvent *event)
                     movableObjectSelected_ = false;
                 }
 
+                if (movableObject_->getType() == "Warrior" &&
+                        objectManager_->getTile(coor)->getBuildingCount() == 1 &&
+                        objectManager_->getTile(coor)->getBuildings().at(0)->getType() == "HeadQuarters" &&
+                        objectManager_->getTile(coor)->getBuildings().at(0)->getOwner() != playerInTurn_) {
+                    emit gameOverSignal(playerInTurn_);
+                }
+
                 // kun rakennusnappia painaa niin rakentaa halutun rakennuksen (temporary variable buildingToAdd)
                 // Prevents the player from adding multiple buildings to a single tile.
                 if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0 &&
