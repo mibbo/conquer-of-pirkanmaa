@@ -80,3 +80,6 @@ FORMS += \
 
 RESOURCES += \
     resources.qrc
+
+DISTFILES += \
+    highscores.txt

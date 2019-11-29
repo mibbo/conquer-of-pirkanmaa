@@ -87,7 +87,7 @@ public:
 signals:
     void updateViewSignal();
     void updateInformationSignal(int movesLeft);
-    void gameOverSignal(std::shared_ptr<Student::Player> player);
+    void gameOverSignal(std::shared_ptr<Student::Player> player, int turnCount);
 
 public slots:
     void playerInTurnSlot(std::shared_ptr<Student::Player> playerInTurn);
@@ -108,12 +108,11 @@ private:
     bool movableObjectSelected_ = false;
     std::shared_ptr<Course::WorkerBase> movableObject_ = nullptr;
     int playerMovesLeft_;
-    //rakennus ja worker hommat
     bool menuBuildingButtonClicked_ = false;
     std::shared_ptr<Course::BuildingBase> buildingToAdd_ = nullptr;
     std::shared_ptr<Course::WorkerBase> workerToAdd_ = nullptr;
     std::vector<QGraphicsRectItem*> possibleMovementTiles_;
-
+    int turnCount_ = 0;
 };
 
 }

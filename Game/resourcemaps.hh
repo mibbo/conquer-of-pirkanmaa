@@ -33,6 +33,11 @@ const Course::ResourceMap RIVER_BP = {
     {Course::ORE, 0},
 };
 
+const Course::ResourceMap BW_RECRUITMENT_COST= {
+    {Course::MONEY, 10},
+    {Course::FOOD, 30},
+};
+
 const Course::ResourceMapDouble CW_WORKER_EFFICIENCY = {
     {Course::MONEY, 0.25},
     {Course::FOOD, 1.00},
@@ -42,7 +47,7 @@ const Course::ResourceMapDouble CW_WORKER_EFFICIENCY = {
 };
 
 const Course::ResourceMap CW_RECRUITMENT_COST = {
-    {Course::MONEY, 10},
+    {Course::MONEY, 500},
     {Course::FOOD, 25}
 };
 
