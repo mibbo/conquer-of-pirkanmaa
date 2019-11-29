@@ -137,42 +137,42 @@ void GameScene::drawGameBoard(unsigned int size_x,
         // 20% että pysyy paikallaan
         if(rand() <= RAND_MAX * 0.20 or randX < 0 or randX > m_width) {
             continue;
-        //jos keskellä niin 50% tsäänssiliikkua sivuille
+        //jos aikaisempi laatta keskellä niin 50% tsäänssiliikkua sivuille
         }else if (inRange(center-1, center+1, randX)) {
             if(rand() <= RAND_MAX * 0.5 or randX < 0) {
                 randX++;
             } else  {
                 randX--;
             }
-        // jos kaksi tai kolme vasemmalla niin 60% tsäänssi mennä keskemmälle
+        // jos aikaisempi laatta kaksi tai kolme vasemmalla niin 60% tsäänssi mennä keskemmälle
         }else if (inRange(center-3, center-2, randX)) {
             if(rand() <= RAND_MAX * 0.6) {
                 randX++;
             } else  {
                 randX--;
             }
-        // jos kaksi tai kolme oikealla niin 60& tsäänssi mennä keskemmälle
+        // jos aikaisempi laatta kaksi tai kolme oikealla niin 60& tsäänssi mennä keskemmälle
         }else if (inRange(center+2, center+3, randX)) {
             if(rand() <= RAND_MAX * 0.6  or randX > m_width) {
                 randX--;
             } else  {
                 randX++;
             }
-        // jos neljä vasemmalla niin 70& tsäänssi mennä keskemmälle
+        // jos aikaisempi laatta neljä vasemmalla niin 70& tsäänssi mennä keskemmälle
         }else if (inRange(center-4, center-4, randX)) {
             if(rand() <= RAND_MAX * 0.7  or randX > m_width) {
                 randX--;
             } else  {
                 randX++;
             }
-        // jos neljä oikealla niin 70& tsäänssi mennä keskemmälle
+        // jos aikaisempi laatta neljä oikealla niin 70& tsäänssi mennä keskemmälle
         }else if (inRange(center+4, center+4, randX)) {
             if(rand() <= RAND_MAX * 0.7  or randX > m_width) {
                 randX--;
             } else  {
                 randX++;
             }
-        // muuuten jos liian lähellä reunaa (yli 5 laattaa keskeltä) niin menee keskemmälle
+        // muuuten jos laatta liian lähellä reunaa (yli 5 laattaa keskeltä) niin menee keskemmälle
         } else {
             if (inRange(0, center-5, randX)) {
                 randX++;
@@ -231,6 +231,15 @@ bool GameScene::event(QEvent *event)
                 // Worker moving
                 auto coor = static_cast<Student::MapItem*>(pressed)->getBoundObject()->getCoordinate(); // Coordinate for the pressed object
                 auto vec = objectManager_->getTile(coor)->getWorkers(); // Get the vector that has all the workers on the tile (maximum of 1
+
+
+                QPointF point(coor.x(), coor.y());
+                auto graphitems = items(point * m_scale);
+                std::cout << "koko: " <<graphitems.size() << std::endl;
+                auto graphitem = graphitems.at(0);
+                static_cast<Student::MapItem*>(graphitem)->setPixMap(QPixmap(":/images/fedora.jpg"));
+
+
 
 
                 // Check if the tile had any of in-turn player's workers

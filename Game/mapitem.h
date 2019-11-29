@@ -71,6 +71,11 @@ public:
 
     void drawOwnership(QColor color);
 
+    void setPixMap(QPixmap pix);
+
+    void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
+
 private:
     const std::shared_ptr<Course::GameObject> m_gameobject;
     QPoint m_scenelocation;
@@ -79,6 +84,8 @@ private:
 
     static std::map<std::string, QColor> c_mapcolors;
     static void addNewColor(std::string type);
+
+    QPixmap pix_;
 };
 }
 #endif // MAPITEM_H
