@@ -36,7 +36,12 @@ public:
 
     virtual const Course::ResourceMapDouble tileWorkAction() override;
 
+    int getHitPoints();
+
+    void setHitPoints(int amount);
+
 private:
+    int hitPoints_;
 
 };
 

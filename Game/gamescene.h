@@ -78,6 +78,8 @@ public:
 
     void generateResources();
 
+    void removeItem(std::shared_ptr<Course::GameObject> obj);
+
     // Returns true if x is in range [low..high], else false
     bool inRange(int low, int high, int x) ;
 
@@ -85,6 +87,7 @@ public:
 signals:
     void updateViewSignal();
     void updateInformationSignal(int movesLeft);
+    void gameOverSignal(std::shared_ptr<Student::Player> player);
 
 public slots:
     void playerInTurnSlot(std::shared_ptr<Student::Player> playerInTurn);
