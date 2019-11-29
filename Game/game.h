@@ -39,6 +39,7 @@ public:
 	void connectButtons();
     void logMessage(std::string message);
     void logMessage(QString message);
+    void highscores(std::shared_ptr<Student::Player> winner, int turnCount);
 
 
 signals:

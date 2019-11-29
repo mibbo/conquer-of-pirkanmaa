@@ -63,17 +63,6 @@ Game::Game(QWidget *parent):
 
     // LOG
     ui->log->setReadOnly(true);
-
-
-    std::ofstream myfile;
-      myfile.open ("highscores.txt");
-      myfile << "Writing this to a file.\n";
-      myfile << "Writing this to a file.\n";
-      myfile << "Writing this to a file.\n";
-      myfile << "Writing this to a file.\n";
-      myfile.close();
-      std::cout << "asdasdsa" << std::endl;
-
 }
 
 Game::~Game()
@@ -183,25 +172,7 @@ void Game::logMessage(QString message)
 
 void Game::highscores(std::shared_ptr<Student::Player> winner, int turnCount)
 {
-    std::ofstream myfile;
-      myfile.open ("highscores.txt");
-      myfile << "Writing this to a file.\n";
-      myfile << "Writing this to a file.\n";
-      myfile << "Writing this to a file.\n";
-      myfile << "Writing this to a file.\n";
-      myfile.close();
-
-    std::ofstream file;
-    if (!file) {
-        std::cout << "Ei ollu filu!" << std::endl;
-        return;
-    }
-    file.open ("highscores.txt");
-
-    std::cout << "kirjota ny saatana!" << std::endl;
-
-    file << "Haloo nyt saatana" << std::endl;
-    file.close();
+    
 }
 
 void Game::startGameSlot(unsigned int mapWidth, unsigned int mapHeight, QString playerOneName, QString playerTwoName,
