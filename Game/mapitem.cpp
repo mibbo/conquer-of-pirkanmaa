@@ -57,18 +57,33 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
         // Create and set the pen for painter (to have "frames" in tiles)
         QPen pen(m_color);
-        pen.setWidth(5);
+        pen.setWidth(4);
         painter->setPen(pen);
 
         // Set the brush color to tile's color
-        painter->setBrush(QBrush(c_mapcolors.at(m_gameobject->getType())));
+        painter->setBrush(QBrush(Qt::transparent));
+
+        QPixmap px = MapItem::getPixMap(m_gameobject->getType());
+        // Paint the pixmap
+        QRect pixRect(MapItem::boundingRectForImages().x(),
+                   MapItem::boundingRectForImages().y(),
+                   MapItem::boundingRectForImages().width(),
+                   MapItem::boundingRectForImages().height());
+        painter->drawPixmap(pixRect, px);
 
         // Create and paint a new rect from mapitem's boundingRect with few graphical adjustments
-        QRect rect(MapItem::boundingRect().x(),
-                   MapItem::boundingRect().y(),
-                   MapItem::boundingRect().width()-2,
-                   MapItem::boundingRect().height()-2);
+        QRect rect(MapItem::boundingRect().x()-3,
+                   MapItem::boundingRect().y()-3,
+                   MapItem::boundingRect().width(),
+                   MapItem::boundingRect().height());
         painter->drawRoundedRect(rect, 1, 1);
+
+
+
+
+
+
+
     } else {
         // Get the right pixmap for the object that is not a tile
         QPixmap px = MapItem::getPixMap(m_gameobject->getType());
@@ -126,9 +141,22 @@ QPixmap MapItem::getPixMap(std::string type)
     } else if (type == "Mine") {
         return QPixmap(":/images/mine.png");
     } else if (type == "Sawmill") {
-        return QPixmap(":/images/player2.png");
-    } else {
-        return QPixmap();
+            return QPixmap(":/images/player2.png");
+
+        //tiilet
+    } else if (type == "Grassland") {
+        return QPixmap(":/images/multi_grass.png");
+    } else if (type == "Forest") {
+        return QPixmap(":/images/multi_grass.png");
+    } else if (type == "Mountain") {
+        return QPixmap(":/images/multi_grass.png");
+    } else if (type == "Cobblestone") {
+        return QPixmap(":/images/multi_grass.png");
+    } else if (type == "River") {
+        return QPixmap(":/images/multi_grass.png");
+    }
+    else {
+    return QPixmap();
     }
 }
 

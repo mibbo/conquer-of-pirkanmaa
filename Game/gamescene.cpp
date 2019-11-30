@@ -468,12 +468,13 @@ void GameScene::generateStartingObjects()
     objectManager_->getTile(Course::Coordinate(Course::Coordinate(leftX, leftY), Course::Direction::E))->addWorker(bw1);
     GameScene::drawObject(bw1, playerOne_->getColor());
     playerOne_->addObject(bw1);
-    
+
     std::shared_ptr<Course::BasicWorker> bw2 = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerTwo_);
     objectManager_->getTile(Course::Coordinate(Course::Coordinate(rightX, rightY), Course::Direction::W))->setOwner(playerTwo_);
     objectManager_->getTile(Course::Coordinate(Course::Coordinate(rightX, rightY), Course::Direction::W))->addWorker(bw2);
     GameScene::drawObject(bw2, playerTwo_->getColor());
     playerTwo_->addObject(bw2);
+
 
     //Test
     GameScene::updateAndDrawTileOwners();
