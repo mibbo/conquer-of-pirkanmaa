@@ -49,6 +49,7 @@ Game::Game(QWidget *parent):
     connect(sgs_rawptr, SIGNAL(updateViewSignal()), this, SLOT(updateViewSlot()));
     connect(sgs_rawptr, SIGNAL(updateInformationSignal(int)), this, SLOT(updateInformationSlot(int)));
     connect(sgs_rawptr, SIGNAL(gameOverSignal(std::shared_ptr<Student::Player>, int)), this, SLOT(gameOverSlot(std::shared_ptr<Student::Player>, int)));
+    connect(sgs_rawptr, SIGNAL(hoverTextSignal(std::string)), this, SLOT(hoverTextSlot(std::string)));
 
     //tekee ja piirtää UI setit (nappulat summuut)
     displayMainMenu();
@@ -140,6 +141,11 @@ void Game::updateInformationSlot(int movesLeft)
 void Game::gameOverSlot(std::shared_ptr<Student::Player> winner, int turn)
 {
     std::cout << "Olet viineri - " << winner->getName()  << std::endl;
+}
+
+void Game::hoverTextSlot(std::string text)
+{
+    ui->hoverInfo->setText(QString::fromStdString(text));
 }
 
 void Game::connectButtons() {

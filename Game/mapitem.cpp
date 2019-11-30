@@ -106,7 +106,6 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 //                   MapItem::boundingRect().height());
 //        painter->drawRoundedRect(rect, 1, 1);
 
-
     } else {
         QRect rect(MapItem::boundingRectForImages().x()-1,
                    MapItem::boundingRectForImages().y()-1,
@@ -191,8 +190,7 @@ void MapItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
     if(event){
         //std::cout << m_gameobject->getType() << std::endl;
-
-
+//        emit mapItemHoverSignal(m_gameobject->getCoordinate());
     }
 
 }

@@ -54,6 +54,7 @@ public slots:
     void sendButtonText();
     void updateInformationSlot(int movesLeft);
     void gameOverSlot(std::shared_ptr<Student::Player> winner, int turnCount);
+    void hoverTextSlot(std::string text);
 
 private slots:
     void on_turnButton_clicked();

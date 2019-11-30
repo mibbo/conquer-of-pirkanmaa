@@ -195,6 +195,7 @@ void GameScene::drawObject(std::shared_ptr<Course::GameObject> obj, QColor color
 
     MapItem* newItem = new MapItem(obj, m_scale, color);
     addItem(newItem);
+//    connect(newItem->get(), SIGNAL(mapItemHoverSignal(Course::Coordinate)), this, SLOT(mapItemHoverSlot(Course::Coordinate)));
 }
 
 bool GameScene::event(QEvent *event)
@@ -388,6 +389,7 @@ bool GameScene::event(QEvent *event)
                     movableObjectSelected_ = false;
                 } else {
                     movableObjectSelected_ = false;
+                    menuBuildingButtonClicked_ = false;
                 }
 
                 if (objectManager_->getTile(coor)->getBuildingCount() == 1 &&
@@ -659,6 +661,11 @@ void GameScene::addButtonObject(std::string buttonString)
         playerInTurn_->addObject(workerToAdd_);
 
     }
+}
+
+void GameScene::mapItemHoverSlot(Course::Coordinate coordinate)
+{
+    emit hoverTextSignal(objectManager_->getTile(coordinate)->getType());
 }
 void GameScene::reset()
 {
