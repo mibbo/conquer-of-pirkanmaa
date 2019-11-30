@@ -6,7 +6,7 @@
 #include <memory>
 #include <map>
 #include "core/gameobject.h"
-
+#include <QBitmap>
 
 
 
@@ -86,6 +86,9 @@ private:
     static void addNewColor(std::string type);
 
     QPixmap pix_;
+    QBitmap mask_;
+
+
 };
 }
 #endif // MAPITEM_H

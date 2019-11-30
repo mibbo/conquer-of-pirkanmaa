@@ -181,7 +181,6 @@ void GameScene::drawGameBoard(unsigned int size_x,
             }
         }
     }
-    std::cout << tiles.size() << std::endl;
     for(auto x: tiles){
         GameScene::drawObject(x);
     }
@@ -202,6 +201,7 @@ bool GameScene::event(QEvent *event)
     if(event->type() == QEvent::GraphicsSceneMousePress)
     {
         for (auto object : possibleMovementTiles_) {
+//            removeItem(object);
             delete object;
         }
         possibleMovementTiles_.clear();
@@ -236,11 +236,12 @@ bool GameScene::event(QEvent *event)
                 auto vec = objectManager_->getTile(coor)->getWorkers(); // Get the vector that has all the workers on the tile (maximum of 1
 
 
+                  // muuttaa objectin kuvaa klikatessa
 //                QPointF point(coor.x(), coor.y());
 //                auto graphitems = items(point * m_scale);
-//                std::cout << "koko: " <<graphitems.size() << std::endl;
 //                auto graphitem = graphitems.at(0);
-//                static_cast<Student::MapItem*>(graphitem)->setPixMap(QPixmap(":/images/fedora.jpg"));
+//                static_cast<Student::MapItem*>(graphitem)->setPixMap(QPixmap(":/images/player2.png"));
+//                //updateViewSignal();
 
 
 
@@ -282,7 +283,6 @@ bool GameScene::event(QEvent *event)
                 // Check if a worker has been "selected" and if the clicked tile has any other workers
                 } else if (movableObjectSelected_ == true && objectManager_->getTile(coor)->getWorkers().size() == 0) {
                     // tää esti rakentamisen kun oli jo klikattu const workeriä
-                    std::cout << objectManager_->getTile(coor)->getType() << std::endl;
                     menuBuildingButtonClicked_ = false;
                     // Calculate the distance in tiles that player chose
                     int distance = abs(movableObject_->getCoordinate().x() - coor.x()) +
@@ -291,7 +291,6 @@ bool GameScene::event(QEvent *event)
                     if (distance <= playerMovesLeft_) {
                         playerMovesLeft_ -= distance;
                         auto realTileOwner = objectManager_->getTile(coor)->getOwner();
-                        std::cout << "1" << std::endl;
                         objectManager_->getTile(coor)->setOwner(playerInTurn_);
                         objectManager_->getTile(movableObject_->getCoordinate())->removeWorker(movableObject_);
                         objectManager_->getTile(coor)->addWorker(movableObject_);
@@ -300,7 +299,12 @@ bool GameScene::event(QEvent *event)
                     } else {
                         qDebug() << "Too far!";
                     }
-
+//                    if (movableObject_->getType() == "Warrior" &&
+//                            objectManager_->getTile(coor)->getBuildingCount() == 1 &&
+//                            objectManager_->getTile(coor)->getBuildings().at(0)->getType() == "HeadQuarters" &&
+//                            objectManager_->getTile(coor)->getBuildings().at(0)->getOwner() != playerInTurn_) {
+//                        emit gameOverSignal(playerInTurn_, turnCount_);
+//                    }
                     // Clear the player's selection and update the view
                     movableObjectSelected_ = false;
                     vec.clear();

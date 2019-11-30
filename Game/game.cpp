@@ -17,14 +17,6 @@
 
 #include <QWidget>
 
-#include <iostream>
-#include <string>
-#include <sstream>
-#include <istream>
-#include <fstream>
-#include <vector>
-#include <cstdlib>
-
 Game::Game(QWidget *parent):
     QMainWindow(parent),
     ui(new Ui::Game),
@@ -149,7 +141,16 @@ void Game::gameOverSlot(std::shared_ptr<Student::Player> winner, int turn)
 {
     std::cout << "Olet viineri - " << winner->getName()  << std::endl;
 
-    Game::highscores(winner, turn);
+//    std::ofstream myfile ("Game/highscores.txt");
+//      if (myfile.is_open())
+//      {
+//        myfile << "This is a line.\n";
+//        myfile << "This is another line.\n";
+//        myfile.close();
+//        myfile.flush();
+//        std::cout << "GIDFIIDOSJFIOJDSIOfjOIJFDOIJSOIFJOIDSJFOIJSODIFJOIDSJFOI ";
+//      }
+//      else std::cout << "Unable to open file";
 }
 
 void Game::connectButtons() {
@@ -167,11 +168,6 @@ void Game::logMessage(std::string message)
 void Game::logMessage(QString message)
 {
     ui->log->setPlainText(message);
-
-}
-
-void Game::highscores(std::shared_ptr<Student::Player> winner, int turnCount)
-{
 
 }
 

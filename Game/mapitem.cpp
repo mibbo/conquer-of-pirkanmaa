@@ -25,6 +25,11 @@ MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, int size, QColo
     addNewColor(m_gameobject->getType());
     //Allow responding to hover
     setAcceptHoverEvents(true);
+
+    pix_ = MapItem::getPixMap(m_gameobject->getType());
+    mask_ = pix_.createMaskFromColor(Qt::black, Qt::MaskOutColor);
+    pix_.fill(m_color);
+    pix_.setMask(mask_);
 }
 
 
@@ -76,13 +81,16 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
 
 
     } else {
+
+
+
         // Get the right pixmap for the object that is not a tile
-        pix_ = MapItem::getPixMap(m_gameobject->getType());
+        //pix_ = MapItem::getPixMap(m_gameobject->getType());
 
         // Create a mask for the pixmap so it can be colored with player's color
-        auto mask = pix_.createMaskFromColor(Qt::black, Qt::MaskOutColor);
-        pix_.fill(m_color);
-        pix_.setMask(mask);
+//        auto mask = pix_.createMaskFromColor(Qt::black, Qt::MaskOutColor);
+//        pix_.fill(m_color);
+//        pix_.setMask(mask_);
 
         // Paint the pixmap
         QRect rect(MapItem::boundingRectForImages().x(),
@@ -150,6 +158,9 @@ void MapItem::drawOwnership(QColor color)
 void MapItem::setPixMap(QPixmap pix)
 {
     pix_ = pix;
+    mask_ = pix_.createMaskFromColor(Qt::black, Qt::MaskOutColor);
+    pix_.fill(m_color);
+    pix_.setMask(mask_);
     update();
 }
 
