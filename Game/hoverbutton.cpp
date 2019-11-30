@@ -1,5 +1,6 @@
 #include "hoverbutton.h"
 #include "QtDebug"
+#include <iostream>
 
 namespace Student {
 
@@ -7,6 +8,7 @@ HoverButton::HoverButton(QWidget *parent) : QPushButton(parent)
 {
     setMouseTracking(true);
     setAttribute(Qt::WA_Hover);
+    setCheckable(true);
 }
 
 void HoverButton::hoverEnter(QHoverEvent *)

@@ -126,7 +126,12 @@ void Game::sendButtonText() {
         if (button != nullptr) {
           //emits buildingButtons name
           emit buildingSignal(button->text().toStdString());
-            button->setDown(true);
+            if (button->isChecked() == true) {
+                std::cout << "haloo" << std::endl;
+                button->setChecked(false);
+            } else {
+                button->setChecked(true);
+            }
         }
       }
 }
@@ -182,7 +187,7 @@ void Game::logMessageSlot(QString message)
 void Game::enableButtonsSlot()
 {
     for (auto button : buildingButtonsVector_) {
-        button->setDown(false);
+        button->setChecked(false);
     }
 }
 
