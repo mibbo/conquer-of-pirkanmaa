@@ -36,9 +36,14 @@ MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, int size, QColo
         pix_ = MapItem::getPixMap(m_gameobject->getType());
     } else {
         pix_ = MapItem::getPixMap(m_gameobject->getType());
-        mask_ = pix_.createMaskFromColor(Qt::black, Qt::MaskOutColor);
+        mask_ = pix_.createMaskFromColor(QColor(0,0,0), Qt::MaskOutColor);
         //        pix_.fill(m_color);
         //        pix_.setMask(mask_);
+    }
+    if (m_gameobject->getType() == "ConstructionWorker" ||
+            m_gameobject->getType() == "BasicWorker" ||
+            m_gameobject->getType() == "Warrior") {
+        this->setZValue(1);
     }
 }
 
@@ -75,6 +80,7 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
         // Create and set the pen for painter (to have "frames" in tiles)
         QPen pen(m_color);
         pen.setWidth(4);
+        pen.setStyle(Qt::DotLine);
         painter->setPen(pen);
 
         // Set the brush color to tile's color

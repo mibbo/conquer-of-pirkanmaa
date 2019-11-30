@@ -186,9 +186,9 @@ void GameScene::drawGameBoard(unsigned int size_x,
         GameScene::drawObject(x);
     }
 
-    GameScene::drawTileGraphics(objectManager_->returnTiles());
-
     GameScene::generateStartingObjects();
+
+    GameScene::drawTileGraphics(objectManager_->returnTiles());
 }
 
 void GameScene::drawObject(std::shared_ptr<Course::GameObject> obj, QColor color) {
@@ -247,7 +247,7 @@ bool GameScene::event(QEvent *event)
 
 
                 // Check if the tile had any of in-turn player's workers
-                if (vec.size() > 0 && vec.at(0)->getOwner() == playerInTurn_ && playerMovesLeft_ > 0) {
+                if (vec.size() > 0 && vec.at(0)->getOwner() == playerInTurn_ && playerMovesLeft_ > 0 && movableObjectSelected_ == false) {
                     movableObjectSelected_ = true;
                     movableObject_ = vec.at(0);
 
@@ -280,7 +280,8 @@ bool GameScene::event(QEvent *event)
                         }
                     }
 
-
+                } else if (vec.size() > 0 /*&& vec.at(0)->getOwner() == playerInTurn_*/ && vec.at(0) == movableObject_) {
+                    movableObjectSelected_ = false;
                 // Check if a worker has been "selected" and if the clicked tile has any other workers
                 } else if (movableObjectSelected_ == true && objectManager_->getTile(coor)->getWorkers().size() == 0
                            && objectManager_->getTile(coor)->getType() != "River") {
@@ -416,6 +417,7 @@ bool GameScene::event(QEvent *event)
                     //asettaa pelaajan tietoihin rakennuksen
                     playerInTurn_->addObject(buildingToAdd_);
                     GameScene::drawObject(buildingToAdd_, playerInTurn_->getColor());
+
                     // Tunnistaa, että rakennettavaa paikkaa on painettu -> asettaa false
                     menuBuildingButtonClicked_ = false;
                     GameScene::updateViewSignal();
@@ -578,6 +580,11 @@ void GameScene::addButtonObject(std::string buttonString)
         std::cout << std::endl;
     }
 
+    if (menuBuildingButtonClicked_ == true && buildingToAdd_->getType() == buttonString) {
+        menuBuildingButtonClicked_ = false;
+        return;
+    }
+
     // poistaa muiden nappien painallukset
     movableObjectSelected_ = false;
     menuBuildingButtonClicked_ = false;
@@ -590,6 +597,8 @@ void GameScene::addButtonObject(std::string buttonString)
     possibleMovementTiles_.clear();
     //tunnistaa, että buildingButtonia on painettu->
     // Buildings
+
+
     if (buttonString == "Farm") {
         menuBuildingButtonClicked_ = true;
         buildingToAdd_ = std::make_shared<Course::Farm>(eventHandler_, objectManager_, playerInTurn_);
