@@ -61,35 +61,35 @@
     </property>
     <layout class="QGridLayout" name="buildingsLayout">
      <item row="0" column="0">
-      <widget class="QPushButton" name="farmButton">
+      <widget class="Student::HoverButton" name="farmButton">
        <property name="text">
         <string>Farm</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QPushButton" name="mineButton">
+      <widget class="Student::HoverButton" name="mineButton">
        <property name="text">
         <string>Mine</string>
        </property>
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QPushButton" name="outpostButton">
+      <widget class="Student::HoverButton" name="outpostButton">
        <property name="text">
         <string>Outpost</string>
        </property>
       </widget>
      </item>
      <item row="5" column="0">
-      <widget class="QPushButton" name="quarryButton">
+      <widget class="Student::HoverButton" name="quarryButton">
        <property name="text">
         <string>Quarry</string>
        </property>
       </widget>
      </item>
      <item row="6" column="0">
-      <widget class="QPushButton" name="sawmillButton">
+      <widget class="Student::HoverButton" name="sawmillButton">
        <property name="text">
         <string>Sawmill</string>
        </property>
@@ -180,21 +180,21 @@
     </property>
     <layout class="QGridLayout" name="workersLayout">
      <item row="0" column="0">
-      <widget class="QPushButton" name="basicWorkerButton">
+      <widget class="Student::HoverButton" name="basicWorkerButton">
        <property name="text">
         <string>Basic Worker</string>
        </property>
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QPushButton" name="warriorButton">
+      <widget class="Student::HoverButton" name="warriorButton">
        <property name="text">
         <string>Warrior</string>
        </property>
       </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QPushButton" name="constWorkerButton">
+      <widget class="Student::HoverButton" name="constWorkerButton">
        <property name="text">
         <string>Construction Worker</string>
        </property>
@@ -225,6 +225,13 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Student::HoverButton</class>
+   <extends>QPushButton</extends>
+   <header>hoverbutton.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

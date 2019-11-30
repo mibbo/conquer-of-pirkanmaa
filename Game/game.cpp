@@ -50,6 +50,9 @@ Game::Game(QWidget *parent):
     connect(sgs_rawptr, SIGNAL(updateInformationSignal(int)), this, SLOT(updateInformationSlot(int)));
     connect(sgs_rawptr, SIGNAL(gameOverSignal(std::shared_ptr<Student::Player>, int)), this, SLOT(gameOverSlot(std::shared_ptr<Student::Player>, int)));
 
+    // connectaa gamescenen signaalin gameen
+    connect(sgs_rawptr, SIGNAL(enableButtonsSignal()), this, SLOT(enableButtonsSlot()));
+
     //tekee ja piirtää UI setit (nappulat summuut)
     displayMainMenu();
 
@@ -122,6 +125,7 @@ void Game::sendButtonText() {
         if (button != nullptr) {
           //emits buildingButtons name
           emit buildingSignal(button->text().toStdString());
+            //button->setChecked(true);
         }
       }
 }
@@ -156,20 +160,9 @@ void Game::gameOverSlot(std::shared_ptr<Student::Player> winner, int turn)
 void Game::connectButtons() {
     for (auto button : buildingButtonsVector_) {
         connect(button, SIGNAL(clicked()), this, SLOT(sendButtonText()));
-
     }
 }
 
-void Game::logMessage(std::string message)
-{
-    ui->log->setPlainText(QString::fromStdString(message));
-}
-
-void Game::logMessage(QString message)
-{
-    ui->log->setPlainText(message);
-
-}
 
 void Game::startGameSlot(unsigned int mapWidth, unsigned int mapHeight, QString playerOneName, QString playerTwoName,
                          QColor playerOneColor, QColor playerTwoColor)
@@ -178,6 +171,24 @@ void Game::startGameSlot(unsigned int mapWidth, unsigned int mapHeight, QString 
     playerOne_->setColor(playerOneColor);
     playerTwo_->setColor(playerTwoColor);
     gameScene_->drawGameBoard(mapWidth, mapHeight, 2, objManager_, eveHandler_, playerOne_, playerTwo_);
+}
+
+void Game::logMessageSlot(std::string message)
+{
+    ui->log->setPlainText(QString::fromStdString(message));
+}
+
+void Game::logMessageSlot(QString message)
+{
+    ui->log->setPlainText(message);
+
+}
+
+void Game::enableButtonsSlot()
+{
+    for (auto button : buildingButtonsVector_) {
+        button->setEnabled(true);
+    }
 }
 
 void Game::updateViewSlot()

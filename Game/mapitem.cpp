@@ -140,7 +140,7 @@ QPixmap MapItem::getPixMap(std::string type)
     } else if (type == "BasicWorker") {
         return QPixmap(":/images/basicworker.png");
     } else if (type == "Outpost") {
-        return QPixmap(":/images/outpost.png");
+        return QPixmap(":/images/sprite/Outpost.png");
     }  else if (type == "Farm") {
         return QPixmap(":/images/farm.png");
     } else if (type == "Warrior") {

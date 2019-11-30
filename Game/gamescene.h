@@ -89,6 +89,7 @@ signals:
     void updateViewSignal();
     void updateInformationSignal(int movesLeft);
     void gameOverSignal(std::shared_ptr<Student::Player> player, int turnCount);
+    void enableButtonsSignal();
 
 public slots:
     void playerInTurnSlot(std::shared_ptr<Student::Player> playerInTurn);

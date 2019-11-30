@@ -243,6 +243,8 @@ bool GameScene::event(QEvent *event)
 //                static_cast<Student::MapItem*>(graphitem)->setPixMap(QPixmap(":/images/player2.png"));
                 //updateViewSignal();
 
+                //asettaa napit painettaviksi
+                emit enableButtonsSignal();
 
 
 
@@ -556,28 +558,8 @@ bool GameScene::BuildingTileIsCorrect(std::shared_ptr<Course::GameObject> buildi
 
 void GameScene::addButtonObject(std::string buttonString)
 {
-    // DEBUG honmaa
-    // tulostaa pelaajan omistamat objektit
-    if (playerInTurn_->getObjects().size() == 0) {
-        std::cout << "pelaajalla " << playerInTurn_->getName() << " ei objekteja" << std::endl;
-    } else {
-        std::cout << playerInTurn_->getName() << " -- Objects: ";
-        for (auto object : playerInTurn_->getObjects()) {
-            std::cout << "ID:" << object->ID << object->getType() << ", ";
-//-----------------------------------------------------------------------------------------------
-              // asettaa objektille uuden descriptionin ja tulostaa sen
-//            object->setDescription("on", "kiva");
-//            for (auto desc : object->getDescriptions()) {
-//                std::cout << "      desc: " << desc.first << " - " << desc.second << std::endl;
-//            }
-            //std::cout << "ID:" << object->getDescriptions() << object->getType() << ", ";
-//-----------------------------------------------------------------------------------------------
 
-
-        }
-        std::cout << std::endl;
-    }
-
+    emit enableButtonsSignal();
     // poistaa muiden nappien painallukset
     movableObjectSelected_ = false;
     menuBuildingButtonClicked_ = false;

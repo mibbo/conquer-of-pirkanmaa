@@ -37,8 +37,6 @@ public:
 
     void updateView();
 	void connectButtons();
-    void logMessage(std::string message);
-    void logMessage(QString message);
     void highscores(std::shared_ptr<Student::Player> winner, int turnCount);
 
 
@@ -54,6 +52,10 @@ public slots:
     void sendButtonText();
     void updateInformationSlot(int movesLeft);
     void gameOverSlot(std::shared_ptr<Student::Player> winner, int turnCount);
+    void logMessageSlot(std::string message);
+    void logMessageSlot(QString message);
+    void enableButtonsSlot();
+
 
 private slots:
     void on_turnButton_clicked();

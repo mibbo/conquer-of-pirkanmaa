@@ -8,6 +8,7 @@ CONFIG += c++14
 SOURCES += \
     game.cpp \
     gamescene.cpp \
+    hoverbutton.cpp \
     main.cpp \
     mapitem.cpp \
     mapwindow.cc \
@@ -27,6 +28,7 @@ SOURCES += \
 HEADERS += \
     game.h \
     gamescene.h \
+    hoverbutton.h \
     mapitem.h \
     mapwindow.hh \
     gameeventhandler.hh \
