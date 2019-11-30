@@ -720,7 +720,6 @@ void GameScene::drawTileGraphics(std::vector<std::shared_ptr<Course::TileBase>> 
             }
             filename += type + ".png";
             std::string test = ":/imgages/fedora.jpg";
-            std::cout << filename << std::endl;
 
             QPointF point(coor.x(), coor.y());
             auto graphitems = items(point * m_scale);

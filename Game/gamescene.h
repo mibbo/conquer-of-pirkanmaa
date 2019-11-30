@@ -83,6 +83,7 @@ public:
     // Returns true if x is in range [low..high], else false
     bool inRange(int low, int high, int x) ;
 
+    void drawTileGraphics(std::vector<std::shared_ptr<Course::TileBase>> tiles);
 
 signals:
     void updateViewSignal();
@@ -113,6 +114,7 @@ private:
     std::shared_ptr<Course::WorkerBase> workerToAdd_ = nullptr;
     std::vector<QGraphicsRectItem*> possibleMovementTiles_;
     int turnCount_ = 0;
+
 };
 
 }

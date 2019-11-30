@@ -35,7 +35,7 @@ std::shared_ptr<Course::TileBase> ObjectManager::getTile(const ObjectId &id) // 
 //    unsigned int row_size = tileVector.size() / tileVector.size();
 //    int x = std::floor(id / row_size);
 //    int y = id % row_size;
-    return (tileVector.at(id));
+    return tileVector.at(id);
 }
 
 std::vector<std::shared_ptr<Course::TileBase> > ObjectManager::getTiles(const std::vector<Course::Coordinate> &coordinates) // need to implement boundaries
@@ -77,9 +77,14 @@ std::vector<std::shared_ptr<Course::GameObject> > ObjectManager::getNeighbourTil
     return neighbourTiles;
 }
 
-std::vector<std::shared_ptr<Course::TileBase>> ObjectManager::tiili()
+std::vector<std::shared_ptr<Course::TileBase>> ObjectManager::returnTiles()
 {
     return tileVector;
+}
+
+void ObjectManager::updateTileVector(std::vector<std::shared_ptr<Course::TileBase> > tiles)
+{
+    tileVector = tiles;
 }
 
 } // namespace Student

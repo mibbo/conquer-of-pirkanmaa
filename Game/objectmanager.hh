@@ -39,7 +39,9 @@ public:
     std::vector<std::shared_ptr<Course::GameObject>> getNeighbourTiles(std::shared_ptr<Course::GameObject> object,
                                                                     const int &radius = 1);
 
-    std::vector<std::shared_ptr<Course::TileBase>> tiili();
+    std::vector<std::shared_ptr<Course::TileBase>> returnTiles();
+
+    void updateTileVector(std::vector<std::shared_ptr<Course::TileBase>> tiles);
 
 private:
     std::vector<std::shared_ptr<Course::TileBase>> tileVector;
