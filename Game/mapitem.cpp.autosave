@@ -36,7 +36,7 @@ MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, int size, QColo
         pix_ = MapItem::getPixMap(m_gameobject->getType());
     } else {
         pix_ = MapItem::getPixMap(m_gameobject->getType());
-        mask_ = pix_.createMaskFromColor(Qt::black, Qt::MaskOutColor);
+        mask_ = pix_.createMaskFromColor(QColor(0,0,0), Qt::MaskOutColor);
         //        pix_.fill(m_color);
         //        pix_.setMask(mask_);
     }

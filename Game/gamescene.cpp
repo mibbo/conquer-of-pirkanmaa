@@ -181,11 +181,12 @@ void GameScene::drawGameBoard(unsigned int size_x,
             }
         }
     }
+    objectManager_->updateTileVector(tiles);
     for(auto x: tiles){
         GameScene::drawObject(x);
     }
 
-    GameScene::drawTileGraphics(tiles);
+    GameScene::drawTileGraphics(objectManager_->returnTiles());
 
     GameScene::generateStartingObjects();
 }
@@ -201,7 +202,6 @@ bool GameScene::event(QEvent *event)
     if(event->type() == QEvent::GraphicsSceneMousePress)
     {
         for (auto object : possibleMovementTiles_) {
-//            removeItem(object);
             delete object;
         }
         possibleMovementTiles_.clear();
@@ -241,7 +241,7 @@ bool GameScene::event(QEvent *event)
 //                auto graphitems = items(point * m_scale);
 //                auto graphitem = graphitems.at(0);
 //                static_cast<Student::MapItem*>(graphitem)->setPixMap(QPixmap(":/images/player2.png"));
-//                //updateViewSignal();
+                //updateViewSignal();
 
 
 
@@ -263,7 +263,8 @@ bool GameScene::event(QEvent *event)
                             auto coor = Course::Coordinate(x_coor, y_coor);
                             if (x_coor >= 0 && y_coor >= 0 && x_coor <= m_width - 1 && y_coor <= m_height - 1
                                     && movableObject_->getCoordinate() != coor
-                                    && objectManager_->getTile(coor)->getWorkerCount() == 0) {
+                                    && objectManager_->getTile(coor)->getWorkerCount() == 0
+                                    && objectManager_->getTile(coor)->getType() != "River") {
                                 QPointF point(coor.x(), coor.y());
                                 auto graphitems = items(point * m_scale);
                                 auto graphitem = graphitems.at(graphitems.size()-1);
@@ -281,7 +282,8 @@ bool GameScene::event(QEvent *event)
 
 
                 // Check if a worker has been "selected" and if the clicked tile has any other workers
-                } else if (movableObjectSelected_ == true && objectManager_->getTile(coor)->getWorkers().size() == 0) {
+                } else if (movableObjectSelected_ == true && objectManager_->getTile(coor)->getWorkers().size() == 0
+                           && objectManager_->getTile(coor)->getType() != "River") {
                     // tää esti rakentamisen kun oli jo klikattu const workeriä
                     menuBuildingButtonClicked_ = false;
                     // Calculate the distance in tiles that player chose
@@ -656,21 +658,25 @@ void GameScene::reset()
 void GameScene::updateAndDrawTileOwners()
 {
     for (auto tile : playerOne_->getTiles()) {
-        tile->setOwner(playerOne_);
-        auto coor = tile->getCoordinate();
-        QPointF point(coor.x(), coor.y());
-        auto graphitems = items(point * m_scale);
-        auto graphitem = graphitems.at(graphitems.size()-1);
-        static_cast<Student::MapItem*>(graphitem)->drawOwnership(playerOne_->getColor());
+        if (tile->getType() != "River") {
+            tile->setOwner(playerOne_);
+            auto coor = tile->getCoordinate();
+            QPointF point(coor.x(), coor.y());
+            auto graphitems = items(point * m_scale);
+            auto graphitem = graphitems.at(graphitems.size()-1);
+            static_cast<Student::MapItem*>(graphitem)->drawOwnership(playerOne_->getColor());
+        }
     }
 
     for (auto tile : playerTwo_->getTiles()) {
-        tile->setOwner(playerTwo_);
-        auto coor = tile->getCoordinate();
-        QPointF point(coor.x(), coor.y());
-        auto graphitems = items(point * m_scale);
-        auto graphitem = graphitems.at(graphitems.size()-1);
-        static_cast<Student::MapItem*>(graphitem)->drawOwnership(playerTwo_->getColor());
+        if (tile->getType() != "River") {
+            tile->setOwner(playerTwo_);
+            auto coor = tile->getCoordinate();
+            QPointF point(coor.x(), coor.y());
+            auto graphitems = items(point * m_scale);
+            auto graphitem = graphitems.at(graphitems.size()-1);
+            static_cast<Student::MapItem*>(graphitem)->drawOwnership(playerTwo_->getColor());
+        }
     }
 }
 
@@ -708,7 +714,7 @@ void GameScene::drawTileGraphics(std::vector<std::shared_ptr<Course::TileBase>> 
         std::string type = tile->getType();
 
         if (type == "River" || type == "Forest") {
-            std::string filename = ":/images/";
+            std::string filename = ":/images/sprite/";
 
             if (coor.y() == 0 || objectManager_->getTile(Course::Coordinate(coor.x(), coor.y()-1))->getType() == type) {
                 filename += "N";
@@ -723,14 +729,20 @@ void GameScene::drawTileGraphics(std::vector<std::shared_ptr<Course::TileBase>> 
                 filename += "W";
             }
             filename += type + ".png";
-            std::string test = ":/imgages/fedora.jpg";
             std::cout << filename << std::endl;
 
             QPointF point(coor.x(), coor.y());
             auto graphitems = items(point * m_scale);
             auto graphitem = graphitems.at(0);
-            static_cast<Student::MapItem*>(graphitem)->drawOwnership(Qt::black);
-//            static_cast<Student::MapItem*>(graphitem)->setPixMap(QPixmap(test.c_str()));
+            static_cast<Student::MapItem*>(graphitem)->setPixMap(QPixmap(filename.c_str()));
+            updateViewSignal();
+            // muuttaa objectin kuvaa klikatessa
+//                QPointF point(coor.x(), coor.y());
+//                auto graphitems = items(point * m_scale);
+//                auto graphitem = graphitems.at(0);
+//                static_cast<Student::MapItem*>(graphitem)->setPixMap(QPixmap(":/images/player2.png"));
+//                //updateViewSignal();
+
         }
     }
 }

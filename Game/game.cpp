@@ -36,7 +36,7 @@ Game::Game(QWidget *parent):
 
     Game::showMaximized();
     gameScene_->setSceneRect(0,0,795,795);
-    ui->graphicsView->setFixedSize(805,805);
+    ui->graphicsView->setFixedSize(802,802);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setAlignment(Qt::AlignTop|Qt::AlignLeft);

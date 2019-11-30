@@ -12,5 +12,42 @@
         <file>farm.png</file>
         <file>constructionworker.png</file>
         <file>player2.png</file>
+        <file>sprite/WRiver.png</file>
+        <file>sprite/WForest.png</file>
+        <file>sprite/SWRiver.png</file>
+        <file>sprite/SWForest.png</file>
+        <file>sprite/SForest.png</file>
+        <file>sprite/Sawmill.png</file>
+        <file>sprite/quarry_b.png</file>
+        <file>sprite/Outpost.png</file>
+        <file>sprite/NWRiver.png</file>
+        <file>sprite/NWForest.png</file>
+        <file>sprite/NSWWRiver.png</file>
+        <file>sprite/NSWRiver.png</file>
+        <file>sprite/NSWForest.png</file>
+        <file>sprite/NSForest.png</file>
+        <file>sprite/NForest.png</file>
+        <file>sprite/NEWForest.png</file>
+        <file>sprite/NESWForest.png</file>
+        <file>sprite/NESRiver.png</file>
+        <file>sprite/NESForest.png</file>
+        <file>sprite/NERiver.png</file>
+        <file>sprite/NEForest.png</file>
+        <file>sprite/Mountain_b.png</file>
+        <file>sprite/Mine_b.png</file>
+        <file>sprite/Grassland_bigger.png</file>
+        <file>sprite/Grassland.png</file>
+        <file>sprite/Forest3_b.png</file>
+        <file>sprite/Forest2_b.png</file>
+        <file>sprite/Forest1.png</file>
+        <file>sprite/Farm_b.png</file>
+        <file>sprite/EWForest.png</file>
+        <file>sprite/ESWForest.png</file>
+        <file>sprite/ESRiver.png</file>
+        <file>sprite/ESForest.png</file>
+        <file>sprite/ERiver.png</file>
+        <file>sprite/EForest.png</file>
+        <file>sprite/Forest.png</file>
+        <file>sprite/River.png</file>
     </qresource>
 </RCC>
