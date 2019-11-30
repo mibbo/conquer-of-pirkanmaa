@@ -195,6 +195,7 @@ void GameScene::drawObject(std::shared_ptr<Course::GameObject> obj, QColor color
 
     MapItem* newItem = new MapItem(obj, m_scale, color);
     addItem(newItem);
+//    connect(newItem->get(), SIGNAL(mapItemHoverSignal(Course::Coordinate)), this, SLOT(mapItemHoverSlot(Course::Coordinate)));
 }
 
 bool GameScene::event(QEvent *event)
@@ -249,7 +250,7 @@ bool GameScene::event(QEvent *event)
 
 
                 // Check if the tile had any of in-turn player's workers
-                if (vec.size() > 0 && vec.at(0)->getOwner() == playerInTurn_ && playerMovesLeft_ > 0) {
+                if (vec.size() > 0 && vec.at(0)->getOwner() == playerInTurn_ && playerMovesLeft_ > 0 && movableObjectSelected_ == false) {
                     movableObjectSelected_ = true;
                     movableObject_ = vec.at(0);
 
@@ -282,7 +283,8 @@ bool GameScene::event(QEvent *event)
                         }
                     }
 
-
+                } else if (vec.size() > 0 /*&& vec.at(0)->getOwner() == playerInTurn_*/ && vec.at(0) == movableObject_) {
+                    movableObjectSelected_ = false;
                 // Check if a worker has been "selected" and if the clicked tile has any other workers
                 } else if (movableObjectSelected_ == true && objectManager_->getTile(coor)->getWorkers().size() == 0
                            && objectManager_->getTile(coor)->getType() != "River") {
@@ -389,6 +391,7 @@ bool GameScene::event(QEvent *event)
                     movableObjectSelected_ = false;
                 } else {
                     movableObjectSelected_ = false;
+                    menuBuildingButtonClicked_ = false;
                 }
 
                 if (objectManager_->getTile(coor)->getBuildingCount() == 1 &&
@@ -558,8 +561,17 @@ bool GameScene::BuildingTileIsCorrect(std::shared_ptr<Course::GameObject> buildi
 
 void GameScene::addButtonObject(std::string buttonString)
 {
-
+    
     emit enableButtonsSignal();
+        }
+        std::cout << std::endl;
+    }
+
+    if (menuBuildingButtonClicked_ == true && buildingToAdd_->getType() == buttonString) {
+        menuBuildingButtonClicked_ = false;
+        return;
+    }
+
     // poistaa muiden nappien painallukset
     movableObjectSelected_ = false;
     menuBuildingButtonClicked_ = false;
@@ -632,6 +644,11 @@ void GameScene::addButtonObject(std::string buttonString)
         playerInTurn_->addObject(workerToAdd_);
 
     }
+}
+
+void GameScene::mapItemHoverSlot(Course::Coordinate coordinate)
+{
+    emit hoverTextSignal(objectManager_->getTile(coordinate)->getType());
 }
 void GameScene::reset()
 {

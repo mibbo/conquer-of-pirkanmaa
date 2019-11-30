@@ -90,12 +90,12 @@ signals:
     void updateInformationSignal(int movesLeft);
     void gameOverSignal(std::shared_ptr<Student::Player> player, int turnCount);
     void enableButtonsSignal();
+    void hoverTextSignal(std::string text);
 
 public slots:
     void playerInTurnSlot(std::shared_ptr<Student::Player> playerInTurn);
     void addButtonObject(std::string buttonString);
-
-
+    void mapItemHoverSlot(Course::Coordinate coordinate);
 
 private:
     QGraphicsItem* m_mapBoundRect;

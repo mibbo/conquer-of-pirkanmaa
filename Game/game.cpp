@@ -49,6 +49,7 @@ Game::Game(QWidget *parent):
     connect(sgs_rawptr, SIGNAL(updateViewSignal()), this, SLOT(updateViewSlot()));
     connect(sgs_rawptr, SIGNAL(updateInformationSignal(int)), this, SLOT(updateInformationSlot(int)));
     connect(sgs_rawptr, SIGNAL(gameOverSignal(std::shared_ptr<Student::Player>, int)), this, SLOT(gameOverSlot(std::shared_ptr<Student::Player>, int)));
+    connect(sgs_rawptr, SIGNAL(hoverTextSignal(std::string)), this, SLOT(hoverTextSlot(std::string)));
 
     // connectaa gamescenen signaalin gameen
     connect(sgs_rawptr, SIGNAL(enableButtonsSignal()), this, SLOT(enableButtonsSlot()));
@@ -144,17 +145,11 @@ void Game::updateInformationSlot(int movesLeft)
 void Game::gameOverSlot(std::shared_ptr<Student::Player> winner, int turn)
 {
     std::cout << "Olet viineri - " << winner->getName()  << std::endl;
+}
 
-//    std::ofstream myfile ("Game/highscores.txt");
-//      if (myfile.is_open())
-//      {
-//        myfile << "This is a line.\n";
-//        myfile << "This is another line.\n";
-//        myfile.close();
-//        myfile.flush();
-//        std::cout << "GIDFIIDOSJFIOJDSIOfjOIJFDOIJSOIFJOIDSJFOIJSODIFJOIDSJFOI ";
-//      }
-//      else std::cout << "Unable to open file";
+void Game::hoverTextSlot(std::string text)
+{
+    ui->hoverInfo->setText(QString::fromStdString(text));
 }
 
 void Game::connectButtons() {
