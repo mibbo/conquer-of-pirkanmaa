@@ -142,16 +142,16 @@ void Game::gameOverSlot(std::shared_ptr<Student::Player> winner, int turn)
 {
     std::cout << "Olet viineri - " << winner->getName()  << std::endl;
 
-//    std::ofstream myfile ("Game/highscores.txt");
-//      if (myfile.is_open())
-//      {
-//        myfile << "This is a line.\n";
-//        myfile << "This is another line.\n";
-//        myfile.close();
-//        myfile.flush();
-//        std::cout << "GIDFIIDOSJFIOJDSIOfjOIJFDOIJSOIFJOIDSJFOIJSODIFJOIDSJFOI ";
-//      }
-//      else std::cout << "Unable to open file";
+    std::ofstream myfile ("Game/highscores.txt");
+      if (myfile.is_open())
+      {
+        myfile << "This is a line.\n";
+        myfile << "This is another line.\n";
+        myfile.close();
+        myfile.flush();
+        std::cout << "GIDFIIDOSJFIOJDSIOfjOIJFDOIJSOIFJOIDSJFOIJSODIFJOIDSJFOI ";
+      }
+      else std::cout << "Unable to open file";
 }
 
 void Game::connectButtons() {

@@ -233,11 +233,12 @@ bool GameScene::event(QEvent *event)
                 auto vec = objectManager_->getTile(coor)->getWorkers(); // Get the vector that has all the workers on the tile (maximum of 1
 
 
-                QPointF point(coor.x(), coor.y());
-                auto graphitems = items(point * m_scale);
-                std::cout << "koko: " <<graphitems.size() << std::endl;
-                auto graphitem = graphitems.at(0);
-                static_cast<Student::MapItem*>(graphitem)->setPixMap(QPixmap(":/images/fedora.jpg"));
+                  // muuttaa objectin kuvaa klikatessa
+//                QPointF point(coor.x(), coor.y());
+//                auto graphitems = items(point * m_scale);
+//                auto graphitem = graphitems.at(0);
+//                static_cast<Student::MapItem*>(graphitem)->setPixMap(QPixmap(":/images/player2.png"));
+//                //updateViewSignal();
 
 
 
