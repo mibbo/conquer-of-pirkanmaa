@@ -410,6 +410,7 @@ bool GameScene::event(QEvent *event)
                         BuildingTileIsCorrect(buildingToAdd_, objectManager_->getTile(coor)) == true &&
                         playerInTurn_->modifyResources(buildingToAdd_->BUILD_COST) == true
                         ) {
+                    emit enableButtonsSignal();
 
                     //std::cout <<  playerInTurn_->getName() << "Resources: " << std::endl;
 
@@ -563,9 +564,9 @@ void GameScene::addButtonObject(std::string buttonString)
 {
     
     emit enableButtonsSignal();
-        }
+
         std::cout << std::endl;
-    }
+
 
     if (menuBuildingButtonClicked_ == true && buildingToAdd_->getType() == buttonString) {
         menuBuildingButtonClicked_ = false;
