@@ -47,7 +47,6 @@ void GameeventhandlerTest::modifyResourcesTest()
         int enoughMoney = 500;
         int toolittleMoney = 2000;
 
-
         Student::GameEventHandler evehandler;
         std::shared_ptr<Student::Player> testPlayerStudent = std::make_shared<Student::Player>("testname");
 
