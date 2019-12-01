@@ -1,0 +1,130 @@
+\hypertarget{classStudent_1_1ObjectManager}{}\doxysection{Student\+::Object\+Manager Class Reference}
+\label{classStudent_1_1ObjectManager}\index{Student::ObjectManager@{Student::ObjectManager}}
+
+
+The \mbox{\hyperlink{classStudent_1_1ObjectManager}{Object\+Manager}} handles tile related actions.  
+
+
+
+
+{\ttfamily \#include $<$objectmanager.\+hh$>$}
+
+
+
+Inheritance diagram for Student\+::Object\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{classStudent_1_1ObjectManager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Student\+::Object\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=214pt]{classStudent_1_1ObjectManager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStudent_1_1ObjectManager_a0115a4bf45f42c0b57d4410a15b21bf2}{Object\+Manager}} ()
+\item 
+void \mbox{\hyperlink{classStudent_1_1ObjectManager_a1494d5f6a06063e68c622b98fe4c630c}{add\+Tiles}} (const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$$>$ \&tiles)
+\item 
+std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$ \mbox{\hyperlink{classStudent_1_1ObjectManager_ada954ec27963f047dc1dcbeb50cfd5af}{get\+Tile}} (const Course\+::\+Coordinate \&coordinate)
+\item 
+std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$ \mbox{\hyperlink{classStudent_1_1ObjectManager_a7eeae9cadb02f2a188fca7e0b58334dc}{get\+Tile}} (const \mbox{\hyperlink{objectmanager_8hh_aa2f71429ea195ae1a740db43168600e0}{Object\+Id}} \&id)
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$ $>$ \mbox{\hyperlink{classStudent_1_1ObjectManager_a34377f3d8f848e9c61eb3a22f23f821a}{get\+Tiles}} (const std\+::vector$<$ Course\+::\+Coordinate $>$ \&coordinates)
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Course\+::\+Game\+Object $>$ $>$ \mbox{\hyperlink{classStudent_1_1ObjectManager_ab77139487d28c982cc83ab9beabdc4db}{get\+Neighbour\+Tiles}} (std\+::shared\+\_\+ptr$<$ Course\+::\+Game\+Object $>$ object, const int \&radius=1)
+\begin{DoxyCompactList}\small\item\em Returns a vector of all the neighbour\+Tiles and the tile under the object. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$ $>$ \mbox{\hyperlink{classStudent_1_1ObjectManager_ad65cacc695395fde1c552af79ab9fc76}{return\+Tiles}} ()
+\item 
+void \mbox{\hyperlink{classStudent_1_1ObjectManager_ae997e01d47c318186e1283da8397b25a}{update\+Tile\+Vector}} (std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$$>$ tiles)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classStudent_1_1ObjectManager}{Object\+Manager}} handles tile related actions. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classStudent_1_1ObjectManager_a0115a4bf45f42c0b57d4410a15b21bf2}\label{classStudent_1_1ObjectManager_a0115a4bf45f42c0b57d4410a15b21bf2}} 
+\index{Student::ObjectManager@{Student::ObjectManager}!ObjectManager@{ObjectManager}}
+\index{ObjectManager@{ObjectManager}!Student::ObjectManager@{Student::ObjectManager}}
+\doxysubsubsection{\texorpdfstring{ObjectManager()}{ObjectManager()}}
+{\footnotesize\ttfamily Student\+::\+Object\+Manager\+::\+Object\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classStudent_1_1ObjectManager_a1494d5f6a06063e68c622b98fe4c630c}\label{classStudent_1_1ObjectManager_a1494d5f6a06063e68c622b98fe4c630c}} 
+\index{Student::ObjectManager@{Student::ObjectManager}!addTiles@{addTiles}}
+\index{addTiles@{addTiles}!Student::ObjectManager@{Student::ObjectManager}}
+\doxysubsubsection{\texorpdfstring{addTiles()}{addTiles()}}
+{\footnotesize\ttfamily void Student\+::\+Object\+Manager\+::add\+Tiles (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$$>$ \&}]{tiles }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classStudent_1_1ObjectManager_ab77139487d28c982cc83ab9beabdc4db}\label{classStudent_1_1ObjectManager_ab77139487d28c982cc83ab9beabdc4db}} 
+\index{Student::ObjectManager@{Student::ObjectManager}!getNeighbourTiles@{getNeighbourTiles}}
+\index{getNeighbourTiles@{getNeighbourTiles}!Student::ObjectManager@{Student::ObjectManager}}
+\doxysubsubsection{\texorpdfstring{getNeighbourTiles()}{getNeighbourTiles()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Course\+::\+Game\+Object $>$ $>$ Student\+::\+Object\+Manager\+::get\+Neighbour\+Tiles (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ Course\+::\+Game\+Object $>$}]{object,  }\item[{const int \&}]{radius = {\ttfamily 1} }\end{DoxyParamCaption})}
+
+
+
+Returns a vector of all the neighbour\+Tiles and the tile under the object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Game\+Object} & for the requested neighbour Tiles\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+vector of Coordinates in the order of directions. 
+\end{DoxyReturn}
+\begin{DoxyPostcond}{Postcondition}
+Exception guarantee\+: Strong 
+\end{DoxyPostcond}
+\mbox{\Hypertarget{classStudent_1_1ObjectManager_ada954ec27963f047dc1dcbeb50cfd5af}\label{classStudent_1_1ObjectManager_ada954ec27963f047dc1dcbeb50cfd5af}} 
+\index{Student::ObjectManager@{Student::ObjectManager}!getTile@{getTile}}
+\index{getTile@{getTile}!Student::ObjectManager@{Student::ObjectManager}}
+\doxysubsubsection{\texorpdfstring{getTile()}{getTile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$ Student\+::\+Object\+Manager\+::get\+Tile (\begin{DoxyParamCaption}\item[{const Course\+::\+Coordinate \&}]{coordinate }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classStudent_1_1ObjectManager_a7eeae9cadb02f2a188fca7e0b58334dc}\label{classStudent_1_1ObjectManager_a7eeae9cadb02f2a188fca7e0b58334dc}} 
+\index{Student::ObjectManager@{Student::ObjectManager}!getTile@{getTile}}
+\index{getTile@{getTile}!Student::ObjectManager@{Student::ObjectManager}}
+\doxysubsubsection{\texorpdfstring{getTile()}{getTile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$ Student\+::\+Object\+Manager\+::get\+Tile (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{objectmanager_8hh_aa2f71429ea195ae1a740db43168600e0}{Object\+Id}} \&}]{id }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classStudent_1_1ObjectManager_a34377f3d8f848e9c61eb3a22f23f821a}\label{classStudent_1_1ObjectManager_a34377f3d8f848e9c61eb3a22f23f821a}} 
+\index{Student::ObjectManager@{Student::ObjectManager}!getTiles@{getTiles}}
+\index{getTiles@{getTiles}!Student::ObjectManager@{Student::ObjectManager}}
+\doxysubsubsection{\texorpdfstring{getTiles()}{getTiles()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$ $>$ Student\+::\+Object\+Manager\+::get\+Tiles (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Course\+::\+Coordinate $>$ \&}]{coordinates }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classStudent_1_1ObjectManager_ad65cacc695395fde1c552af79ab9fc76}\label{classStudent_1_1ObjectManager_ad65cacc695395fde1c552af79ab9fc76}} 
+\index{Student::ObjectManager@{Student::ObjectManager}!returnTiles@{returnTiles}}
+\index{returnTiles@{returnTiles}!Student::ObjectManager@{Student::ObjectManager}}
+\doxysubsubsection{\texorpdfstring{returnTiles()}{returnTiles()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$ $>$ Student\+::\+Object\+Manager\+::return\+Tiles (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classStudent_1_1ObjectManager_ae997e01d47c318186e1283da8397b25a}\label{classStudent_1_1ObjectManager_ae997e01d47c318186e1283da8397b25a}} 
+\index{Student::ObjectManager@{Student::ObjectManager}!updateTileVector@{updateTileVector}}
+\index{updateTileVector@{updateTileVector}!Student::ObjectManager@{Student::ObjectManager}}
+\doxysubsubsection{\texorpdfstring{updateTileVector()}{updateTileVector()}}
+{\footnotesize\ttfamily void Student\+::\+Object\+Manager\+::update\+Tile\+Vector (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$$>$}]{tiles }\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{objectmanager_8hh}{objectmanager.\+hh}}\item 
+\mbox{\hyperlink{objectmanager_8cpp}{objectmanager.\+cpp}}\end{DoxyCompactItemize}

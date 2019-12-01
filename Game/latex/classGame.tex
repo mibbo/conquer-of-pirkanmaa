@@ -1,0 +1,218 @@
+\hypertarget{classGame}{}\doxysection{Game Class Reference}
+\label{classGame}\index{Game@{Game}}
+
+
+\mbox{\hyperlink{classGame}{Game}} class is inherited from \mbox{\hyperlink{classQMainWindow}{Q\+Main\+Window}} class.  
+
+
+
+
+{\ttfamily \#include $<$game.\+h$>$}
+
+
+
+Inheritance diagram for Game\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{classGame__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Game\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{classGame__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classGame_a80f66914c46c0aa1514a8111e6c3865e}{start\+Game\+Slot}} (unsigned int map\+Width, unsigned int map\+Height, Q\+String player\+One, Q\+String player\+Two, Q\+Color player\+One\+Color, Q\+Color player\+Two\+Color)
+\item 
+void \mbox{\hyperlink{classGame_a7e5b433e056837b440a40a36c8148a8f}{update\+View\+Slot}} ()
+\item 
+void \mbox{\hyperlink{classGame_a693a53f3e545109f9848afa5a546e057}{send\+Button\+Text}} ()
+\item 
+void \mbox{\hyperlink{classGame_a513f5c82367eaa7c54df6968c26f539c}{update\+Information\+Slot}} (int moves\+Left)
+\item 
+void \mbox{\hyperlink{classGame_af18b07d885eb6d680308bb9bbbd0beb1}{game\+Over\+Slot}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classStudent_1_1Player}{Student\+::\+Player}} $>$ winner, int turn\+Count)
+\item 
+void \mbox{\hyperlink{classGame_aadac7e7e18d78a3801defa2ef482029e}{log\+Message\+Slot}} (std\+::string message)
+\item 
+void \mbox{\hyperlink{classGame_abbf3d37022a954f3ce9387923439dced}{log\+Message\+Slot}} (Q\+String message)
+\item 
+void \mbox{\hyperlink{classGame_ab28a4e6bb6f82c4820e2fccad82a9932}{enable\+Buttons\+Slot}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classGame_a78a3ff74333a066027c358014876492a}{play\+In\+Turn\+Signal}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classStudent_1_1Player}{Student\+::\+Player}} $>$ player\+In\+Turn\+\_\+)
+\item 
+void \mbox{\hyperlink{classGame_a63007ff64ac928bfe870a0c7897d2229}{building\+Signal}} (std\+::string building)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classGame_ac1a9dde49041f68e14234a41a862865d}{Game}} (Q\+Widget $\ast$parent=nullptr)
+\item 
+\mbox{\hyperlink{classGame_ae3d112ca6e0e55150d2fdbc704474530}{$\sim$\+Game}} ()
+\item 
+std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classStudent_1_1Player}{Student\+::\+Player}} $>$ \mbox{\hyperlink{classGame_a8cd815a7679f6f169fc9f04ce65e927c}{get\+Turn}} ()
+\item 
+void \mbox{\hyperlink{classGame_a975bac2a195aa6aad00ee6fd94f753ca}{set\+Turn}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classStudent_1_1Player}{Student\+::\+Player}} $>$ player)
+\item 
+void \mbox{\hyperlink{classGame_a3a7cf89a2ac2851c9ab05574b1e1303e}{change\+Turn}} ()
+\item 
+void \mbox{\hyperlink{classGame_ad43ee6daa8a5205fc1f46556bfe78e60}{setup\+Players}} (Q\+String player\+One\+Name, Q\+String player\+Two\+Name)
+\item 
+void \mbox{\hyperlink{classGame_af74fd203e3b31917ca9d4769fa608c48}{display\+Main\+Menu}} ()
+\item 
+void \mbox{\hyperlink{classGame_a04265f5fd0f03a727bfdcefbac4089db}{update\+View}} ()
+\item 
+void \mbox{\hyperlink{classGame_a414b6d20f578cf8ba9351628eb61d89c}{connect\+Buttons}} ()
+\item 
+void \mbox{\hyperlink{classGame_a138667a72506f016e4c030264f6c3a66}{highscores}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classStudent_1_1Player}{Student\+::\+Player}} $>$ winner, int turn\+Count)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classGame}{Game}} class is inherited from \mbox{\hyperlink{classQMainWindow}{Q\+Main\+Window}} class. 
+
+The class can be used to show items in the game mainwindow 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classGame_ac1a9dde49041f68e14234a41a862865d}\label{classGame_ac1a9dde49041f68e14234a41a862865d}} 
+\index{Game@{Game}!Game@{Game}}
+\index{Game@{Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{Game()}{Game()}}
+{\footnotesize\ttfamily Game\+::\+Game (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+\mbox{\Hypertarget{classGame_ae3d112ca6e0e55150d2fdbc704474530}\label{classGame_ae3d112ca6e0e55150d2fdbc704474530}} 
+\index{Game@{Game}!````~Game@{$\sim$Game}}
+\index{````~Game@{$\sim$Game}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{$\sim$Game()}{~Game()}}
+{\footnotesize\ttfamily Game\+::$\sim$\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGame_a63007ff64ac928bfe870a0c7897d2229}\label{classGame_a63007ff64ac928bfe870a0c7897d2229}} 
+\index{Game@{Game}!buildingSignal@{buildingSignal}}
+\index{buildingSignal@{buildingSignal}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{buildingSignal}{buildingSignal}}
+{\footnotesize\ttfamily void Game\+::building\+Signal (\begin{DoxyParamCaption}\item[{std\+::string}]{building }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\mbox{\Hypertarget{classGame_a3a7cf89a2ac2851c9ab05574b1e1303e}\label{classGame_a3a7cf89a2ac2851c9ab05574b1e1303e}} 
+\index{Game@{Game}!changeTurn@{changeTurn}}
+\index{changeTurn@{changeTurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{changeTurn()}{changeTurn()}}
+{\footnotesize\ttfamily void Game\+::change\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGame_a414b6d20f578cf8ba9351628eb61d89c}\label{classGame_a414b6d20f578cf8ba9351628eb61d89c}} 
+\index{Game@{Game}!connectButtons@{connectButtons}}
+\index{connectButtons@{connectButtons}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{connectButtons()}{connectButtons()}}
+{\footnotesize\ttfamily void Game\+::connect\+Buttons (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGame_af74fd203e3b31917ca9d4769fa608c48}\label{classGame_af74fd203e3b31917ca9d4769fa608c48}} 
+\index{Game@{Game}!displayMainMenu@{displayMainMenu}}
+\index{displayMainMenu@{displayMainMenu}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{displayMainMenu()}{displayMainMenu()}}
+{\footnotesize\ttfamily void Game\+::display\+Main\+Menu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGame_ab28a4e6bb6f82c4820e2fccad82a9932}\label{classGame_ab28a4e6bb6f82c4820e2fccad82a9932}} 
+\index{Game@{Game}!enableButtonsSlot@{enableButtonsSlot}}
+\index{enableButtonsSlot@{enableButtonsSlot}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{enableButtonsSlot}{enableButtonsSlot}}
+{\footnotesize\ttfamily void Game\+::enable\+Buttons\+Slot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+\mbox{\Hypertarget{classGame_af18b07d885eb6d680308bb9bbbd0beb1}\label{classGame_af18b07d885eb6d680308bb9bbbd0beb1}} 
+\index{Game@{Game}!gameOverSlot@{gameOverSlot}}
+\index{gameOverSlot@{gameOverSlot}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{gameOverSlot}{gameOverSlot}}
+{\footnotesize\ttfamily void Game\+::game\+Over\+Slot (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classStudent_1_1Player}{Student\+::\+Player}} $>$}]{winner,  }\item[{int}]{turn\+Count }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+\mbox{\Hypertarget{classGame_a8cd815a7679f6f169fc9f04ce65e927c}\label{classGame_a8cd815a7679f6f169fc9f04ce65e927c}} 
+\index{Game@{Game}!getTurn@{getTurn}}
+\index{getTurn@{getTurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{getTurn()}{getTurn()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classStudent_1_1Player}{Student\+::\+Player}} $>$ Game\+::get\+Turn (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGame_a138667a72506f016e4c030264f6c3a66}\label{classGame_a138667a72506f016e4c030264f6c3a66}} 
+\index{Game@{Game}!highscores@{highscores}}
+\index{highscores@{highscores}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{highscores()}{highscores()}}
+{\footnotesize\ttfamily void Game\+::highscores (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classStudent_1_1Player}{Student\+::\+Player}} $>$}]{winner,  }\item[{int}]{turn\+Count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGame_abbf3d37022a954f3ce9387923439dced}\label{classGame_abbf3d37022a954f3ce9387923439dced}} 
+\index{Game@{Game}!logMessageSlot@{logMessageSlot}}
+\index{logMessageSlot@{logMessageSlot}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{logMessageSlot}{logMessageSlot}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Game\+::log\+Message\+Slot (\begin{DoxyParamCaption}\item[{Q\+String}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+\mbox{\Hypertarget{classGame_aadac7e7e18d78a3801defa2ef482029e}\label{classGame_aadac7e7e18d78a3801defa2ef482029e}} 
+\index{Game@{Game}!logMessageSlot@{logMessageSlot}}
+\index{logMessageSlot@{logMessageSlot}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{logMessageSlot}{logMessageSlot}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Game\+::log\+Message\+Slot (\begin{DoxyParamCaption}\item[{std\+::string}]{message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+\mbox{\Hypertarget{classGame_a78a3ff74333a066027c358014876492a}\label{classGame_a78a3ff74333a066027c358014876492a}} 
+\index{Game@{Game}!playInTurnSignal@{playInTurnSignal}}
+\index{playInTurnSignal@{playInTurnSignal}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{playInTurnSignal}{playInTurnSignal}}
+{\footnotesize\ttfamily void Game\+::play\+In\+Turn\+Signal (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classStudent_1_1Player}{Student\+::\+Player}} $>$}]{player\+In\+Turn\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+\mbox{\Hypertarget{classGame_a693a53f3e545109f9848afa5a546e057}\label{classGame_a693a53f3e545109f9848afa5a546e057}} 
+\index{Game@{Game}!sendButtonText@{sendButtonText}}
+\index{sendButtonText@{sendButtonText}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{sendButtonText}{sendButtonText}}
+{\footnotesize\ttfamily void Game\+::send\+Button\+Text (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+\mbox{\Hypertarget{classGame_a975bac2a195aa6aad00ee6fd94f753ca}\label{classGame_a975bac2a195aa6aad00ee6fd94f753ca}} 
+\index{Game@{Game}!setTurn@{setTurn}}
+\index{setTurn@{setTurn}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{setTurn()}{setTurn()}}
+{\footnotesize\ttfamily void Game\+::set\+Turn (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classStudent_1_1Player}{Student\+::\+Player}} $>$}]{player }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGame_ad43ee6daa8a5205fc1f46556bfe78e60}\label{classGame_ad43ee6daa8a5205fc1f46556bfe78e60}} 
+\index{Game@{Game}!setupPlayers@{setupPlayers}}
+\index{setupPlayers@{setupPlayers}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{setupPlayers()}{setupPlayers()}}
+{\footnotesize\ttfamily void Game\+::setup\+Players (\begin{DoxyParamCaption}\item[{Q\+String}]{player\+One\+Name,  }\item[{Q\+String}]{player\+Two\+Name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGame_a80f66914c46c0aa1514a8111e6c3865e}\label{classGame_a80f66914c46c0aa1514a8111e6c3865e}} 
+\index{Game@{Game}!startGameSlot@{startGameSlot}}
+\index{startGameSlot@{startGameSlot}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{startGameSlot}{startGameSlot}}
+{\footnotesize\ttfamily void Game\+::start\+Game\+Slot (\begin{DoxyParamCaption}\item[{unsigned int}]{map\+Width,  }\item[{unsigned int}]{map\+Height,  }\item[{Q\+String}]{player\+One,  }\item[{Q\+String}]{player\+Two,  }\item[{Q\+Color}]{player\+One\+Color,  }\item[{Q\+Color}]{player\+Two\+Color }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+\mbox{\Hypertarget{classGame_a513f5c82367eaa7c54df6968c26f539c}\label{classGame_a513f5c82367eaa7c54df6968c26f539c}} 
+\index{Game@{Game}!updateInformationSlot@{updateInformationSlot}}
+\index{updateInformationSlot@{updateInformationSlot}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{updateInformationSlot}{updateInformationSlot}}
+{\footnotesize\ttfamily void Game\+::update\+Information\+Slot (\begin{DoxyParamCaption}\item[{int}]{moves\+Left }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+\mbox{\Hypertarget{classGame_a04265f5fd0f03a727bfdcefbac4089db}\label{classGame_a04265f5fd0f03a727bfdcefbac4089db}} 
+\index{Game@{Game}!updateView@{updateView}}
+\index{updateView@{updateView}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{updateView()}{updateView()}}
+{\footnotesize\ttfamily void Game\+::update\+View (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classGame_a7e5b433e056837b440a40a36c8148a8f}\label{classGame_a7e5b433e056837b440a40a36c8148a8f}} 
+\index{Game@{Game}!updateViewSlot@{updateViewSlot}}
+\index{updateViewSlot@{updateViewSlot}!Game@{Game}}
+\doxysubsubsection{\texorpdfstring{updateViewSlot}{updateViewSlot}}
+{\footnotesize\ttfamily void Game\+::update\+View\+Slot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{game_8h}{game.\+h}}\item 
+\mbox{\hyperlink{game_8cpp}{game.\+cpp}}\item 
+\mbox{\hyperlink{moc__game_8cpp}{moc\+\_\+game.\+cpp}}\end{DoxyCompactItemize}

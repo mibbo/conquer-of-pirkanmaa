@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Game</class>
+ <widget class="QMainWindow" name="Game">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>2006</width>
+    <height>882</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>10</y>
+      <width>691</width>
+      <height>481</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="turnButton">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>50</y>
+      <width>80</width>
+      <height>26</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>End Turn</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="turnLabel">
+    <property name="geometry">
+     <rect>
+      <x>243</x>
+      <y>28</y>
+      <width>100</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Turn: </string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>10</y>
+      <width>151</width>
+      <height>201</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="buildingsLayout">
+     <item row="5" column="0">
+      <widget class="Student::HoverButton" name="quarryButton">
+       <property name="text">
+        <string>Quarry</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="Student::HoverButton" name="sawmillButton">
+       <property name="text">
+        <string>Sawmill</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="Student::HoverButton" name="outpostButton">
+       <property name="text">
+        <string>Outpost</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="Student::HoverButton" name="mineButton">
+       <property name="text">
+        <string>Mine</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="Student::HoverButton" name="farmButton">
+       <property name="text">
+        <string>Farm</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="formLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>50</y>
+      <width>160</width>
+      <height>196</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="1">
+      <widget class="QLCDNumber" name="moves"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelMoney">
+       <property name="text">
+        <string>Money</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QLCDNumber" name="money"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelFood">
+       <property name="text">
+        <string>Food</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLCDNumber" name="food"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="labelWood">
+       <property name="text">
+        <string>Wood</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLCDNumber" name="wood"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="labelStone">
+       <property name="text">
+        <string>Stone</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QLCDNumber" name="stone"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="labelOre">
+       <property name="text">
+        <string>Ore</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLCDNumber" name="ore"/>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelMoves">
+       <property name="text">
+        <string>Moves</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="gridLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>1220</x>
+      <y>220</y>
+      <width>151</width>
+      <height>188</height>
+     </rect>
+    </property>
+    <layout class="QGridLayout" name="workersLayout">
+     <item row="1" column="0">
+      <widget class="Student::HoverButton" name="constWorkerButton">
+       <property name="text">
+        <string>Construction Worker</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="Student::HoverButton" name="basicWorkerButton">
+       <property name="text">
+        <string>Basic Worker</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="Student::HoverButton" name="warriorButton">
+       <property name="text">
+        <string>Warrior</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPlainTextEdit" name="log">
+    <property name="geometry">
+     <rect>
+      <x>1270</x>
+      <y>410</y>
+      <width>611</width>
+      <height>131</height>
+     </rect>
+    </property>
+   </widget>
+<<<<<<< HEAD
+   <widget class="QLabel" name="hoverInfo">
+    <property name="geometry">
+     <rect>
+      <x>1720</x>
+      <y>70</y>
+      <width>63</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>1410</x>
+      <y>10</y>
+      <width>511</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="resources.qrc">:/images/sprite/parchment.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="resourceLabel">
+    <property name="geometry">
+     <rect>
+      <x>1470</x>
+      <y>70</y>
+      <width>71</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Farm cost:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="moneyLabel">
+    <property name="geometry">
+     <rect>
+      <x>1550</x>
+      <y>70</y>
+      <width>58</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Money: 0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="woodLabel">
+    <property name="geometry">
+     <rect>
+      <x>1550</x>
+      <y>110</y>
+      <width>58</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Wood: 0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="stoneLabel">
+    <property name="geometry">
+     <rect>
+      <x>1550</x>
+      <y>130</y>
+      <width>58</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Stone: 0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="oreLabel">
+    <property name="geometry">
+     <rect>
+      <x>1550</x>
+      <y>150</y>
+      <width>58</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Ore: 0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="foodLabel">
+    <property name="geometry">
+     <rect>
+      <x>1550</x>
+      <y>90</y>
+      <width>58</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Food: 0</string>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>graphicsView</zorder>
+   <zorder>turnButton</zorder>
+   <zorder>turnLabel</zorder>
+   <zorder>gridLayoutWidget</zorder>
+   <zorder>formLayoutWidget</zorder>
+   <zorder>gridLayoutWidget_2</zorder>
+   <zorder>log</zorder>
+   <zorder>hoverInfo</zorder>
+   <zorder>resourceLabel</zorder>
+   <zorder>moneyLabel</zorder>
+   <zorder>woodLabel</zorder>
+   <zorder>stoneLabel</zorder>
+   <zorder>oreLabel</zorder>
+   <zorder>foodLabel</zorder>
+=======
+>>>>>>> feature-mapHover
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>2006</width>
+     <height>23</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Student::HoverButton</class>
+   <extends>QPushButton</extends>
+   <header>hoverbutton.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

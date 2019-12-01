@@ -34,7 +34,10 @@ Game::Game(QWidget *parent):
     dialoq_ = new StartWindow();
     connect(dialoq_, SIGNAL(startGame(unsigned int, unsigned int, QString,  QString, QColor, QColor)),
             this, SLOT(startGameSlot(unsigned int, unsigned int,  QString,  QString, QColor, QColor)));
-    dialoq_->exec();
+    // if dialogs X-button is pressed, shuts down the game properly
+    if (dialoq_->exec() == QDialog::Rejected) {
+        QTimer::singleShot(0, this, SLOT(close()));
+    }
 
 
     Game::showMaximized();

@@ -6,6 +6,11 @@
 
 namespace Student {
 
+/**
+ * @brief The Mountain class represents Mountain in the gameworld.
+ *
+ * Mountain tile supports 1 Mine-type building and worker at a time.
+ */
 class Mountain : public Course::TileBase
 {
 public:

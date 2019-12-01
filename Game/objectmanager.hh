@@ -14,6 +14,10 @@ using ObjectId = unsigned int;
 
 namespace Student {
 
+/**
+ * @brief The ObjectManager handles tile related actions
+ *
+ */
 class ObjectManager : public Course::iObjectManager
 {
 public:

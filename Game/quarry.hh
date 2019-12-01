@@ -8,6 +8,13 @@
 
 namespace Student {
 
+/**
+ * @brief The Quarry class represents a quarry-building in the game.
+ *
+ * The Quarry products stone-resource to the player
+ * Quarry can only be placed on a Cobblestone-typed tile when there is
+ * a Construction worker on the tile
+ */
 class Quarry : public Course::BuildingBase
 {
 public:

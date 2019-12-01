@@ -1,0 +1,10 @@
+var searchData=
+[
+  ['main_807',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['mapitem_808',['MapItem',['../classStudent_1_1MapItem.html#a947c2952b9ad569395d3472c9180ddbb',1,'Student::MapItem']]],
+  ['mapwindow_809',['MapWindow',['../classMapWindow.html#a8290be57b7ddf15aed750534b22b8225',1,'MapWindow']]],
+  ['mine_810',['Mine',['../classStudent_1_1Mine.html#a7df6440015dcfbdd8abed029134f7af1',1,'Student::Mine::Mine()=delete'],['../classStudent_1_1Mine.html#a6e5a765ecff79df0ce7654e6b90427f6',1,'Student::Mine::Mine(const std::shared_ptr&lt; Course::iGameEventHandler &gt; &amp;eventhandler, const std::shared_ptr&lt; Course::iObjectManager &gt; &amp;objectmanager, const std::shared_ptr&lt; Course::PlayerBase &gt; &amp;owner, const int &amp;tilespaces=1, const Course::ResourceMap &amp;buildcost=Student::ConstResourceMaps::MINE_BUILD_COST, const Course::ResourceMap &amp;production=Student::ConstResourceMaps::MINE_PRODUCTION)']]],
+  ['modifyresource_811',['modifyResource',['../classStudent_1_1GameEventHandler.html#a92edc6db12061490ffbc7c638392d1e5',1,'Student::GameEventHandler::modifyResource()'],['../classStudent_1_1Player.html#a3dda778e0112146aea54c441111cc7f2',1,'Student::Player::modifyResource()']]],
+  ['modifyresources_812',['modifyResources',['../classStudent_1_1GameEventHandler.html#ac8185974ba298464382adccaad45f797',1,'Student::GameEventHandler::modifyResources()'],['../classStudent_1_1Player.html#aabea7f3549507f118a358606b3ae48be',1,'Student::Player::modifyResources()']]],
+  ['mountain_813',['Mountain',['../classStudent_1_1Mountain.html#a78aa78598c9cfb95a58fb74150d624e3',1,'Student::Mountain::Mountain()=delete'],['../classStudent_1_1Mountain.html#aee3968c1be6be839bbcac9791daae1fa',1,'Student::Mountain::Mountain(const Course::Coordinate &amp;location, const std::shared_ptr&lt; Course::iGameEventHandler &gt; &amp;eventhandler, const std::shared_ptr&lt; Course::iObjectManager &gt; &amp;objectmanager, const unsigned int &amp;max_build=2, const unsigned int &amp;max_work=3, const Course::ResourceMap &amp;production=Student::ConstResourceMaps::MOUNTAIN_BP)']]]
+];

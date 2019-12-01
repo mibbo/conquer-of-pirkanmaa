@@ -5,6 +5,10 @@
 
 namespace Student {
 
+/**
+ * @brief GameEventHandler is used when player Class need information on resource changes
+ *
+ */
 class GameEventHandler : public Course::iGameEventHandler
 {
 public:

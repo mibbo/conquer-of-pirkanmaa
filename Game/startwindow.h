@@ -8,6 +8,13 @@ namespace Ui {
 class StartWindow;
 }
 
+/**
+ * @brief The StartWindow class is a custom Qdialog that pops
+ * a starting window when starting the game.
+ *
+ * In starting window players can set their names and colors.
+ * Also the map size form 3 options (small/normal/huge).
+ */
 class StartWindow : public QDialog
 {
     Q_OBJECT

@@ -18,16 +18,36 @@ namespace Ui {
 class Game;
 }
 
+/**
+ * @class Game
+ * @brief Game class is inherited from QMainWindow class
+ *
+ * The class can be used to show items in the game mainwindow
+ */
 class Game : public QMainWindow
 {
     Q_OBJECT
 
 public:
+
     explicit Game(QWidget *parent = nullptr);
+    /**
+     * @brief Default destructor.
+     */
     ~Game();
 
-    // turn
+    /**
+     * @brief getType Returns the player-class whose turn it is
+     * @return Student::Player whose turn it is
+     */
     std::shared_ptr<Student::Player> getTurn();
+    /**
+     * @brief operator == Checks if a coordinate has same x and y values as this
+     * @param other The other Coordinate
+     * @return
+     * True - if the coordinates have same values.
+     * @post Exception guarantee: No-throw
+     */
     void setTurn(std::shared_ptr<Student::Player> player);
     void changeTurn();
 

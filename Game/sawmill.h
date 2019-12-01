@@ -8,6 +8,13 @@
 
 namespace Student {
 
+/**
+ * @brief The Sawmill class represents a sawmill-building in the game.
+ *
+ * The Sawmill products ore-resource to the player
+ * Sawmill can only be placed on a Forest-typed tile when there is
+ * a Construction worker on the tile
+ */
 class Sawmill : public Course::BuildingBase
 {
 public:

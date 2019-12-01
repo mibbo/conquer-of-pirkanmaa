@@ -9,6 +9,15 @@
 
 namespace Student {
 
+/**
+ * @brief The Warrior class represents a worker that can be
+ * used to attack the enemy HeadQuarter-building.
+ *
+ * Warrior has 5 hit points and can attack the other players
+ * warriors by moving to the same tile with them.
+ * Player wins the game when his/her warrior moves to the enemys
+ * headquarter
+ */
 class Warrior : public Course::WorkerBase
 {
 public:

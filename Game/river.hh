@@ -7,6 +7,11 @@
 
 namespace Student {
 
+/**
+ * @brief The Mountain class represents Mountain in the gameworld.
+ *
+ * River tile does not support any buildings or workers but it can be owned by a player.
+ */
 class River : public Course::TileBase
 {
 public:

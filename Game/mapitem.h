@@ -15,7 +15,10 @@
 namespace Student  {
 
 
-
+/**
+ * @brief The MapItem class is a custom QGraphicsItem that
+ * acts as a single GameObject's graphical element.
+ */
 
 class MapItem : public QGraphicsItem
 {

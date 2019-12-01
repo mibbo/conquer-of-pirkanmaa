@@ -1,0 +1,123 @@
+\hypertarget{classStudent_1_1Cobblestone}{}\doxysection{Student\+::Cobblestone Class Reference}
+\label{classStudent_1_1Cobblestone}\index{Student::Cobblestone@{Student::Cobblestone}}
+
+
+The \mbox{\hyperlink{classStudent_1_1Cobblestone}{Cobblestone}} class represents \mbox{\hyperlink{classStudent_1_1Cobblestone}{Cobblestone}} in the gameworld.  
+
+
+
+
+{\ttfamily \#include $<$cobblestone.\+hh$>$}
+
+
+
+Inheritance diagram for Student\+::Cobblestone\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{classStudent_1_1Cobblestone__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Student\+::Cobblestone\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{classStudent_1_1Cobblestone__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStudent_1_1Cobblestone_a3281f5435402413be6d859326b4d407c}{Cobblestone}} ()=delete
+\item 
+\mbox{\hyperlink{classStudent_1_1Cobblestone_a15cdd6f493a031ea24558cc25b519b46}{Cobblestone}} (const Course\+::\+Coordinate \&location, const std\+::shared\+\_\+ptr$<$ Course\+::i\+Game\+Event\+Handler $>$ \&eventhandler, const std\+::shared\+\_\+ptr$<$ Course\+::i\+Object\+Manager $>$ \&objectmanager, const unsigned int \&max\+\_\+build=2, const unsigned int \&max\+\_\+work=3, const Course\+::\+Resource\+Map \&production=\mbox{\hyperlink{namespaceStudent_1_1ConstResourceMaps_a99c1b8aee5c70856ecde0ae5b091f64c}{Student\+::\+Const\+Resource\+Maps\+::\+C\+O\+B\+B\+L\+E\+S\+T\+O\+N\+E\+\_\+\+BP}})
+\begin{DoxyCompactList}\small\item\em Constructor for the class. \end{DoxyCompactList}\item 
+virtual \mbox{\hyperlink{classStudent_1_1Cobblestone_a4924943e2be08f7a9d805a41649138a7}{$\sim$\+Cobblestone}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{classStudent_1_1Cobblestone_a531d9492452ae3a587da5dc4dba4683b}{get\+Type}} () const override
+\item 
+void \mbox{\hyperlink{classStudent_1_1Cobblestone_a5a52aca730e1615153644dce49dea8f7}{add\+Building}} (const std\+::shared\+\_\+ptr$<$ Course\+::\+Building\+Base $>$ \&building) override
+\begin{DoxyCompactList}\small\item\em Adds a new building-\/object to the tile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classStudent_1_1Cobblestone}{Cobblestone}} class represents \mbox{\hyperlink{classStudent_1_1Cobblestone}{Cobblestone}} in the gameworld. 
+
+\mbox{\hyperlink{classStudent_1_1Cobblestone}{Cobblestone}} tile supports 1 Quarry-\/type building and worker at a time. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classStudent_1_1Cobblestone_a3281f5435402413be6d859326b4d407c}\label{classStudent_1_1Cobblestone_a3281f5435402413be6d859326b4d407c}} 
+\index{Student::Cobblestone@{Student::Cobblestone}!Cobblestone@{Cobblestone}}
+\index{Cobblestone@{Cobblestone}!Student::Cobblestone@{Student::Cobblestone}}
+\doxysubsubsection{\texorpdfstring{Cobblestone()}{Cobblestone()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Student\+::\+Cobblestone\+::\+Cobblestone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classStudent_1_1Cobblestone_a15cdd6f493a031ea24558cc25b519b46}\label{classStudent_1_1Cobblestone_a15cdd6f493a031ea24558cc25b519b46}} 
+\index{Student::Cobblestone@{Student::Cobblestone}!Cobblestone@{Cobblestone}}
+\index{Cobblestone@{Cobblestone}!Student::Cobblestone@{Student::Cobblestone}}
+\doxysubsubsection{\texorpdfstring{Cobblestone()}{Cobblestone()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Student\+::\+Cobblestone\+::\+Cobblestone (\begin{DoxyParamCaption}\item[{const Course\+::\+Coordinate \&}]{location,  }\item[{const std\+::shared\+\_\+ptr$<$ Course\+::i\+Game\+Event\+Handler $>$ \&}]{eventhandler,  }\item[{const std\+::shared\+\_\+ptr$<$ Course\+::i\+Object\+Manager $>$ \&}]{objectmanager,  }\item[{const unsigned int \&}]{max\+\_\+build = {\ttfamily 2},  }\item[{const unsigned int \&}]{max\+\_\+work = {\ttfamily 3},  }\item[{const Course\+::\+Resource\+Map \&}]{production = {\ttfamily \mbox{\hyperlink{namespaceStudent_1_1ConstResourceMaps_a99c1b8aee5c70856ecde0ae5b091f64c}{Student\+::\+Const\+Resource\+Maps\+::\+C\+O\+B\+B\+L\+E\+S\+T\+O\+N\+E\+\_\+\+BP}}} }\end{DoxyParamCaption})}
+
+
+
+Constructor for the class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em location} & is the Coordinate where the Tile is located in the game. \\
+\hline
+{\em eventhandler} & points to the student\textquotesingle{}s \mbox{\hyperlink{classStudent_1_1GameEventHandler}{Game\+Event\+Handler}}. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classStudent_1_1Cobblestone_a4924943e2be08f7a9d805a41649138a7}\label{classStudent_1_1Cobblestone_a4924943e2be08f7a9d805a41649138a7}} 
+\index{Student::Cobblestone@{Student::Cobblestone}!````~Cobblestone@{$\sim$Cobblestone}}
+\index{````~Cobblestone@{$\sim$Cobblestone}!Student::Cobblestone@{Student::Cobblestone}}
+\doxysubsubsection{\texorpdfstring{$\sim$Cobblestone()}{~Cobblestone()}}
+{\footnotesize\ttfamily virtual Student\+::\+Cobblestone\+::$\sim$\+Cobblestone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classStudent_1_1Cobblestone_a5a52aca730e1615153644dce49dea8f7}\label{classStudent_1_1Cobblestone_a5a52aca730e1615153644dce49dea8f7}} 
+\index{Student::Cobblestone@{Student::Cobblestone}!addBuilding@{addBuilding}}
+\index{addBuilding@{addBuilding}!Student::Cobblestone@{Student::Cobblestone}}
+\doxysubsubsection{\texorpdfstring{addBuilding()}{addBuilding()}}
+{\footnotesize\ttfamily void Student\+::\+Cobblestone\+::add\+Building (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ Course\+::\+Building\+Base $>$ \&}]{building }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Adds a new building-\/object to the tile. 
+
+Phases\+: ~\newline
+
+\begin{DoxyEnumerate}
+\item Check that there is space for the building. ~\newline
+
+\item Call parent\textquotesingle{}s add\+Building ~\newline
+ \begin{DoxyPostcond}{Postcondition}
+Exception guarantee\+: Strong 
+\end{DoxyPostcond}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Owner\+Conflict} & -\/ If the tile\textquotesingle{}s ownership prevents placing the {\bfseries{building}}. \\
+\hline
+{\em No\+Space} & -\/ If the tile doesn\textquotesingle{}t have enough space for the {\bfseries{building}}. \\
+\hline
+\end{DoxyExceptions}
+
+\end{DoxyEnumerate}\mbox{\Hypertarget{classStudent_1_1Cobblestone_a531d9492452ae3a587da5dc4dba4683b}\label{classStudent_1_1Cobblestone_a531d9492452ae3a587da5dc4dba4683b}} 
+\index{Student::Cobblestone@{Student::Cobblestone}!getType@{getType}}
+\index{getType@{getType}!Student::Cobblestone@{Student::Cobblestone}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily std\+::string Student\+::\+Cobblestone\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{cobblestone_8hh}{cobblestone.\+hh}}\item 
+\mbox{\hyperlink{cobblestone_8cpp}{cobblestone.\+cpp}}\end{DoxyCompactItemize}

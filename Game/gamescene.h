@@ -21,8 +21,10 @@
 
 namespace Student {
 
-
-
+/**
+ * @brief The GameScene class is a custom QGraphicsScene that shows
+ * a rendering of the game map.
+ */
 class GameScene : public QGraphicsScene
 {
     Q_OBJECT
@@ -35,8 +37,6 @@ public:
      * @param height in tiles for the game map.
      * @param scale is the size in pixels of a single square tile.
      *
-     * @pre 0 < width <= 100 && 0 < height <= 100 && 0 < scale <= 500. Otherwise
-     * default values are used for the created object.
      */
     GameScene(QWidget* qt_parent = nullptr,
                     int width = 10,

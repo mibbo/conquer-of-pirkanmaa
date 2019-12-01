@@ -1,0 +1,107 @@
+\hypertarget{classStudent_1_1ConstrutionWorker}{}\doxysection{Student\+::Constrution\+Worker Class Reference}
+\label{classStudent_1_1ConstrutionWorker}\index{Student::ConstrutionWorker@{Student::ConstrutionWorker}}
+
+
+The Construction\+Worker class represents a worker that can be used to build buildings in the game.  
+
+
+
+
+{\ttfamily \#include $<$constructionworker.\+hh$>$}
+
+
+
+Inheritance diagram for Student\+::Constrution\+Worker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{classStudent_1_1ConstrutionWorker__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Student\+::Constrution\+Worker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=231pt]{classStudent_1_1ConstrutionWorker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStudent_1_1ConstrutionWorker_a206ca1d6873cf58e48eed048be9535d6}{Constrution\+Worker}} ()=delete
+\item 
+\mbox{\hyperlink{classStudent_1_1ConstrutionWorker_a97258f7ef6559a54f8afc53ed989cf4e}{Constrution\+Worker}} (const std\+::shared\+\_\+ptr$<$ Course\+::i\+Game\+Event\+Handler $>$ \&eventhandler, const std\+::shared\+\_\+ptr$<$ Course\+::i\+Object\+Manager $>$ \&objectmanager, const std\+::shared\+\_\+ptr$<$ Course\+::\+Player\+Base $>$ \&owner, const int \&tilespaces=1, const Course\+::\+Resource\+Map \&cost=\mbox{\hyperlink{namespaceStudent_1_1ConstResourceMaps_ae8c6f55ca1c51ced9a2d3ed842f7cc88}{Student\+::\+Const\+Resource\+Maps\+::\+C\+W\+\_\+\+R\+E\+C\+R\+U\+I\+T\+M\+E\+N\+T\+\_\+\+C\+O\+ST}}, const Course\+::\+Resource\+Map\+Double \&efficiency=\mbox{\hyperlink{namespaceStudent_1_1ConstResourceMaps_a66abcad4fdbec58b46ac9c9cf97448fb}{Student\+::\+Const\+Resource\+Maps\+::\+C\+W\+\_\+\+W\+O\+R\+K\+E\+R\+\_\+\+E\+F\+F\+I\+C\+I\+E\+N\+CY}})
+\item 
+virtual \mbox{\hyperlink{classStudent_1_1ConstrutionWorker_af943e5393c4a19cdfedfa2c777bcf01c}{$\sim$\+Constrution\+Worker}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{classStudent_1_1ConstrutionWorker_ac34d3bae2751ff14ca6223e2aa6f9e16}{get\+Type}} () const override
+\item 
+virtual bool \mbox{\hyperlink{classStudent_1_1ConstrutionWorker_a4afe1c8f2ab41e26bba5e14a56327708}{can\+Be\+Placed\+On\+Tile}} (const std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$ \&target) const override
+\item 
+virtual void \mbox{\hyperlink{classStudent_1_1ConstrutionWorker_a1d9ece084b7d9d9f9e7198c0d0016660}{do\+Special\+Action}} () override
+\item 
+virtual const Course\+::\+Resource\+Map\+Double \mbox{\hyperlink{classStudent_1_1ConstrutionWorker_a37c29191e5c3aafd8a8c6bf3c1e026ab}{tile\+Work\+Action}} () override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The Construction\+Worker class represents a worker that can be used to build buildings in the game. 
+
+Construction\+Worker has to be in a tile location where you want to build a building 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classStudent_1_1ConstrutionWorker_a206ca1d6873cf58e48eed048be9535d6}\label{classStudent_1_1ConstrutionWorker_a206ca1d6873cf58e48eed048be9535d6}} 
+\index{Student::ConstrutionWorker@{Student::ConstrutionWorker}!ConstrutionWorker@{ConstrutionWorker}}
+\index{ConstrutionWorker@{ConstrutionWorker}!Student::ConstrutionWorker@{Student::ConstrutionWorker}}
+\doxysubsubsection{\texorpdfstring{ConstrutionWorker()}{ConstrutionWorker()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Student\+::\+Constrution\+Worker\+::\+Constrution\+Worker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classStudent_1_1ConstrutionWorker_a97258f7ef6559a54f8afc53ed989cf4e}\label{classStudent_1_1ConstrutionWorker_a97258f7ef6559a54f8afc53ed989cf4e}} 
+\index{Student::ConstrutionWorker@{Student::ConstrutionWorker}!ConstrutionWorker@{ConstrutionWorker}}
+\index{ConstrutionWorker@{ConstrutionWorker}!Student::ConstrutionWorker@{Student::ConstrutionWorker}}
+\doxysubsubsection{\texorpdfstring{ConstrutionWorker()}{ConstrutionWorker()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Student\+::\+Constrution\+Worker\+::\+Constrution\+Worker (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ Course\+::i\+Game\+Event\+Handler $>$ \&}]{eventhandler,  }\item[{const std\+::shared\+\_\+ptr$<$ Course\+::i\+Object\+Manager $>$ \&}]{objectmanager,  }\item[{const std\+::shared\+\_\+ptr$<$ Course\+::\+Player\+Base $>$ \&}]{owner,  }\item[{const int \&}]{tilespaces = {\ttfamily 1},  }\item[{const Course\+::\+Resource\+Map \&}]{cost = {\ttfamily \mbox{\hyperlink{namespaceStudent_1_1ConstResourceMaps_ae8c6f55ca1c51ced9a2d3ed842f7cc88}{Student\+::\+Const\+Resource\+Maps\+::\+C\+W\+\_\+\+R\+E\+C\+R\+U\+I\+T\+M\+E\+N\+T\+\_\+\+C\+O\+ST}}},  }\item[{const Course\+::\+Resource\+Map\+Double \&}]{efficiency = {\ttfamily \mbox{\hyperlink{namespaceStudent_1_1ConstResourceMaps_a66abcad4fdbec58b46ac9c9cf97448fb}{Student\+::\+Const\+Resource\+Maps\+::\+C\+W\+\_\+\+W\+O\+R\+K\+E\+R\+\_\+\+E\+F\+F\+I\+C\+I\+E\+N\+CY}}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classStudent_1_1ConstrutionWorker_af943e5393c4a19cdfedfa2c777bcf01c}\label{classStudent_1_1ConstrutionWorker_af943e5393c4a19cdfedfa2c777bcf01c}} 
+\index{Student::ConstrutionWorker@{Student::ConstrutionWorker}!````~ConstrutionWorker@{$\sim$ConstrutionWorker}}
+\index{````~ConstrutionWorker@{$\sim$ConstrutionWorker}!Student::ConstrutionWorker@{Student::ConstrutionWorker}}
+\doxysubsubsection{\texorpdfstring{$\sim$ConstrutionWorker()}{~ConstrutionWorker()}}
+{\footnotesize\ttfamily virtual Student\+::\+Constrution\+Worker\+::$\sim$\+Constrution\+Worker (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classStudent_1_1ConstrutionWorker_a4afe1c8f2ab41e26bba5e14a56327708}\label{classStudent_1_1ConstrutionWorker_a4afe1c8f2ab41e26bba5e14a56327708}} 
+\index{Student::ConstrutionWorker@{Student::ConstrutionWorker}!canBePlacedOnTile@{canBePlacedOnTile}}
+\index{canBePlacedOnTile@{canBePlacedOnTile}!Student::ConstrutionWorker@{Student::ConstrutionWorker}}
+\doxysubsubsection{\texorpdfstring{canBePlacedOnTile()}{canBePlacedOnTile()}}
+{\footnotesize\ttfamily bool Student\+::\+Constrution\+Worker\+::can\+Be\+Placed\+On\+Tile (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ Course\+::\+Tile\+Base $>$ \&}]{target }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classStudent_1_1ConstrutionWorker_a1d9ece084b7d9d9f9e7198c0d0016660}\label{classStudent_1_1ConstrutionWorker_a1d9ece084b7d9d9f9e7198c0d0016660}} 
+\index{Student::ConstrutionWorker@{Student::ConstrutionWorker}!doSpecialAction@{doSpecialAction}}
+\index{doSpecialAction@{doSpecialAction}!Student::ConstrutionWorker@{Student::ConstrutionWorker}}
+\doxysubsubsection{\texorpdfstring{doSpecialAction()}{doSpecialAction()}}
+{\footnotesize\ttfamily void Student\+::\+Constrution\+Worker\+::do\+Special\+Action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classStudent_1_1ConstrutionWorker_ac34d3bae2751ff14ca6223e2aa6f9e16}\label{classStudent_1_1ConstrutionWorker_ac34d3bae2751ff14ca6223e2aa6f9e16}} 
+\index{Student::ConstrutionWorker@{Student::ConstrutionWorker}!getType@{getType}}
+\index{getType@{getType}!Student::ConstrutionWorker@{Student::ConstrutionWorker}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily std\+::string Student\+::\+Constrution\+Worker\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+\mbox{\Hypertarget{classStudent_1_1ConstrutionWorker_a37c29191e5c3aafd8a8c6bf3c1e026ab}\label{classStudent_1_1ConstrutionWorker_a37c29191e5c3aafd8a8c6bf3c1e026ab}} 
+\index{Student::ConstrutionWorker@{Student::ConstrutionWorker}!tileWorkAction@{tileWorkAction}}
+\index{tileWorkAction@{tileWorkAction}!Student::ConstrutionWorker@{Student::ConstrutionWorker}}
+\doxysubsubsection{\texorpdfstring{tileWorkAction()}{tileWorkAction()}}
+{\footnotesize\ttfamily const Course\+::\+Resource\+Map\+Double Student\+::\+Constrution\+Worker\+::tile\+Work\+Action (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{constructionworker_8hh}{constructionworker.\+hh}}\item 
+\mbox{\hyperlink{constructionworker_8cpp}{constructionworker.\+cpp}}\end{DoxyCompactItemize}

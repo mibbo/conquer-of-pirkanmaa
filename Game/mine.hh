@@ -8,6 +8,13 @@
 
 namespace Student {
 
+/**
+ * @brief The Mine class represents a mine-building in the game.
+ *
+ * The Mine products ore-resource to the player
+ * Mine can only be placed on a Mountain-typed tile when there is
+ * a Construction worker on the tile
+ */
 class Mine : public Course::BuildingBase
 {
 public:

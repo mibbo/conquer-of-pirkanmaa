@@ -7,7 +7,17 @@
 #include <tiles/tilebase.h>
 
 namespace Student {
-
+/**
+ * @brief The Player class has all the information for the two players and
+ * the methods related to these informations.
+ *
+ * Both player has following private variables:
+ * * Name
+ * * player owned objects in a vector
+ * * resources in a Course::ResourceMap-class
+ * * player owned tiles in a vector
+ * * Color
+ */
 class Player : public Course::PlayerBase
 {
 public:

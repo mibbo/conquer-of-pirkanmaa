@@ -1,0 +1,91 @@
+\hypertarget{classStudent_1_1River}{}\doxysection{Student\+::River Class Reference}
+\label{classStudent_1_1River}\index{Student::River@{Student::River}}
+
+
+The \mbox{\hyperlink{classStudent_1_1Mountain}{Mountain}} class represents \mbox{\hyperlink{classStudent_1_1Mountain}{Mountain}} in the gameworld.  
+
+
+
+
+{\ttfamily \#include $<$river.\+hh$>$}
+
+
+
+Inheritance diagram for Student\+::River\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classStudent_1_1River__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Student\+::River\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=173pt]{classStudent_1_1River__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classStudent_1_1River_a3f3453fb4bcfb61fa9125e491ab1fc53}{River}} ()=delete
+\item 
+\mbox{\hyperlink{classStudent_1_1River_a24a74977ec2bc216e27b94f41b475a19}{River}} (const Course\+::\+Coordinate \&location, const std\+::shared\+\_\+ptr$<$ Course\+::i\+Game\+Event\+Handler $>$ \&eventhandler, const std\+::shared\+\_\+ptr$<$ Course\+::i\+Object\+Manager $>$ \&objectmanager, const unsigned int \&max\+\_\+build=2, const unsigned int \&max\+\_\+work=3, const Course\+::\+Resource\+Map \&production=\mbox{\hyperlink{namespaceStudent_1_1ConstResourceMaps_a3bfe82aee3a7a5713749e8a6917454f4}{Student\+::\+Const\+Resource\+Maps\+::\+R\+I\+V\+E\+R\+\_\+\+BP}})
+\item 
+virtual \mbox{\hyperlink{classStudent_1_1River_aeea36cb215f00e260ae4ceed50cc4764}{$\sim$\+River}} ()=default
+\item 
+virtual std\+::string \mbox{\hyperlink{classStudent_1_1River_a227a22ecd8983eb71188fd5256f28068}{get\+Type}} () const override
+\item 
+void \mbox{\hyperlink{classStudent_1_1River_aa8a8efaa34d18158b7b4317276dd5498}{add\+Building}} (const std\+::shared\+\_\+ptr$<$ Course\+::\+Building\+Base $>$ \&building) override
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classStudent_1_1Mountain}{Mountain}} class represents \mbox{\hyperlink{classStudent_1_1Mountain}{Mountain}} in the gameworld. 
+
+\mbox{\hyperlink{classStudent_1_1River}{River}} tile does not support any buildings or workers but it can be owned by a player. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classStudent_1_1River_a3f3453fb4bcfb61fa9125e491ab1fc53}\label{classStudent_1_1River_a3f3453fb4bcfb61fa9125e491ab1fc53}} 
+\index{Student::River@{Student::River}!River@{River}}
+\index{River@{River}!Student::River@{Student::River}}
+\doxysubsubsection{\texorpdfstring{River()}{River()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Student\+::\+River\+::\+River (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [delete]}}
+
+\mbox{\Hypertarget{classStudent_1_1River_a24a74977ec2bc216e27b94f41b475a19}\label{classStudent_1_1River_a24a74977ec2bc216e27b94f41b475a19}} 
+\index{Student::River@{Student::River}!River@{River}}
+\index{River@{River}!Student::River@{Student::River}}
+\doxysubsubsection{\texorpdfstring{River()}{River()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Student\+::\+River\+::\+River (\begin{DoxyParamCaption}\item[{const Course\+::\+Coordinate \&}]{location,  }\item[{const std\+::shared\+\_\+ptr$<$ Course\+::i\+Game\+Event\+Handler $>$ \&}]{eventhandler,  }\item[{const std\+::shared\+\_\+ptr$<$ Course\+::i\+Object\+Manager $>$ \&}]{objectmanager,  }\item[{const unsigned int \&}]{max\+\_\+build = {\ttfamily 2},  }\item[{const unsigned int \&}]{max\+\_\+work = {\ttfamily 3},  }\item[{const Course\+::\+Resource\+Map \&}]{production = {\ttfamily \mbox{\hyperlink{namespaceStudent_1_1ConstResourceMaps_a3bfe82aee3a7a5713749e8a6917454f4}{Student\+::\+Const\+Resource\+Maps\+::\+R\+I\+V\+E\+R\+\_\+\+BP}}} }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{classStudent_1_1River_aeea36cb215f00e260ae4ceed50cc4764}\label{classStudent_1_1River_aeea36cb215f00e260ae4ceed50cc4764}} 
+\index{Student::River@{Student::River}!````~River@{$\sim$River}}
+\index{````~River@{$\sim$River}!Student::River@{Student::River}}
+\doxysubsubsection{\texorpdfstring{$\sim$River()}{~River()}}
+{\footnotesize\ttfamily virtual Student\+::\+River\+::$\sim$\+River (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classStudent_1_1River_aa8a8efaa34d18158b7b4317276dd5498}\label{classStudent_1_1River_aa8a8efaa34d18158b7b4317276dd5498}} 
+\index{Student::River@{Student::River}!addBuilding@{addBuilding}}
+\index{addBuilding@{addBuilding}!Student::River@{Student::River}}
+\doxysubsubsection{\texorpdfstring{addBuilding()}{addBuilding()}}
+{\footnotesize\ttfamily void Student\+::\+River\+::add\+Building (\begin{DoxyParamCaption}\item[{const std\+::shared\+\_\+ptr$<$ Course\+::\+Building\+Base $>$ \&}]{building }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+\mbox{\Hypertarget{classStudent_1_1River_a227a22ecd8983eb71188fd5256f28068}\label{classStudent_1_1River_a227a22ecd8983eb71188fd5256f28068}} 
+\index{Student::River@{Student::River}!getType@{getType}}
+\index{getType@{getType}!Student::River@{Student::River}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily std\+::string Student\+::\+River\+::get\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{river_8hh}{river.\+hh}}\item 
+\mbox{\hyperlink{river_8cpp}{river.\+cpp}}\end{DoxyCompactItemize}

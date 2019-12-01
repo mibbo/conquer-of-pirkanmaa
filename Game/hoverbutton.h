@@ -4,6 +4,10 @@
 
 namespace Student  {
 
+/**
+ * @brief The HoverButton class is a custom QPushButton that has
+ * hover events added to the button.
+ */
 class HoverButton : public QPushButton
 {
     Q_OBJECT
