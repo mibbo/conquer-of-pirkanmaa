@@ -41,12 +41,10 @@ public:
      * @return Student::Player whose turn it is
      */
     std::shared_ptr<Student::Player> getTurn();
+
     /**
-     * @brief operator == Checks if a coordinate has same x and y values as this
-     * @param other The other Coordinate
-     * @return
-     * True - if the coordinates have same values.
-     * @post Exception guarantee: No-throw
+     * @brief sets the next players turn
+     * @param Student::Player, the next players turn.
      */
     void setTurn(std::shared_ptr<Student::Player> player);
     void changeTurn();
