@@ -109,11 +109,7 @@ void Game::setupPlayers(QString playerOneName, QString playerTwoName)
     playerTwo_ = std::make_shared<Student::Player>(playerTwoName.toStdString());
     playerTwo_->setName(playerTwoName.toStdString());
 
-    std::cout << "p1: " << playerOne_->getName()<< std::endl;
-    std::cout << "p2: " << playerTwo_->getName()<< std::endl;
-
     int randomPlayer = rand()%2;
-    std::cout << randomPlayer << std::endl;
     if (randomPlayer == 0) {
         setTurn(playerOne_);
     } else {
@@ -125,7 +121,7 @@ void Game::displayMainMenu()
 {
     qDebug() << "displaymainemenu";
     //add buildingButtons and workerButtons to vector
-    buildingButtonsVector_ = {ui->farmButton, ui->mineButton, ui->outpostButton, ui->quarryButton, ui->sawmillButton,
+    objectButtonsVector_ = {ui->farmButton, ui->mineButton, ui->outpostButton, ui->quarryButton, ui->sawmillButton,
                               ui->basicWorkerButton, ui->constWorkerButton, ui->warriorButton};
     connectButtons();
 }
@@ -190,7 +186,7 @@ void Game::gameOverSlot(std::shared_ptr<Student::Player> winner, int turn)
 
 
 void Game::connectButtons() {
-    for (auto button : buildingButtonsVector_) {
+    for (auto button : objectButtonsVector_) {
         connect(button, SIGNAL(clicked()), this, SLOT(sendButtonText()));
         connect(button, SIGNAL(buttonInfoSignal(std::string)), this, SLOT(logMessageSlot(std::string)));
 
@@ -317,7 +313,7 @@ void Game::logMessageSlot(QString message)
 
 void Game::enableButtonsSlot()
 {
-    for (auto button : buildingButtonsVector_) {
+    for (auto button : objectButtonsVector_) {
         button->setChecked(false);
     }
 }

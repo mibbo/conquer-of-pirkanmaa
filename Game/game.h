@@ -47,11 +47,24 @@ public:
      * @param Student::Player, the next players turn.
      */
     void setTurn(std::shared_ptr<Student::Player> player);
+
+    /**
+     * @brief method that is called when end turn- button is pressed
+     */
     void changeTurn();
 
+    /**
+     * @brief Creates players and randomizes starting player
+     * @param Student::Player, player one
+     * @param Student::Player, player two
+     */
     void setupPlayers(QString playerOneName, QString playerTwoName);
 
     //tekee ja piirtää UI setit (nappulat summuut)
+    /**
+     * @brief Adds buildingButtons and workerButtons to button-vector
+
+     */
     void displayMainMenu();
 
     void updateView();
@@ -84,7 +97,7 @@ private slots:
 private:
     Ui::Game *ui;
     QDialog* dialoq_;
-    std::vector<QPushButton*> buildingButtonsVector_;
+    std::vector<QPushButton*> objectButtonsVector_;
     std::vector<QLabel*> costVector_;
     std::vector<QLabel*> productionVector_;
 
