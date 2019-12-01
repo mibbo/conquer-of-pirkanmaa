@@ -4,7 +4,21 @@
 #
 #-------------------------------------------------
 
-QT       += widgets testlib
+QT       += widgets
+
+#QT_VERSION = 5
+
+#equals(QT_VERSION, 5){
+#    QT += widgets
+#}
+
+#equals(QT_VERSION, 4) {
+#    QT += gui
+#}
+
+QT       += testlib
+
+QT       += gui
 
 TARGET = tst_gameeventhandlertest
 CONFIG   += console
@@ -25,9 +39,34 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-        tst_gameeventhandlertest.cpp
+        tst_gameeventhandlertest.cpp \
+#    ../../Game/cobblestone.cpp \
+#    ../../Game/constructionworker.cpp \
+#    ../../Game/game.cpp \
+    ../../Game/gameeventhandler.cpp \
+#    ../../Game/gamescene.cpp \
+#    ../../Game/hoverbutton.cpp \
+##    ../../Game/main.cpp \
+#    ../../Game/mapitem.cpp \
+#    ../../Game/mine.cpp \
+#    ../../Game/mountain.cpp \
+#    ../../Game/objectmanager.cpp \
+    ../../Game/player.cpp \
+#    ../../Game/quarry.cpp \
+#    ../../Game/river.cpp \
+#    ../../Game/sawmill.cpp \
+#    ../../Game/startwindow.cpp \
+#    ../../Game/warrior.cpp \
+    ../../Course/CourseLib/core/playerbase.cpp \
+    ../../Course/CourseLib/core/basicresources.cpp \
+    ../../Course/CourseLib/core/coordinate.cpp \
+    ../../Course/CourseLib/core/gameobject.cpp
 
 HEADERS += \ ../../Game/gameeventhandler.hh
+
+FORMS += \
+    ../../Game/game.ui \
+    ../../Game/startwindow.ui
 
 INCLUDEPATH += \
         $$PWD/../../Course/CourseLib \

@@ -9,7 +9,7 @@ StartWindow::StartWindow(QWidget *parent) :
     ui->setupUi(this);
 
     // fetch git version here
-    ui->hashLabel->setText(GIT_REVISION);
+//    ui->hashLabel->setText(GIT_REVISION);
 
     // Setup the combobox
     ui->mapSizeComboBox->addItem("Small");
