@@ -153,21 +153,21 @@ void GameScene::drawGameBoard(unsigned int size_x,
             }
         // jos aikaisempi laatta kaksi tai kolme oikealla niin 60& tsäänssi mennä keskemmälle
         }else if (inRange(center+2, center+3, randX)) {
-            if(rand() <= RAND_MAX * 0.6  or randX > m_width) {
+            if(rand() <= RAND_MAX * 0.6  or randX >= m_width) {
                 randX--;
             } else  {
                 randX++;
             }
         // jos aikaisempi laatta neljä vasemmalla niin 70& tsäänssi mennä keskemmälle
         }else if (inRange(center-4, center-4, randX)) {
-            if(rand() <= RAND_MAX * 0.7  or randX > m_width) {
+            if(rand() <= RAND_MAX * 0.7  or randX >= m_width) {
                 randX--;
             } else  {
                 randX++;
             }
         // jos aikaisempi laatta neljä oikealla niin 70& tsäänssi mennä keskemmälle
         }else if (inRange(center+4, center+4, randX)) {
-            if(rand() <= RAND_MAX * 0.7  or randX > m_width) {
+            if(rand() <= RAND_MAX * 0.7  or randX >= m_width) {
                 randX--;
             } else  {
                 randX++;
@@ -195,7 +195,6 @@ void GameScene::drawObject(std::shared_ptr<Course::GameObject> obj, QColor color
 
     MapItem* newItem = new MapItem(obj, m_scale, color);
     addItem(newItem);
-//    connect(newItem->get(), SIGNAL(mapItemHoverSignal(Course::Coordinate)), this, SLOT(mapItemHoverSlot(Course::Coordinate)));
 }
 
 bool GameScene::event(QEvent *event)
@@ -466,11 +465,23 @@ bool GameScene::event(QEvent *event)
 void GameScene::generateStartingObjects()
 {
     // Randomize the coordinates for the leftside player and mirror the coordinates for rightside player
-    int xBoundary = floor(m_width / 5);
-    int leftX = floor(rand() % (xBoundary));
-    int rightX = m_width - 1 - leftX;
-    int leftY = floor(rand() % (m_height));
-    int rightY = m_height - 1 - leftY;
+    int xBoundary;
+    int leftX;
+    int rightX;
+    int leftY;
+    int rightY;
+    while (true) {
+        xBoundary = floor(m_width / 5);
+        leftX = floor(rand() % (xBoundary));
+        rightX = m_width - 1 - leftX;
+        leftY = floor(rand() % (m_height));
+        rightY = m_height - 1 - leftY;
+        if (objectManager_->getTile(Course::Coordinate(leftX, leftY))->getType() != "River" &&
+                objectManager_->getTile(Course::Coordinate(Course::Coordinate(leftX, leftY), Course::Direction::E))->getType() != "River") {
+            break;
+        }
+    }
+
 
     // Add and draw the HQ's
     std::shared_ptr<Course::HeadQuarters> hq1 = std::make_shared<Course::HeadQuarters>(eventHandler_, objectManager_, playerOne_);
@@ -645,10 +656,7 @@ void GameScene::addButtonObject(std::string buttonString)
     }
 }
 
-void GameScene::mapItemHoverSlot(Course::Coordinate coordinate)
-{
-    emit hoverTextSignal(objectManager_->getTile(coordinate)->getType());
-}
+
 void GameScene::reset()
 {
 }
@@ -727,20 +735,12 @@ void GameScene::drawTileGraphics(std::vector<std::shared_ptr<Course::TileBase>> 
                 filename += "W";
             }
             filename += type + ".png";
-            std::cout << filename << std::endl;
 
             QPointF point(coor.x(), coor.y());
             auto graphitems = items(point * m_scale);
             auto graphitem = graphitems.at(0);
             static_cast<Student::MapItem*>(graphitem)->setPixMap(QPixmap(filename.c_str()));
             updateViewSignal();
-            // muuttaa objectin kuvaa klikatessa
-//                QPointF point(coor.x(), coor.y());
-//                auto graphitems = items(point * m_scale);
-//                auto graphitem = graphitems.at(0);
-//                static_cast<Student::MapItem*>(graphitem)->setPixMap(QPixmap(":/images/player2.png"));
-//                //updateViewSignal();
-
         }
     }
 }

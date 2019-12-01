@@ -53,13 +53,34 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>1220</x>
+      <x>1270</x>
       <y>10</y>
       <width>151</width>
-      <height>201</height>
+      <height>171</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="buildingsLayout">
+     <item row="0" column="0">
+      <widget class="Student::HoverButton" name="farmButton">
+       <property name="text">
+        <string>Farm</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="Student::HoverButton" name="mineButton">
+       <property name="text">
+        <string>Mine</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="Student::HoverButton" name="outpostButton">
+       <property name="text">
+        <string>Outpost</string>
+       </property>
+      </widget>
+     </item>
      <item row="5" column="0">
       <widget class="Student::HoverButton" name="quarryButton">
        <property name="text">
@@ -71,27 +92,6 @@
       <widget class="Student::HoverButton" name="sawmillButton">
        <property name="text">
         <string>Sawmill</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="0">
-      <widget class="Student::HoverButton" name="outpostButton">
-       <property name="text">
-        <string>Outpost</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="Student::HoverButton" name="mineButton">
-       <property name="text">
-        <string>Mine</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="0">
-      <widget class="Student::HoverButton" name="farmButton">
-       <property name="text">
-        <string>Farm</string>
        </property>
       </widget>
      </item>
@@ -172,20 +172,13 @@
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>1220</x>
-      <y>220</y>
+      <x>1270</x>
+      <y>200</y>
       <width>151</width>
-      <height>188</height>
+      <height>171</height>
      </rect>
     </property>
     <layout class="QGridLayout" name="workersLayout">
-     <item row="1" column="0">
-      <widget class="Student::HoverButton" name="constWorkerButton">
-       <property name="text">
-        <string>Construction Worker</string>
-       </property>
-      </widget>
-     </item>
      <item row="0" column="0">
       <widget class="Student::HoverButton" name="basicWorkerButton">
        <property name="text">
@@ -197,6 +190,13 @@
       <widget class="Student::HoverButton" name="warriorButton">
        <property name="text">
         <string>Warrior</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="Student::HoverButton" name="constWorkerButton">
+       <property name="text">
+        <string>Construction Worker</string>
        </property>
       </widget>
      </item>
@@ -341,7 +341,7 @@
      <x>0</x>
      <y>0</y>
      <width>2006</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
