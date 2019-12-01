@@ -1,19 +1,18 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'gamescene.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.13.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.6)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include <memory>
 #include "gamescene.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'gamescene.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.13.1. It"
+#error "This file was generated using the moc from 5.9.6. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -61,7 +60,7 @@ QT_MOC_LITERAL(14, 214, 12) // "buttonString"
 static const uint qt_meta_data_Student__GameScene[] = {
 
  // content:
-       8,       // revision
+       7,       // revision
        0,       // classname
        0,    0, // classinfo
        6,   14, // methods
@@ -97,7 +96,7 @@ static const uint qt_meta_data_Student__GameScene[] = {
 void Student::GameScene::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<GameScene *>(_o);
+        GameScene *_t = static_cast<GameScene *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->updateViewSignal(); break;
@@ -111,28 +110,28 @@ void Student::GameScene::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (GameScene::*)();
+            typedef void (GameScene::*_t)();
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GameScene::updateViewSignal)) {
                 *result = 0;
                 return;
             }
         }
         {
-            using _t = void (GameScene::*)(int );
+            typedef void (GameScene::*_t)(int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GameScene::updateInformationSignal)) {
                 *result = 1;
                 return;
             }
         }
         {
-            using _t = void (GameScene::*)(std::shared_ptr<Student::Player> , int );
+            typedef void (GameScene::*_t)(std::shared_ptr<Student::Player> , int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GameScene::gameOverSignal)) {
                 *result = 2;
                 return;
             }
         }
         {
-            using _t = void (GameScene::*)();
+            typedef void (GameScene::*_t)();
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&GameScene::enableButtonsSignal)) {
                 *result = 3;
                 return;
@@ -141,14 +140,10 @@ void Student::GameScene::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     }
 }
 
-QT_INIT_METAOBJECT const QMetaObject Student::GameScene::staticMetaObject = { {
-    &QGraphicsScene::staticMetaObject,
-    qt_meta_stringdata_Student__GameScene.data,
-    qt_meta_data_Student__GameScene,
-    qt_static_metacall,
-    nullptr,
-    nullptr
-} };
+const QMetaObject Student::GameScene::staticMetaObject = {
+    { &QGraphicsScene::staticMetaObject, qt_meta_stringdata_Student__GameScene.data,
+      qt_meta_data_Student__GameScene,  qt_static_metacall, nullptr, nullptr}
+};
 
 
 const QMetaObject *Student::GameScene::metaObject() const
@@ -190,14 +185,14 @@ void Student::GameScene::updateViewSignal()
 // SIGNAL 1
 void Student::GameScene::updateInformationSignal(int _t1)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 
 // SIGNAL 2
 void Student::GameScene::gameOverSignal(std::shared_ptr<Student::Player> _t1, int _t2)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 

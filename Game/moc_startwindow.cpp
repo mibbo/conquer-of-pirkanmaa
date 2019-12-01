@@ -1,19 +1,18 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'startwindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.13.1)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.9.6)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include <memory>
 #include "startwindow.h"
 #include <QtCore/qbytearray.h>
 #include <QtCore/qmetatype.h>
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'startwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.13.1. It"
+#error "This file was generated using the moc from 5.9.6. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -66,7 +65,7 @@ QT_MOC_LITERAL(16, 240, 24) // "on_playerTwo_textChanged"
 static const uint qt_meta_data_StartWindow[] = {
 
  // content:
-       8,       // revision
+       7,       // revision
        0,       // classname
        0,    0, // classinfo
        7,   14, // methods
@@ -104,7 +103,7 @@ static const uint qt_meta_data_StartWindow[] = {
 void StartWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        auto *_t = static_cast<StartWindow *>(_o);
+        StartWindow *_t = static_cast<StartWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->startGame((*reinterpret_cast< uint(*)>(_a[1])),(*reinterpret_cast< uint(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QColor(*)>(_a[5])),(*reinterpret_cast< QColor(*)>(_a[6]))); break;
@@ -119,7 +118,7 @@ void StartWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (StartWindow::*)(unsigned int , unsigned int , QString , QString , QColor , QColor );
+            typedef void (StartWindow::*_t)(unsigned int , unsigned int , QString , QString , QColor , QColor );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&StartWindow::startGame)) {
                 *result = 0;
                 return;
@@ -128,14 +127,10 @@ void StartWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
     }
 }
 
-QT_INIT_METAOBJECT const QMetaObject StartWindow::staticMetaObject = { {
-    &QDialog::staticMetaObject,
-    qt_meta_stringdata_StartWindow.data,
-    qt_meta_data_StartWindow,
-    qt_static_metacall,
-    nullptr,
-    nullptr
-} };
+const QMetaObject StartWindow::staticMetaObject = {
+    { &QDialog::staticMetaObject, qt_meta_stringdata_StartWindow.data,
+      qt_meta_data_StartWindow,  qt_static_metacall, nullptr, nullptr}
+};
 
 
 const QMetaObject *StartWindow::metaObject() const
@@ -171,7 +166,7 @@ int StartWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 // SIGNAL 0
 void StartWindow::startGame(unsigned int _t1, unsigned int _t2, QString _t3, QString _t4, QColor _t5, QColor _t6)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t4))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t5))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t6))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)), const_cast<void*>(reinterpret_cast<const void*>(&_t5)), const_cast<void*>(reinterpret_cast<const void*>(&_t6)) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP

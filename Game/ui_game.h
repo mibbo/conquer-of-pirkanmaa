@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'game.ui'
 **
-** Created by: Qt User Interface Compiler version 5.13.1
+** Created by: Qt User Interface Compiler version 5.9.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,10 +10,13 @@
 #define UI_GAME_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QGridLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLCDNumber>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
@@ -109,178 +112,178 @@ public:
     void setupUi(QMainWindow *Game)
     {
         if (Game->objectName().isEmpty())
-            Game->setObjectName(QString::fromUtf8("Game"));
+            Game->setObjectName(QStringLiteral("Game"));
         Game->resize(2006, 882);
         centralwidget = new QWidget(Game);
-        centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
+        centralwidget->setObjectName(QStringLiteral("centralwidget"));
         graphicsView = new QGraphicsView(centralwidget);
-        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
+        graphicsView->setObjectName(QStringLiteral("graphicsView"));
         graphicsView->setGeometry(QRect(410, 10, 691, 481));
         turnButton = new QPushButton(centralwidget);
-        turnButton->setObjectName(QString::fromUtf8("turnButton"));
+        turnButton->setObjectName(QStringLiteral("turnButton"));
         turnButton->setGeometry(QRect(240, 50, 80, 26));
         turnLabel = new QLabel(centralwidget);
-        turnLabel->setObjectName(QString::fromUtf8("turnLabel"));
+        turnLabel->setObjectName(QStringLiteral("turnLabel"));
         turnLabel->setGeometry(QRect(243, 28, 100, 18));
         gridLayoutWidget = new QWidget(centralwidget);
-        gridLayoutWidget->setObjectName(QString::fromUtf8("gridLayoutWidget"));
+        gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
         gridLayoutWidget->setGeometry(QRect(1270, 10, 151, 171));
         buildingsLayout = new QGridLayout(gridLayoutWidget);
-        buildingsLayout->setObjectName(QString::fromUtf8("buildingsLayout"));
+        buildingsLayout->setObjectName(QStringLiteral("buildingsLayout"));
         buildingsLayout->setContentsMargins(0, 0, 0, 0);
         farmButton = new Student::HoverButton(gridLayoutWidget);
-        farmButton->setObjectName(QString::fromUtf8("farmButton"));
+        farmButton->setObjectName(QStringLiteral("farmButton"));
 
         buildingsLayout->addWidget(farmButton, 0, 0, 1, 1);
 
         mineButton = new Student::HoverButton(gridLayoutWidget);
-        mineButton->setObjectName(QString::fromUtf8("mineButton"));
+        mineButton->setObjectName(QStringLiteral("mineButton"));
 
         buildingsLayout->addWidget(mineButton, 1, 0, 1, 1);
 
         outpostButton = new Student::HoverButton(gridLayoutWidget);
-        outpostButton->setObjectName(QString::fromUtf8("outpostButton"));
+        outpostButton->setObjectName(QStringLiteral("outpostButton"));
 
         buildingsLayout->addWidget(outpostButton, 4, 0, 1, 1);
 
         quarryButton = new Student::HoverButton(gridLayoutWidget);
-        quarryButton->setObjectName(QString::fromUtf8("quarryButton"));
+        quarryButton->setObjectName(QStringLiteral("quarryButton"));
 
         buildingsLayout->addWidget(quarryButton, 5, 0, 1, 1);
 
         sawmillButton = new Student::HoverButton(gridLayoutWidget);
-        sawmillButton->setObjectName(QString::fromUtf8("sawmillButton"));
+        sawmillButton->setObjectName(QStringLiteral("sawmillButton"));
 
         buildingsLayout->addWidget(sawmillButton, 6, 0, 1, 1);
 
         gridLayoutWidget_2 = new QWidget(centralwidget);
-        gridLayoutWidget_2->setObjectName(QString::fromUtf8("gridLayoutWidget_2"));
+        gridLayoutWidget_2->setObjectName(QStringLiteral("gridLayoutWidget_2"));
         gridLayoutWidget_2->setGeometry(QRect(1270, 200, 151, 171));
         workersLayout = new QGridLayout(gridLayoutWidget_2);
-        workersLayout->setObjectName(QString::fromUtf8("workersLayout"));
+        workersLayout->setObjectName(QStringLiteral("workersLayout"));
         workersLayout->setContentsMargins(0, 0, 0, 0);
         basicWorkerButton = new Student::HoverButton(gridLayoutWidget_2);
-        basicWorkerButton->setObjectName(QString::fromUtf8("basicWorkerButton"));
+        basicWorkerButton->setObjectName(QStringLiteral("basicWorkerButton"));
 
         workersLayout->addWidget(basicWorkerButton, 0, 0, 1, 1);
 
         warriorButton = new Student::HoverButton(gridLayoutWidget_2);
-        warriorButton->setObjectName(QString::fromUtf8("warriorButton"));
+        warriorButton->setObjectName(QStringLiteral("warriorButton"));
 
         workersLayout->addWidget(warriorButton, 4, 0, 1, 1);
 
         constWorkerButton = new Student::HoverButton(gridLayoutWidget_2);
-        constWorkerButton->setObjectName(QString::fromUtf8("constWorkerButton"));
+        constWorkerButton->setObjectName(QStringLiteral("constWorkerButton"));
 
         workersLayout->addWidget(constWorkerButton, 1, 0, 1, 1);
 
         log = new QPlainTextEdit(centralwidget);
-        log->setObjectName(QString::fromUtf8("log"));
+        log->setObjectName(QStringLiteral("log"));
         log->setGeometry(QRect(240, 400, 61, 51));
         hoverInfo = new QLabel(centralwidget);
-        hoverInfo->setObjectName(QString::fromUtf8("hoverInfo"));
+        hoverInfo->setObjectName(QStringLiteral("hoverInfo"));
         hoverInfo->setGeometry(QRect(1720, 70, 63, 20));
         label = new QLabel(centralwidget);
-        label->setObjectName(QString::fromUtf8("label"));
+        label->setObjectName(QStringLiteral("label"));
         label->setGeometry(QRect(1410, 10, 511, 261));
         label->setPixmap(QPixmap(QString::fromUtf8(":/images/sprite/parchment.png")));
         buildingNameLabel = new QLabel(centralwidget);
-        buildingNameLabel->setObjectName(QString::fromUtf8("buildingNameLabel"));
+        buildingNameLabel->setObjectName(QStringLiteral("buildingNameLabel"));
         buildingNameLabel->setGeometry(QRect(1450, 120, 71, 18));
         moneyLabel = new QLabel(centralwidget);
-        moneyLabel->setObjectName(QString::fromUtf8("moneyLabel"));
+        moneyLabel->setObjectName(QStringLiteral("moneyLabel"));
         moneyLabel->setGeometry(QRect(1550, 70, 81, 18));
         woodLabel = new QLabel(centralwidget);
-        woodLabel->setObjectName(QString::fromUtf8("woodLabel"));
+        woodLabel->setObjectName(QStringLiteral("woodLabel"));
         woodLabel->setGeometry(QRect(1550, 110, 81, 18));
         stoneLabel = new QLabel(centralwidget);
-        stoneLabel->setObjectName(QString::fromUtf8("stoneLabel"));
+        stoneLabel->setObjectName(QStringLiteral("stoneLabel"));
         stoneLabel->setGeometry(QRect(1550, 130, 81, 18));
         oreLabel = new QLabel(centralwidget);
-        oreLabel->setObjectName(QString::fromUtf8("oreLabel"));
+        oreLabel->setObjectName(QStringLiteral("oreLabel"));
         oreLabel->setGeometry(QRect(1550, 150, 81, 18));
         foodLabel = new QLabel(centralwidget);
-        foodLabel->setObjectName(QString::fromUtf8("foodLabel"));
+        foodLabel->setObjectName(QStringLiteral("foodLabel"));
         foodLabel->setGeometry(QRect(1550, 90, 81, 18));
         moneyProductionLabel = new QLabel(centralwidget);
-        moneyProductionLabel->setObjectName(QString::fromUtf8("moneyProductionLabel"));
+        moneyProductionLabel->setObjectName(QStringLiteral("moneyProductionLabel"));
         moneyProductionLabel->setGeometry(QRect(1640, 70, 81, 18));
         foodProductionLabel = new QLabel(centralwidget);
-        foodProductionLabel->setObjectName(QString::fromUtf8("foodProductionLabel"));
+        foodProductionLabel->setObjectName(QStringLiteral("foodProductionLabel"));
         foodProductionLabel->setGeometry(QRect(1640, 90, 81, 18));
         woodProductionLabel = new QLabel(centralwidget);
-        woodProductionLabel->setObjectName(QString::fromUtf8("woodProductionLabel"));
+        woodProductionLabel->setObjectName(QStringLiteral("woodProductionLabel"));
         woodProductionLabel->setGeometry(QRect(1640, 110, 81, 18));
         stoneProductionLabel = new QLabel(centralwidget);
-        stoneProductionLabel->setObjectName(QString::fromUtf8("stoneProductionLabel"));
+        stoneProductionLabel->setObjectName(QStringLiteral("stoneProductionLabel"));
         stoneProductionLabel->setGeometry(QRect(1640, 130, 81, 18));
         oreProductionLabel = new QLabel(centralwidget);
-        oreProductionLabel->setObjectName(QString::fromUtf8("oreProductionLabel"));
+        oreProductionLabel->setObjectName(QStringLiteral("oreProductionLabel"));
         oreProductionLabel->setGeometry(QRect(1640, 150, 81, 18));
         buildCostLabel = new QLabel(centralwidget);
-        buildCostLabel->setObjectName(QString::fromUtf8("buildCostLabel"));
+        buildCostLabel->setObjectName(QStringLiteral("buildCostLabel"));
         buildCostLabel->setGeometry(QRect(1560, 50, 71, 20));
         productionLabel = new QLabel(centralwidget);
-        productionLabel->setObjectName(QString::fromUtf8("productionLabel"));
+        productionLabel->setObjectName(QStringLiteral("productionLabel"));
         productionLabel->setGeometry(QRect(1640, 50, 81, 20));
         formLayoutWidget_7 = new QWidget(centralwidget);
-        formLayoutWidget_7->setObjectName(QString::fromUtf8("formLayoutWidget_7"));
+        formLayoutWidget_7->setObjectName(QStringLiteral("formLayoutWidget_7"));
         formLayoutWidget_7->setGeometry(QRect(1260, 380, 511, 211));
         formLayoutPlayers = new QFormLayout(formLayoutWidget_7);
-        formLayoutPlayers->setObjectName(QString::fromUtf8("formLayoutPlayers"));
+        formLayoutPlayers->setObjectName(QStringLiteral("formLayoutPlayers"));
         formLayoutPlayers->setContentsMargins(0, 0, 0, 0);
         formLayoutP2 = new QFormLayout();
-        formLayoutP2->setObjectName(QString::fromUtf8("formLayoutP2"));
+        formLayoutP2->setObjectName(QStringLiteral("formLayoutP2"));
         formLayoutP2->setFormAlignment(Qt::AlignBottom|Qt::AlignHCenter);
         formLayoutResourcesP2 = new QFormLayout();
-        formLayoutResourcesP2->setObjectName(QString::fromUtf8("formLayoutResourcesP2"));
+        formLayoutResourcesP2->setObjectName(QStringLiteral("formLayoutResourcesP2"));
         moneyP2 = new QLCDNumber(formLayoutWidget_7);
-        moneyP2->setObjectName(QString::fromUtf8("moneyP2"));
+        moneyP2->setObjectName(QStringLiteral("moneyP2"));
 
         formLayoutResourcesP2->setWidget(1, QFormLayout::FieldRole, moneyP2);
 
         labelFoodP2 = new QLabel(formLayoutWidget_7);
-        labelFoodP2->setObjectName(QString::fromUtf8("labelFoodP2"));
+        labelFoodP2->setObjectName(QStringLiteral("labelFoodP2"));
 
         formLayoutResourcesP2->setWidget(2, QFormLayout::LabelRole, labelFoodP2);
 
         foodP2 = new QLCDNumber(formLayoutWidget_7);
-        foodP2->setObjectName(QString::fromUtf8("foodP2"));
+        foodP2->setObjectName(QStringLiteral("foodP2"));
 
         formLayoutResourcesP2->setWidget(2, QFormLayout::FieldRole, foodP2);
 
         labelWoodP2 = new QLabel(formLayoutWidget_7);
-        labelWoodP2->setObjectName(QString::fromUtf8("labelWoodP2"));
+        labelWoodP2->setObjectName(QStringLiteral("labelWoodP2"));
 
         formLayoutResourcesP2->setWidget(3, QFormLayout::LabelRole, labelWoodP2);
 
         woodP2 = new QLCDNumber(formLayoutWidget_7);
-        woodP2->setObjectName(QString::fromUtf8("woodP2"));
+        woodP2->setObjectName(QStringLiteral("woodP2"));
 
         formLayoutResourcesP2->setWidget(3, QFormLayout::FieldRole, woodP2);
 
         labelStoneP2 = new QLabel(formLayoutWidget_7);
-        labelStoneP2->setObjectName(QString::fromUtf8("labelStoneP2"));
+        labelStoneP2->setObjectName(QStringLiteral("labelStoneP2"));
 
         formLayoutResourcesP2->setWidget(4, QFormLayout::LabelRole, labelStoneP2);
 
         stoneP2 = new QLCDNumber(formLayoutWidget_7);
-        stoneP2->setObjectName(QString::fromUtf8("stoneP2"));
+        stoneP2->setObjectName(QStringLiteral("stoneP2"));
 
         formLayoutResourcesP2->setWidget(4, QFormLayout::FieldRole, stoneP2);
 
         labelOreP2 = new QLabel(formLayoutWidget_7);
-        labelOreP2->setObjectName(QString::fromUtf8("labelOreP2"));
+        labelOreP2->setObjectName(QStringLiteral("labelOreP2"));
 
         formLayoutResourcesP2->setWidget(5, QFormLayout::LabelRole, labelOreP2);
 
         oreP2 = new QLCDNumber(formLayoutWidget_7);
-        oreP2->setObjectName(QString::fromUtf8("oreP2"));
+        oreP2->setObjectName(QStringLiteral("oreP2"));
 
         formLayoutResourcesP2->setWidget(5, QFormLayout::FieldRole, oreP2);
 
         labelMoneyP2 = new QLabel(formLayoutWidget_7);
-        labelMoneyP2->setObjectName(QString::fromUtf8("labelMoneyP2"));
+        labelMoneyP2->setObjectName(QStringLiteral("labelMoneyP2"));
 
         formLayoutResourcesP2->setWidget(1, QFormLayout::LabelRole, labelMoneyP2);
 
@@ -288,34 +291,34 @@ public:
         formLayoutP2->setLayout(1, QFormLayout::LabelRole, formLayoutResourcesP2);
 
         formLayout_3 = new QFormLayout();
-        formLayout_3->setObjectName(QString::fromUtf8("formLayout_3"));
+        formLayout_3->setObjectName(QStringLiteral("formLayout_3"));
         labelMovesP2 = new QLabel(formLayoutWidget_7);
-        labelMovesP2->setObjectName(QString::fromUtf8("labelMovesP2"));
+        labelMovesP2->setObjectName(QStringLiteral("labelMovesP2"));
 
         formLayout_3->setWidget(0, QFormLayout::LabelRole, labelMovesP2);
 
         movesP2 = new QLCDNumber(formLayoutWidget_7);
-        movesP2->setObjectName(QString::fromUtf8("movesP2"));
+        movesP2->setObjectName(QStringLiteral("movesP2"));
 
         formLayout_3->setWidget(0, QFormLayout::FieldRole, movesP2);
 
         labelTilesP2 = new QLabel(formLayoutWidget_7);
-        labelTilesP2->setObjectName(QString::fromUtf8("labelTilesP2"));
+        labelTilesP2->setObjectName(QStringLiteral("labelTilesP2"));
 
         formLayout_3->setWidget(1, QFormLayout::LabelRole, labelTilesP2);
 
         tilesP2 = new QLCDNumber(formLayoutWidget_7);
-        tilesP2->setObjectName(QString::fromUtf8("tilesP2"));
+        tilesP2->setObjectName(QStringLiteral("tilesP2"));
 
         formLayout_3->setWidget(1, QFormLayout::FieldRole, tilesP2);
 
         labelPowerP2 = new QLabel(formLayoutWidget_7);
-        labelPowerP2->setObjectName(QString::fromUtf8("labelPowerP2"));
+        labelPowerP2->setObjectName(QStringLiteral("labelPowerP2"));
 
         formLayout_3->setWidget(2, QFormLayout::LabelRole, labelPowerP2);
 
         powerP2 = new QLCDNumber(formLayoutWidget_7);
-        powerP2->setObjectName(QString::fromUtf8("powerP2"));
+        powerP2->setObjectName(QStringLiteral("powerP2"));
 
         formLayout_3->setWidget(2, QFormLayout::FieldRole, powerP2);
 
@@ -323,9 +326,9 @@ public:
         formLayoutP2->setLayout(1, QFormLayout::FieldRole, formLayout_3);
 
         playerNameP2 = new QLabel(formLayoutWidget_7);
-        playerNameP2->setObjectName(QString::fromUtf8("playerNameP2"));
+        playerNameP2->setObjectName(QStringLiteral("playerNameP2"));
         QFont font;
-        font.setFamily(QString::fromUtf8("Nimbus Roman"));
+        font.setFamily(QStringLiteral("Nimbus Roman"));
         font.setPointSize(24);
         font.setBold(true);
         font.setWeight(75);
@@ -338,58 +341,58 @@ public:
         formLayoutPlayers->setLayout(0, QFormLayout::FieldRole, formLayoutP2);
 
         formLayoutP1 = new QFormLayout();
-        formLayoutP1->setObjectName(QString::fromUtf8("formLayoutP1"));
+        formLayoutP1->setObjectName(QStringLiteral("formLayoutP1"));
         formLayoutP1->setLabelAlignment(Qt::AlignCenter);
         formLayoutP1->setFormAlignment(Qt::AlignBottom|Qt::AlignHCenter);
         formLayoutResourcesP1 = new QFormLayout();
-        formLayoutResourcesP1->setObjectName(QString::fromUtf8("formLayoutResourcesP1"));
+        formLayoutResourcesP1->setObjectName(QStringLiteral("formLayoutResourcesP1"));
         labelMoneyP1 = new QLabel(formLayoutWidget_7);
-        labelMoneyP1->setObjectName(QString::fromUtf8("labelMoneyP1"));
+        labelMoneyP1->setObjectName(QStringLiteral("labelMoneyP1"));
 
         formLayoutResourcesP1->setWidget(1, QFormLayout::LabelRole, labelMoneyP1);
 
         moneyP1 = new QLCDNumber(formLayoutWidget_7);
-        moneyP1->setObjectName(QString::fromUtf8("moneyP1"));
+        moneyP1->setObjectName(QStringLiteral("moneyP1"));
 
         formLayoutResourcesP1->setWidget(1, QFormLayout::FieldRole, moneyP1);
 
         labelFoodP1 = new QLabel(formLayoutWidget_7);
-        labelFoodP1->setObjectName(QString::fromUtf8("labelFoodP1"));
+        labelFoodP1->setObjectName(QStringLiteral("labelFoodP1"));
 
         formLayoutResourcesP1->setWidget(2, QFormLayout::LabelRole, labelFoodP1);
 
         foodP1 = new QLCDNumber(formLayoutWidget_7);
-        foodP1->setObjectName(QString::fromUtf8("foodP1"));
+        foodP1->setObjectName(QStringLiteral("foodP1"));
 
         formLayoutResourcesP1->setWidget(2, QFormLayout::FieldRole, foodP1);
 
         labelWoodP1 = new QLabel(formLayoutWidget_7);
-        labelWoodP1->setObjectName(QString::fromUtf8("labelWoodP1"));
+        labelWoodP1->setObjectName(QStringLiteral("labelWoodP1"));
 
         formLayoutResourcesP1->setWidget(3, QFormLayout::LabelRole, labelWoodP1);
 
         woodP1 = new QLCDNumber(formLayoutWidget_7);
-        woodP1->setObjectName(QString::fromUtf8("woodP1"));
+        woodP1->setObjectName(QStringLiteral("woodP1"));
 
         formLayoutResourcesP1->setWidget(3, QFormLayout::FieldRole, woodP1);
 
         labelStoneP1 = new QLabel(formLayoutWidget_7);
-        labelStoneP1->setObjectName(QString::fromUtf8("labelStoneP1"));
+        labelStoneP1->setObjectName(QStringLiteral("labelStoneP1"));
 
         formLayoutResourcesP1->setWidget(4, QFormLayout::LabelRole, labelStoneP1);
 
         stoneP1 = new QLCDNumber(formLayoutWidget_7);
-        stoneP1->setObjectName(QString::fromUtf8("stoneP1"));
+        stoneP1->setObjectName(QStringLiteral("stoneP1"));
 
         formLayoutResourcesP1->setWidget(4, QFormLayout::FieldRole, stoneP1);
 
         labelOreP1 = new QLabel(formLayoutWidget_7);
-        labelOreP1->setObjectName(QString::fromUtf8("labelOreP1"));
+        labelOreP1->setObjectName(QStringLiteral("labelOreP1"));
 
         formLayoutResourcesP1->setWidget(5, QFormLayout::LabelRole, labelOreP1);
 
         oreP1 = new QLCDNumber(formLayoutWidget_7);
-        oreP1->setObjectName(QString::fromUtf8("oreP1"));
+        oreP1->setObjectName(QStringLiteral("oreP1"));
 
         formLayoutResourcesP1->setWidget(5, QFormLayout::FieldRole, oreP1);
 
@@ -397,34 +400,34 @@ public:
         formLayoutP1->setLayout(1, QFormLayout::LabelRole, formLayoutResourcesP1);
 
         formLayoutOtherP1 = new QFormLayout();
-        formLayoutOtherP1->setObjectName(QString::fromUtf8("formLayoutOtherP1"));
+        formLayoutOtherP1->setObjectName(QStringLiteral("formLayoutOtherP1"));
         labelMovesP1 = new QLabel(formLayoutWidget_7);
-        labelMovesP1->setObjectName(QString::fromUtf8("labelMovesP1"));
+        labelMovesP1->setObjectName(QStringLiteral("labelMovesP1"));
 
         formLayoutOtherP1->setWidget(0, QFormLayout::LabelRole, labelMovesP1);
 
         movesP1 = new QLCDNumber(formLayoutWidget_7);
-        movesP1->setObjectName(QString::fromUtf8("movesP1"));
+        movesP1->setObjectName(QStringLiteral("movesP1"));
 
         formLayoutOtherP1->setWidget(0, QFormLayout::FieldRole, movesP1);
 
         labelTilesP1 = new QLabel(formLayoutWidget_7);
-        labelTilesP1->setObjectName(QString::fromUtf8("labelTilesP1"));
+        labelTilesP1->setObjectName(QStringLiteral("labelTilesP1"));
 
         formLayoutOtherP1->setWidget(1, QFormLayout::LabelRole, labelTilesP1);
 
         tilesP1 = new QLCDNumber(formLayoutWidget_7);
-        tilesP1->setObjectName(QString::fromUtf8("tilesP1"));
+        tilesP1->setObjectName(QStringLiteral("tilesP1"));
 
         formLayoutOtherP1->setWidget(1, QFormLayout::FieldRole, tilesP1);
 
         labelPowerP1 = new QLabel(formLayoutWidget_7);
-        labelPowerP1->setObjectName(QString::fromUtf8("labelPowerP1"));
+        labelPowerP1->setObjectName(QStringLiteral("labelPowerP1"));
 
         formLayoutOtherP1->setWidget(2, QFormLayout::LabelRole, labelPowerP1);
 
         powerP1 = new QLCDNumber(formLayoutWidget_7);
-        powerP1->setObjectName(QString::fromUtf8("powerP1"));
+        powerP1->setObjectName(QStringLiteral("powerP1"));
 
         formLayoutOtherP1->setWidget(2, QFormLayout::FieldRole, powerP1);
 
@@ -432,7 +435,7 @@ public:
         formLayoutP1->setLayout(1, QFormLayout::FieldRole, formLayoutOtherP1);
 
         playerNameP1 = new QLabel(formLayoutWidget_7);
-        playerNameP1->setObjectName(QString::fromUtf8("playerNameP1"));
+        playerNameP1->setObjectName(QStringLiteral("playerNameP1"));
         playerNameP1->setFont(font);
         playerNameP1->setAlignment(Qt::AlignCenter);
 
@@ -465,11 +468,11 @@ public:
         productionLabel->raise();
         formLayoutWidget_7->raise();
         menubar = new QMenuBar(Game);
-        menubar->setObjectName(QString::fromUtf8("menubar"));
+        menubar->setObjectName(QStringLiteral("menubar"));
         menubar->setGeometry(QRect(0, 0, 2006, 25));
         Game->setMenuBar(menubar);
         statusbar = new QStatusBar(Game);
-        statusbar->setObjectName(QString::fromUtf8("statusbar"));
+        statusbar->setObjectName(QStringLiteral("statusbar"));
         Game->setStatusBar(statusbar);
 
         retranslateUi(Game);
@@ -479,17 +482,17 @@ public:
 
     void retranslateUi(QMainWindow *Game)
     {
-        Game->setWindowTitle(QCoreApplication::translate("Game", "MainWindow", nullptr));
-        turnButton->setText(QCoreApplication::translate("Game", "End Turn", nullptr));
-        turnLabel->setText(QCoreApplication::translate("Game", "Turn: ", nullptr));
-        farmButton->setText(QCoreApplication::translate("Game", "Farm", nullptr));
-        mineButton->setText(QCoreApplication::translate("Game", "Mine", nullptr));
-        outpostButton->setText(QCoreApplication::translate("Game", "Outpost", nullptr));
-        quarryButton->setText(QCoreApplication::translate("Game", "Quarry", nullptr));
-        sawmillButton->setText(QCoreApplication::translate("Game", "Sawmill", nullptr));
-        basicWorkerButton->setText(QCoreApplication::translate("Game", "Basic Worker", nullptr));
-        warriorButton->setText(QCoreApplication::translate("Game", "Warrior", nullptr));
-        constWorkerButton->setText(QCoreApplication::translate("Game", "Construction Worker", nullptr));
+        Game->setWindowTitle(QApplication::translate("Game", "MainWindow", Q_NULLPTR));
+        turnButton->setText(QApplication::translate("Game", "End Turn", Q_NULLPTR));
+        turnLabel->setText(QApplication::translate("Game", "Turn: ", Q_NULLPTR));
+        farmButton->setText(QApplication::translate("Game", "Farm", Q_NULLPTR));
+        mineButton->setText(QApplication::translate("Game", "Mine", Q_NULLPTR));
+        outpostButton->setText(QApplication::translate("Game", "Outpost", Q_NULLPTR));
+        quarryButton->setText(QApplication::translate("Game", "Quarry", Q_NULLPTR));
+        sawmillButton->setText(QApplication::translate("Game", "Sawmill", Q_NULLPTR));
+        basicWorkerButton->setText(QApplication::translate("Game", "Basic Worker", Q_NULLPTR));
+        warriorButton->setText(QApplication::translate("Game", "Warrior", Q_NULLPTR));
+        constWorkerButton->setText(QApplication::translate("Game", "Construction Worker", Q_NULLPTR));
         hoverInfo->setText(QString());
         label->setText(QString());
         buildingNameLabel->setText(QString());
@@ -505,23 +508,23 @@ public:
         oreProductionLabel->setText(QString());
         buildCostLabel->setText(QString());
         productionLabel->setText(QString());
-        labelFoodP2->setText(QCoreApplication::translate("Game", "Food", nullptr));
-        labelWoodP2->setText(QCoreApplication::translate("Game", "Wood", nullptr));
-        labelStoneP2->setText(QCoreApplication::translate("Game", "Stone", nullptr));
-        labelOreP2->setText(QCoreApplication::translate("Game", "Ore", nullptr));
-        labelMoneyP2->setText(QCoreApplication::translate("Game", "Money", nullptr));
-        labelMovesP2->setText(QCoreApplication::translate("Game", "Moves", nullptr));
-        labelTilesP2->setText(QCoreApplication::translate("Game", "Tiles", nullptr));
-        labelPowerP2->setText(QCoreApplication::translate("Game", "Power%", nullptr));
+        labelFoodP2->setText(QApplication::translate("Game", "Food", Q_NULLPTR));
+        labelWoodP2->setText(QApplication::translate("Game", "Wood", Q_NULLPTR));
+        labelStoneP2->setText(QApplication::translate("Game", "Stone", Q_NULLPTR));
+        labelOreP2->setText(QApplication::translate("Game", "Ore", Q_NULLPTR));
+        labelMoneyP2->setText(QApplication::translate("Game", "Money", Q_NULLPTR));
+        labelMovesP2->setText(QApplication::translate("Game", "Moves", Q_NULLPTR));
+        labelTilesP2->setText(QApplication::translate("Game", "Tiles", Q_NULLPTR));
+        labelPowerP2->setText(QApplication::translate("Game", "Power%", Q_NULLPTR));
         playerNameP2->setText(QString());
-        labelMoneyP1->setText(QCoreApplication::translate("Game", "Money", nullptr));
-        labelFoodP1->setText(QCoreApplication::translate("Game", "Food", nullptr));
-        labelWoodP1->setText(QCoreApplication::translate("Game", "Wood", nullptr));
-        labelStoneP1->setText(QCoreApplication::translate("Game", "Stone", nullptr));
-        labelOreP1->setText(QCoreApplication::translate("Game", "Ore", nullptr));
-        labelMovesP1->setText(QCoreApplication::translate("Game", "Moves", nullptr));
-        labelTilesP1->setText(QCoreApplication::translate("Game", "Tiles", nullptr));
-        labelPowerP1->setText(QCoreApplication::translate("Game", "Power%", nullptr));
+        labelMoneyP1->setText(QApplication::translate("Game", "Money", Q_NULLPTR));
+        labelFoodP1->setText(QApplication::translate("Game", "Food", Q_NULLPTR));
+        labelWoodP1->setText(QApplication::translate("Game", "Wood", Q_NULLPTR));
+        labelStoneP1->setText(QApplication::translate("Game", "Stone", Q_NULLPTR));
+        labelOreP1->setText(QApplication::translate("Game", "Ore", Q_NULLPTR));
+        labelMovesP1->setText(QApplication::translate("Game", "Moves", Q_NULLPTR));
+        labelTilesP1->setText(QApplication::translate("Game", "Tiles", Q_NULLPTR));
+        labelPowerP1->setText(QApplication::translate("Game", "Power%", Q_NULLPTR));
         playerNameP1->setText(QString());
     } // retranslateUi
 
