@@ -63,9 +63,9 @@ public:
     //tekee ja piirtää UI setit (nappulat summuut)
     /**
      * @brief Adds buildingButtons and workerButtons to button-vector
-
      */
     void displayMainMenu();
+
 
     void updateView();
 	void connectButtons();
