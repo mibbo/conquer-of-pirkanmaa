@@ -281,8 +281,8 @@ bool GameScene::event(QEvent *event)
                             }
                         }
                     }
-
-                } else if (vec.size() > 0 /*&& vec.at(0)->getOwner() == playerInTurn_*/ && vec.at(0) == movableObject_) {
+                // Deselect the worker on second click to itself
+                } else if (vec.size() > 0 && vec.at(0) == movableObject_) {
                     movableObjectSelected_ = false;
                 // Check if a worker has been "selected" and if the clicked tile has any other workers
                 } else if (movableObjectSelected_ == true && objectManager_->getTile(coor)->getWorkers().size() == 0
@@ -388,6 +388,11 @@ bool GameScene::event(QEvent *event)
                         GameScene::updateViewSignal();
                     }
                     movableObjectSelected_ = false;
+                } else if (movableObjectSelected_ == true && movableObject_->getType() == "Warrior"
+                           && objectManager_->getTile(coor)->getBuildingCount() == 1
+                           && objectManager_->getTile(coor)->getBuildings().at(0)->getType() == "HeadQuarters"
+                           && objectManager_->getTile(coor)->getBuildings().at(0)->getOwner() != playerInTurn_) {
+                    emit gameOverSignal(playerInTurn_, turnCount_);
                 } else {
                     movableObjectSelected_ = false;
                     menuBuildingButtonClicked_ = false;
@@ -433,7 +438,20 @@ bool GameScene::event(QEvent *event)
                         tiles = objectManager_->getNeighbourTiles(buildingToAdd_);
 
                     }
-                    playerInTurn_->addTiles(tiles);
+                    std::vector<std::shared_ptr<Course::GameObject>> tilesToAdd;
+                    for (auto tile : tiles) {
+                        bool tileFound = false;
+                        for (auto playerTile : playerInTurn_->getTiles()) {
+                            if (tile->getCoordinate() == playerTile->getCoordinate()) {
+                                tileFound = true;
+                                break;
+                            }
+                        }
+                        if (!tileFound) {
+                            tilesToAdd.push_back(tile);
+                        }
+                    }
+                    playerInTurn_->addTiles(tilesToAdd);
                     GameScene::updateAndDrawTileOwners();
 
                     // TULOSTAA puuttuvien resurssien määrän
@@ -588,7 +606,6 @@ void GameScene::addButtonObject(std::string buttonString)
 
     // poistaa mahdollisten liikkeiden paikat
     for (auto object : possibleMovementTiles_) {
-//        removeItem(object);
         delete object;
     }
     possibleMovementTiles_.clear();

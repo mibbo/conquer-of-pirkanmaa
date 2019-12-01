@@ -18,6 +18,8 @@
 #include <QWidget>
 #include <resourcemaps.hh>
 
+#define stringify( name ) # name
+
 Game::Game(QWidget *parent):
     QMainWindow(parent),
     ui(new Ui::Game),
@@ -59,6 +61,10 @@ Game::Game(QWidget *parent):
 
     // LOG
     ui->log->setReadOnly(true);
+
+    costVector_ = {ui->moneyLabel, ui->foodLabel, ui->woodLabel, ui->stoneLabel, ui->oreLabel};
+    productionVector_ = {ui->moneyProductionLabel, ui->foodProductionLabel, ui->woodProductionLabel,
+                         ui->stoneProductionLabel, ui->oreProductionLabel};
 }
 
 Game::~Game()
@@ -146,12 +152,32 @@ void Game::sendButtonText() {
 void Game::updateInformationSlot(int movesLeft)
 {
     Course::ResourceMap resources = playerInTurn_->getResources();
-    ui->moves->display(movesLeft);
-    ui->money->display(resources[Course::MONEY]);
-    ui->food->display(resources[Course::FOOD]);
-    ui->wood->display(resources[Course::WOOD]);
-    ui->stone->display(resources[Course::STONE]);
-    ui->ore->display(resources[Course::ORE]);
+
+    if (playerInTurn_ == playerOne_) {
+        ui->movesP1->display(movesLeft);
+        ui->moneyP1->display(resources[Course::MONEY]);
+        ui->foodP1->display(resources[Course::FOOD]);
+        ui->woodP1->display(resources[Course::WOOD]);
+        ui->stoneP1->display(resources[Course::STONE]);
+        ui->oreP1->display(resources[Course::ORE]);
+        int tileAmount = playerOne_->getTiles().size();
+        ui->tilesP1->display(tileAmount);
+    } else {
+        ui->movesP2->display(movesLeft);
+        ui->moneyP2->display(resources[Course::MONEY]);
+        ui->foodP2->display(resources[Course::FOOD]);
+        ui->woodP2->display(resources[Course::WOOD]);
+        ui->stoneP2->display(resources[Course::STONE]);
+        ui->oreP2->display(resources[Course::ORE]);
+        int tileAmount = playerTwo_->getTiles().size();
+        ui->tilesP2->display(tileAmount);
+    }
+
+    float ownedTilesAmount = playerOne_->getTiles().size() + playerTwo_->getTiles().size();
+    int powerP1 = playerOne_->getTiles().size() / ownedTilesAmount * 100;
+    ui->powerP1->display(powerP1);
+    int powerP2 = 100 - powerP1;
+    ui->powerP2->display(powerP2);
 }
 
 void Game::gameOverSlot(std::shared_ptr<Student::Player> winner, int turn)
@@ -176,22 +202,108 @@ void Game::startGameSlot(unsigned int mapWidth, unsigned int mapHeight, QString 
     playerOne_->setColor(playerOneColor);
     playerTwo_->setColor(playerTwoColor);
     gameScene_->drawGameBoard(mapWidth, mapHeight, 2, objManager_, eveHandler_, playerOne_, playerTwo_);
+
+    // Display both players' resources etc.
+    Course::ResourceMap resourcesP1 = playerInTurn_->getResources();
+    ui->playerNameP1->setText(QString::fromStdString(playerOne_->getName()));
+    ui->movesP1->display(0);
+    ui->moneyP1->display(resourcesP1[Course::MONEY]);
+    ui->foodP1->display(resourcesP1[Course::FOOD]);
+    ui->woodP1->display(resourcesP1[Course::WOOD]);
+    ui->stoneP1->display(resourcesP1[Course::STONE]);
+    ui->oreP1->display(resourcesP1[Course::ORE]);
+    int tileAmountP1 = playerOne_->getTiles().size();
+    ui->tilesP1->display(tileAmountP1);
+    ui->powerP1->display(50);
+
+    Course::ResourceMap resourcesP2 = playerInTurn_->getResources();
+    ui->playerNameP2->setText(QString::fromStdString(playerTwo_->getName()));
+    ui->movesP2->display(0);
+    ui->moneyP2->display(resourcesP2[Course::MONEY]);
+    ui->foodP2->display(resourcesP2[Course::FOOD]);
+    ui->woodP2->display(resourcesP2[Course::WOOD]);
+    ui->stoneP2->display(resourcesP2[Course::STONE]);
+    ui->oreP2->display(resourcesP2[Course::ORE]);
+    int tileAmountP2 = playerTwo_->getTiles().size();
+    ui->tilesP2->display(tileAmountP2);
+    ui->powerP2->display(50);
 }
 
 void Game::logMessageSlot(std::string message)
 {
-    ui->log->setPlainText(QString::fromStdString(message));
-    ui->resourceLabel->setText(QString::fromStdString(message));
+    ui->buildingNameLabel->setText(QString::fromStdString(message));
+    ui->buildCostLabel->setText("Cost");
+
+    const char* resourceNames[] =
+      {
+      stringify( Money ),
+      stringify( Food ),
+      stringify( Wood ),
+      stringify( Stone ),
+      stringify( Ore )
+      };
+
+    Course::ResourceMap costResourceMap;
+    Course::ResourceMap productionResourceMap;
 
     if (message == "Farm") {
-        for (auto map : Student::ConstResourceMaps::MINE_PRODUCTION) {
+        costResourceMap = Student::ConstResourceMaps::FARM_BUILD_COST;
+        productionResourceMap = Student::ConstResourceMaps::FARM_PRODUCTION;
 
-        }
+    } else if (message == "Quarry") {
+        costResourceMap = Student::ConstResourceMaps::QUARRY_BUILD_COST;
+        productionResourceMap = Student::ConstResourceMaps::QUARRY_PRODUCTION;
+
+    } else if (message == "Mine") {
+        costResourceMap = Student::ConstResourceMaps::MINE_BUILD_COST;
+        productionResourceMap = Student::ConstResourceMaps::MINE_PRODUCTION;
+
+    } else if (message == "Sawmill") {
+        costResourceMap = Student::ConstResourceMaps::SAWMILL_BUILD_COST;
+        productionResourceMap = Student::ConstResourceMaps::SAWMILL_PRODUCTION;
+
+    } else if (message == "Outpost") {
+        costResourceMap = Student::ConstResourceMaps::OUTPOST_BUILD_COST;
+
+    } else if (message == "Basic Worker") {
+        costResourceMap = Student::ConstResourceMaps::BW_RECRUITMENT_COST;
+
+    } else if (message == "Construction Worker") {
+        costResourceMap = Student::ConstResourceMaps::CW_RECRUITMENT_COST;
+
+    } else if (message == "Warrior") {
+        costResourceMap = Student::ConstResourceMaps::WARRIOR_RECRUITMENT_COST;
+
+    } else {
+        return;
     }
 
-    Student::ConstResourceMaps::MINE_BUILD_COST.at(Course::BasicResource::MONEY);
 
+    if (message == "Farm" || message == "Sawmill" || message == "Quarry" || message == "Mine" ) {
+        ui->productionLabel->setText("Production");
 
+        int i = 0;
+        for (auto mapC : costResourceMap) {
+            costVector_.at(i)->setText(QString::fromStdString(resourceNames[mapC.first-1]) + ": " + QString::number(mapC.second));
+            i++;
+        }
+
+        int k = 0;
+        for (auto mapP : productionResourceMap) {
+            productionVector_.at(k)->setText(QString::fromStdString(resourceNames[mapP.first-1]) + ": " + QString::number(abs(mapP.second)));
+            k++;
+        }
+
+    } else {
+        ui->productionLabel->setText("");
+
+        int i = 0;
+        for (auto map : costResourceMap) {
+            costVector_.at(i)->setText(QString::fromStdString(resourceNames[map.first-1]) + ": " + QString::number(map.second));
+            productionVector_.at(i)->setText("");
+            i++;
+        }
+    }
 }
 
 void Game::logMessageSlot(QString message)

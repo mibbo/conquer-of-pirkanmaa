@@ -97,78 +97,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QWidget" name="formLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>50</y>
-      <width>160</width>
-      <height>196</height>
-     </rect>
-    </property>
-    <layout class="QFormLayout" name="formLayout">
-     <item row="0" column="1">
-      <widget class="QLCDNumber" name="moves"/>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="labelMoney">
-       <property name="text">
-        <string>Money</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLCDNumber" name="money"/>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="labelFood">
-       <property name="text">
-        <string>Food</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLCDNumber" name="food"/>
-     </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="labelWood">
-       <property name="text">
-        <string>Wood</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QLCDNumber" name="wood"/>
-     </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="labelStone">
-       <property name="text">
-        <string>Stone</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLCDNumber" name="stone"/>
-     </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="labelOre">
-       <property name="text">
-        <string>Ore</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLCDNumber" name="ore"/>
-     </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="labelMoves">
-       <property name="text">
-        <string>Moves</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
@@ -205,10 +133,10 @@
    <widget class="QPlainTextEdit" name="log">
     <property name="geometry">
      <rect>
-      <x>1270</x>
-      <y>410</y>
-      <width>611</width>
-      <height>131</height>
+      <x>240</x>
+      <y>400</y>
+      <width>61</width>
+      <height>51</height>
      </rect>
     </property>
    </widget>
@@ -241,17 +169,17 @@
      <pixmap resource="resources.qrc">:/images/sprite/parchment.png</pixmap>
     </property>
    </widget>
-   <widget class="QLabel" name="resourceLabel">
+   <widget class="QLabel" name="buildingNameLabel">
     <property name="geometry">
      <rect>
-      <x>1470</x>
-      <y>70</y>
+      <x>1450</x>
+      <y>120</y>
       <width>71</width>
       <height>18</height>
      </rect>
     </property>
     <property name="text">
-     <string>Farm cost:</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="moneyLabel">
@@ -259,12 +187,12 @@
      <rect>
       <x>1550</x>
       <y>70</y>
-      <width>58</width>
+      <width>81</width>
       <height>18</height>
      </rect>
     </property>
     <property name="text">
-     <string>Money: 0</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="woodLabel">
@@ -272,12 +200,12 @@
      <rect>
       <x>1550</x>
       <y>110</y>
-      <width>58</width>
+      <width>81</width>
       <height>18</height>
      </rect>
     </property>
     <property name="text">
-     <string>Wood: 0</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="stoneLabel">
@@ -285,12 +213,12 @@
      <rect>
       <x>1550</x>
       <y>130</y>
-      <width>58</width>
+      <width>81</width>
       <height>18</height>
      </rect>
     </property>
     <property name="text">
-     <string>Stone: 0</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="oreLabel">
@@ -298,12 +226,12 @@
      <rect>
       <x>1550</x>
       <y>150</y>
-      <width>58</width>
+      <width>81</width>
       <height>18</height>
      </rect>
     </property>
     <property name="text">
-     <string>Ore: 0</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="foodLabel">
@@ -311,29 +239,368 @@
      <rect>
       <x>1550</x>
       <y>90</y>
-      <width>58</width>
+      <width>81</width>
       <height>18</height>
      </rect>
     </property>
     <property name="text">
-     <string>Food: 0</string>
+     <string/>
     </property>
+   </widget>
+   <widget class="QLabel" name="moneyProductionLabel">
+    <property name="geometry">
+     <rect>
+      <x>1640</x>
+      <y>70</y>
+      <width>81</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="foodProductionLabel">
+    <property name="geometry">
+     <rect>
+      <x>1640</x>
+      <y>90</y>
+      <width>81</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="woodProductionLabel">
+    <property name="geometry">
+     <rect>
+      <x>1640</x>
+      <y>110</y>
+      <width>81</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="stoneProductionLabel">
+    <property name="geometry">
+     <rect>
+      <x>1640</x>
+      <y>130</y>
+      <width>81</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="oreProductionLabel">
+    <property name="geometry">
+     <rect>
+      <x>1640</x>
+      <y>150</y>
+      <width>81</width>
+      <height>18</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="buildCostLabel">
+    <property name="geometry">
+     <rect>
+      <x>1560</x>
+      <y>50</y>
+      <width>71</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="productionLabel">
+    <property name="geometry">
+     <rect>
+      <x>1640</x>
+      <y>50</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QWidget" name="formLayoutWidget_7">
+    <property name="geometry">
+     <rect>
+      <x>1260</x>
+      <y>380</y>
+      <width>511</width>
+      <height>211</height>
+     </rect>
+    </property>
+    <layout class="QFormLayout" name="formLayoutPlayers">
+     <item row="0" column="1">
+      <layout class="QFormLayout" name="formLayoutP2">
+       <property name="formAlignment">
+        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+       </property>
+       <item row="1" column="0">
+        <layout class="QFormLayout" name="formLayoutResourcesP2">
+         <item row="1" column="1">
+          <widget class="QLCDNumber" name="moneyP2"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="labelFoodP2">
+           <property name="text">
+            <string>Food</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLCDNumber" name="foodP2"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="labelWoodP2">
+           <property name="text">
+            <string>Wood</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLCDNumber" name="woodP2"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="labelStoneP2">
+           <property name="text">
+            <string>Stone</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLCDNumber" name="stoneP2"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="labelOreP2">
+           <property name="text">
+            <string>Ore</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLCDNumber" name="oreP2"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="labelMoneyP2">
+           <property name="text">
+            <string>Money</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="1">
+        <layout class="QFormLayout" name="formLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelMovesP2">
+           <property name="text">
+            <string>Moves</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLCDNumber" name="movesP2"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="labelTilesP2">
+           <property name="text">
+            <string>Tiles</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLCDNumber" name="tilesP2"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="labelPowerP2">
+           <property name="text">
+            <string>Power%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLCDNumber" name="powerP2"/>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="playerNameP2">
+         <property name="font">
+          <font>
+           <family>Nimbus Roman</family>
+           <pointsize>24</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item row="0" column="0">
+      <layout class="QFormLayout" name="formLayoutP1">
+       <property name="labelAlignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="formAlignment">
+        <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+       </property>
+       <item row="1" column="0">
+        <layout class="QFormLayout" name="formLayoutResourcesP1">
+         <item row="1" column="0">
+          <widget class="QLabel" name="labelMoneyP1">
+           <property name="text">
+            <string>Money</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLCDNumber" name="moneyP1"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="labelFoodP1">
+           <property name="text">
+            <string>Food</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLCDNumber" name="foodP1"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="labelWoodP1">
+           <property name="text">
+            <string>Wood</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLCDNumber" name="woodP1"/>
+         </item>
+         <item row="4" column="0">
+          <widget class="QLabel" name="labelStoneP1">
+           <property name="text">
+            <string>Stone</string>
+           </property>
+          </widget>
+         </item>
+         <item row="4" column="1">
+          <widget class="QLCDNumber" name="stoneP1"/>
+         </item>
+         <item row="5" column="0">
+          <widget class="QLabel" name="labelOreP1">
+           <property name="text">
+            <string>Ore</string>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="1">
+          <widget class="QLCDNumber" name="oreP1"/>
+         </item>
+        </layout>
+       </item>
+       <item row="1" column="1">
+        <layout class="QFormLayout" name="formLayoutOtherP1">
+         <item row="0" column="0">
+          <widget class="QLabel" name="labelMovesP1">
+           <property name="text">
+            <string>Moves</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLCDNumber" name="movesP1"/>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="labelTilesP1">
+           <property name="text">
+            <string>Tiles</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLCDNumber" name="tilesP1"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="labelPowerP1">
+           <property name="text">
+            <string>Power%</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLCDNumber" name="powerP1"/>
+         </item>
+        </layout>
+       </item>
+       <item row="0" column="0" colspan="2">
+        <widget class="QLabel" name="playerNameP1">
+         <property name="font">
+          <font>
+           <family>Nimbus Roman</family>
+           <pointsize>24</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </widget>
    <zorder>label</zorder>
    <zorder>graphicsView</zorder>
    <zorder>turnButton</zorder>
    <zorder>turnLabel</zorder>
    <zorder>gridLayoutWidget</zorder>
-   <zorder>formLayoutWidget</zorder>
    <zorder>gridLayoutWidget_2</zorder>
    <zorder>log</zorder>
    <zorder>hoverInfo</zorder>
-   <zorder>resourceLabel</zorder>
+   <zorder>buildingNameLabel</zorder>
    <zorder>moneyLabel</zorder>
    <zorder>woodLabel</zorder>
    <zorder>stoneLabel</zorder>
    <zorder>oreLabel</zorder>
    <zorder>foodLabel</zorder>
+   <zorder>moneyProductionLabel</zorder>
+   <zorder>foodProductionLabel</zorder>
+   <zorder>woodProductionLabel</zorder>
+   <zorder>stoneProductionLabel</zorder>
+   <zorder>oreProductionLabel</zorder>
+   <zorder>buildCostLabel</zorder>
+   <zorder>productionLabel</zorder>
+   <zorder>formLayoutWidget_7</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

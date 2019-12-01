@@ -11,6 +11,7 @@
 #include "gameeventhandler.hh"
 #include "QPushButton"
 #include "vector"
+#include "QLabel"
 
 
 namespace Ui {
@@ -66,6 +67,8 @@ private:
     Ui::Game *ui;
     QDialog* dialoq_;
     std::vector<QPushButton*> buildingButtonsVector_;
+    std::vector<QLabel*> costVector_;
+    std::vector<QLabel*> productionVector_;
 
     std::shared_ptr<Student::Player> playerInTurn_ = nullptr;
     std::shared_ptr<Student::Player> playerOne_ = nullptr;
