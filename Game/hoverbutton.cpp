@@ -42,6 +42,7 @@ bool HoverButton::event(QEvent *event)
     case QEvent::HoverEnter:
         qDebug() << "hover Enter";
         hoverEnter(static_cast<QHoverEvent*>(event));
+        emit buttonInfoSignal(this->text().toStdString());
         return true;
         break;
     case QEvent::HoverLeave:

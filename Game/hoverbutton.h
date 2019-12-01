@@ -17,6 +17,7 @@ protected:
     bool event(QEvent *event);
 
 signals:
+    void buttonInfoSignal(std::string text);
 
 public slots:
 };

@@ -49,5 +49,6 @@
         <file>sprite/EForest.png</file>
         <file>sprite/Forest.png</file>
         <file>sprite/River.png</file>
+        <file>sprite/parchment.png</file>
     </qresource>
 </RCC>

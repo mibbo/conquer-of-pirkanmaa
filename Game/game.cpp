@@ -16,6 +16,7 @@
 #include <iostream>
 
 #include <QWidget>
+#include <resourcemaps.hh>
 
 Game::Game(QWidget *parent):
     QMainWindow(parent),
@@ -160,6 +161,8 @@ void Game::hoverTextSlot(std::string text)
 void Game::connectButtons() {
     for (auto button : buildingButtonsVector_) {
         connect(button, SIGNAL(clicked()), this, SLOT(sendButtonText()));
+        connect(button, SIGNAL(buttonInfoSignal(std::string)), this, SLOT(logMessageSlot(std::string)));
+
     }
 }
 
@@ -176,6 +179,17 @@ void Game::startGameSlot(unsigned int mapWidth, unsigned int mapHeight, QString 
 void Game::logMessageSlot(std::string message)
 {
     ui->log->setPlainText(QString::fromStdString(message));
+    ui->resourceLabel->setText(QString::fromStdString(message));
+
+    if (message == "Farm") {
+        for (auto map : Student::ConstResourceMaps::MINE_PRODUCTION) {
+
+        }
+    }
+
+    Student::ConstResourceMaps::MINE_BUILD_COST.at(Course::BasicResource::MONEY);
+
+
 }
 
 void Game::logMessageSlot(QString message)

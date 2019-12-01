@@ -565,8 +565,6 @@ void GameScene::addButtonObject(std::string buttonString)
     
     emit enableButtonsSignal();
 
-        std::cout << std::endl;
-
 
     if (menuBuildingButtonClicked_ == true && buildingToAdd_->getType() == buttonString) {
         menuBuildingButtonClicked_ = false;
