@@ -190,7 +190,6 @@ void MapItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
     if(event){
         //std::cout << m_gameobject->getType() << std::endl;
-//        emit mapItemHoverSignal(m_gameobject->getCoordinate());
     }
 
 }

@@ -55,7 +55,6 @@ public slots:
     void logMessageSlot(std::string message);
     void logMessageSlot(QString message);
     void enableButtonsSlot();
-    void hoverTextSlot(std::string text);
 
 
 private slots:

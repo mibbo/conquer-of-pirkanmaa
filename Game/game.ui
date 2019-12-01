@@ -212,19 +212,6 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLabel" name="hoverInfo">
-    <property name="geometry">
-     <rect>
-      <x>1720</x>
-      <y>70</y>
-      <width>63</width>
-      <height>20</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

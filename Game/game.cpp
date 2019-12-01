@@ -49,7 +49,6 @@ Game::Game(QWidget *parent):
     connect(sgs_rawptr, SIGNAL(updateViewSignal()), this, SLOT(updateViewSlot()));
     connect(sgs_rawptr, SIGNAL(updateInformationSignal(int)), this, SLOT(updateInformationSlot(int)));
     connect(sgs_rawptr, SIGNAL(gameOverSignal(std::shared_ptr<Student::Player>, int)), this, SLOT(gameOverSlot(std::shared_ptr<Student::Player>, int)));
-    connect(sgs_rawptr, SIGNAL(hoverTextSignal(std::string)), this, SLOT(hoverTextSlot(std::string)));
 
     // connectaa gamescenen signaalin gameen
     connect(sgs_rawptr, SIGNAL(enableButtonsSignal()), this, SLOT(enableButtonsSlot()));
@@ -102,7 +101,14 @@ void Game::setupPlayers(QString playerOneName, QString playerTwoName)
 
     std::cout << "p1: " << playerOne_->getName()<< std::endl;
     std::cout << "p2: " << playerTwo_->getName()<< std::endl;
-    setTurn(playerOne_);
+
+    int randomPlayer = rand()%2;
+    std::cout << randomPlayer << std::endl;
+    if (randomPlayer == 0) {
+        setTurn(playerOne_);
+    } else {
+        setTurn(playerTwo_);
+    }
 }
 
 void Game::displayMainMenu()
@@ -152,10 +158,6 @@ void Game::gameOverSlot(std::shared_ptr<Student::Player> winner, int turn)
     std::cout << "Olet viineri - " << winner->getName()  << std::endl;
 }
 
-void Game::hoverTextSlot(std::string text)
-{
-    ui->hoverInfo->setText(QString::fromStdString(text));
-}
 
 void Game::connectButtons() {
     for (auto button : buildingButtonsVector_) {
