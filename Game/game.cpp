@@ -189,7 +189,6 @@ void Game::connectButtons() {
     for (auto button : objectButtonsVector_) {
         connect(button, SIGNAL(clicked()), this, SLOT(sendButtonText()));
         connect(button, SIGNAL(buttonInfoSignal(std::string)), this, SLOT(logMessageSlot(std::string)));
-
     }
 }
 

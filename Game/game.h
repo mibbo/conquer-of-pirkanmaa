@@ -43,7 +43,8 @@ public:
     std::shared_ptr<Student::Player> getTurn();
 
     /**
-     * @brief sets the next players turn
+     * @brief sets the next players turn,
+     * emits playerInTurnSignal
      * @param Student::Player, the next players turn.
      */
     void setTurn(std::shared_ptr<Student::Player> player);
@@ -60,20 +61,35 @@ public:
      */
     void setupPlayers(QString playerOneName, QString playerTwoName);
 
-    //tekee ja piirtää UI setit (nappulat summuut)
     /**
      * @brief Adds buildingButtons and workerButtons to button-vector
      */
     void displayMainMenu();
 
-
+    /**
+     * @brief updates widgets and other graphics
+     */
     void updateView();
-	void connectButtons();
-    void highscores(std::shared_ptr<Student::Player> winner, int turnCount);
 
+    /**
+     * @brief conncects building- and worker-buttons click signals to slot that
+     * sends the button info. Also connects buttons info to logmessage slot
+     */
+	void connectButtons();
 
 signals:
+    /**
+     * @brief emits player whose turn it is
+     * is emitted in SetTurn method
+     * @param Student::Player whose turn it is
+     */
     void playInTurnSignal(std::shared_ptr<Student::Player> playerInTurn_);
+
+    /**
+     * @brief emits player whose turn it is
+     * is emitted in SetTurn method
+     * @param Student::Player whose turn it is
+     */
     void buildingSignal(std::string building);
 
 public slots:
