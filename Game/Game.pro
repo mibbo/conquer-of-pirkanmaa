@@ -11,7 +11,6 @@ SOURCES += \
     hoverbutton.cpp \
     main.cpp \
     mapitem.cpp \
-    mapwindow.cc \
     objectmanager.cpp \
     gameeventhandler.cpp \
     player.cpp \
@@ -30,7 +29,6 @@ HEADERS += \
     gamescene.h \
     hoverbutton.h \
     mapitem.h \
-    mapwindow.hh \
     gameeventhandler.hh \
     objectmanager.hh \
     player.h \

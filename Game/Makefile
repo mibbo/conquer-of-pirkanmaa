@@ -57,7 +57,6 @@ SOURCES       = game.cpp \
 		hoverbutton.cpp \
 		main.cpp \
 		mapitem.cpp \
-		mapwindow.cc \
 		objectmanager.cpp \
 		gameeventhandler.cpp \
 		player.cpp \
@@ -73,14 +72,12 @@ SOURCES       = game.cpp \
 		moc_game.cpp \
 		moc_gamescene.cpp \
 		moc_hoverbutton.cpp \
-		moc_mapwindow.cpp \
 		moc_startwindow.cpp
 OBJECTS       = game.o \
 		gamescene.o \
 		hoverbutton.o \
 		main.o \
 		mapitem.o \
-		mapwindow.o \
 		objectmanager.o \
 		gameeventhandler.o \
 		player.o \
@@ -97,7 +94,6 @@ OBJECTS       = game.o \
 		moc_game.o \
 		moc_gamescene.o \
 		moc_hoverbutton.o \
-		moc_mapwindow.o \
 		moc_startwindow.o
 DIST          = highscores.txt \
 		/usr/lib/qt/mkspecs/features/spec_pre.prf \
@@ -322,7 +318,6 @@ DIST          = highscores.txt \
 		gamescene.h \
 		hoverbutton.h \
 		mapitem.h \
-		mapwindow.hh \
 		gameeventhandler.hh \
 		objectmanager.hh \
 		player.h \
@@ -340,7 +335,6 @@ DIST          = highscores.txt \
 		hoverbutton.cpp \
 		main.cpp \
 		mapitem.cpp \
-		mapwindow.cc \
 		objectmanager.cpp \
 		gameeventhandler.cpp \
 		player.cpp \
@@ -821,8 +815,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents game.h gamescene.h hoverbutton.h mapitem.h mapwindow.hh gameeventhandler.hh objectmanager.hh player.h sawmill.h startwindow.h mountain.hh resourcemaps.hh cobblestone.hh river.hh constructionworker.hh warrior.hh quarry.hh mine.hh $(DISTDIR)/
-	$(COPY_FILE) --parents game.cpp gamescene.cpp hoverbutton.cpp main.cpp mapitem.cpp mapwindow.cc objectmanager.cpp gameeventhandler.cpp player.cpp sawmill.cpp startwindow.cpp mountain.cpp cobblestone.cpp river.cpp constructionworker.cpp warrior.cpp quarry.cpp mine.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents game.h gamescene.h hoverbutton.h mapitem.h gameeventhandler.hh objectmanager.hh player.h sawmill.h startwindow.h mountain.hh resourcemaps.hh cobblestone.hh river.hh constructionworker.hh warrior.hh quarry.hh mine.hh $(DISTDIR)/
+	$(COPY_FILE) --parents game.cpp gamescene.cpp hoverbutton.cpp main.cpp mapitem.cpp objectmanager.cpp gameeventhandler.cpp player.cpp sawmill.cpp startwindow.cpp mountain.cpp cobblestone.cpp river.cpp constructionworker.cpp warrior.cpp quarry.cpp mine.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents game.ui mapwindow.ui startwindow.ui $(DISTDIR)/
 
 
@@ -910,9 +904,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 	g++ -pipe -g -std=gnu++1y -Wall -W -dM -E -o moc_predefs.h /usr/lib/qt/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_game.cpp moc_gamescene.cpp moc_hoverbutton.cpp moc_mapwindow.cpp moc_startwindow.cpp
+compiler_moc_header_make_all: moc_game.cpp moc_gamescene.cpp moc_hoverbutton.cpp moc_startwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_game.cpp moc_gamescene.cpp moc_hoverbutton.cpp moc_mapwindow.cpp moc_startwindow.cpp
+	-$(DEL_FILE) moc_game.cpp moc_gamescene.cpp moc_hoverbutton.cpp moc_startwindow.cpp
 moc_game.cpp: game.h \
 		gamescene.h \
 		../Course/CourseLib/interfaces/igameeventhandler.h \
@@ -956,23 +950,6 @@ moc_hoverbutton.cpp: hoverbutton.h \
 		moc_predefs.h \
 		/usr/bin/moc
 	/usr/bin/moc $(DEFINES) --include /home/tommi/sync/git/otek/double-t/Game/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/tommi/sync/git/otek/double-t/Game -I/home/tommi/sync/git/otek/double-t/Course/CourseLib -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/opt/lintula/gcc/include/c++/8.1.0 -I/opt/lintula/gcc/include/c++/8.1.0/x86_64-pc-linux-gnu -I/opt/lintula/gcc/include/c++/8.1.0/backward -I/opt/lintula/gcc/lib/gcc/x86_64-pc-linux-gnu/8.1.0/include -I/usr/local/include -I/opt/lintula/gcc/include -I/opt/lintula/gcc/lib/gcc/x86_64-pc-linux-gnu/8.1.0/include-fixed -I/usr/include hoverbutton.h -o moc_hoverbutton.cpp
-
-moc_mapwindow.cpp: mapwindow.hh \
-		../Course/CourseLib/interfaces/igameeventhandler.h \
-		../Course/CourseLib/core/basicresources.h \
-		../Course/CourseLib/graphics/simplegamescene.h \
-		../Course/CourseLib/core/gameobject.h \
-		../Course/CourseLib/core/coordinate.h \
-		objectmanager.hh \
-		../Course/CourseLib/interfaces/iobjectmanager.h \
-		../Course/CourseLib/tiles/tilebase.h \
-		../Course/CourseLib/core/resourcemaps.h \
-		../Course/CourseLib/buildings/buildingbase.h \
-		../Course/CourseLib/core/placeablegameobject.h \
-		../Course/CourseLib/workers/workerbase.h \
-		moc_predefs.h \
-		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/tommi/sync/git/otek/double-t/Game/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/tommi/sync/git/otek/double-t/Game -I/home/tommi/sync/git/otek/double-t/Course/CourseLib -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/opt/lintula/gcc/include/c++/8.1.0 -I/opt/lintula/gcc/include/c++/8.1.0/x86_64-pc-linux-gnu -I/opt/lintula/gcc/include/c++/8.1.0/backward -I/opt/lintula/gcc/lib/gcc/x86_64-pc-linux-gnu/8.1.0/include -I/usr/local/include -I/opt/lintula/gcc/include -I/opt/lintula/gcc/lib/gcc/x86_64-pc-linux-gnu/8.1.0/include-fixed -I/usr/include mapwindow.hh -o moc_mapwindow.cpp
 
 moc_startwindow.cpp: startwindow.h \
 		moc_predefs.h \
@@ -1109,27 +1086,6 @@ mapitem.o: mapitem.cpp mapitem.h \
 		player.h \
 		../Course/CourseLib/core/playerbase.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mapitem.o mapitem.cpp
-
-mapwindow.o: mapwindow.cc mapwindow.hh \
-		../Course/CourseLib/interfaces/igameeventhandler.h \
-		../Course/CourseLib/core/basicresources.h \
-		../Course/CourseLib/graphics/simplegamescene.h \
-		../Course/CourseLib/core/gameobject.h \
-		../Course/CourseLib/core/coordinate.h \
-		objectmanager.hh \
-		../Course/CourseLib/interfaces/iobjectmanager.h \
-		../Course/CourseLib/tiles/tilebase.h \
-		../Course/CourseLib/core/resourcemaps.h \
-		../Course/CourseLib/buildings/buildingbase.h \
-		../Course/CourseLib/core/placeablegameobject.h \
-		../Course/CourseLib/workers/workerbase.h \
-		ui_mapwindow.h \
-		../Course/CourseLib/graphics/simplemapitem.h \
-		gameeventhandler.hh \
-		../Course/CourseLib/core/worldgenerator.h \
-		../Course/CourseLib/tiles/forest.h \
-		../Course/CourseLib/tiles/grassland.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mapwindow.o mapwindow.cc
 
 objectmanager.o: objectmanager.cpp objectmanager.hh \
 		../Course/CourseLib/interfaces/iobjectmanager.h \
@@ -1304,9 +1260,6 @@ moc_gamescene.o: moc_gamescene.cpp
 
 moc_hoverbutton.o: moc_hoverbutton.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_hoverbutton.o moc_hoverbutton.cpp
-
-moc_mapwindow.o: moc_mapwindow.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mapwindow.o moc_mapwindow.cpp
 
 moc_startwindow.o: moc_startwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_startwindow.o moc_startwindow.cpp

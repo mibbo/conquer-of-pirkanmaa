@@ -224,7 +224,6 @@ bool GameScene::event(QEvent *event)
                         for (int x = playerMovesLeft_ - abs(y); x >= -(playerMovesLeft_ - abs(y)); x--) {
                             int x_coor = movableObject_->getCoordinate().x() + x;
                             int y_coor = movableObject_->getCoordinate().y() + y;
-                            //std::cout << x_coor << y_coor << std::endl;
                             auto coor = Course::Coordinate(x_coor, y_coor);
                             if (x_coor >= 0 && y_coor >= 0 && x_coor <= m_width - 1 && y_coor <= m_height - 1
                                     && movableObject_->getCoordinate() != coor

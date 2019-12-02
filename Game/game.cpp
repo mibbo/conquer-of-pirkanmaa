@@ -132,7 +132,6 @@ void Game::sendButtonText() {
           // Emits buildingButtons name
           emit buildingSignal(button->text().toStdString());
             if (button->isChecked() == true) {
-                std::cout << "haloo" << std::endl;
                 button->setChecked(false);
             } else {
                 button->setChecked(true);

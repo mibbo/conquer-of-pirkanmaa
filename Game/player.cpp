@@ -29,7 +29,6 @@ bool Player::operator==(const Player& other) const
 
 bool Player::modifyResource(Course::BasicResource resource, int amount)
 {
-    std::cout << m_resources[resource] << std::endl;
     if (m_resources[resource] < amount) {
         return false;
     } else {
