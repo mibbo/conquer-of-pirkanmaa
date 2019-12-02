@@ -69,7 +69,7 @@ void MapItem::addNewColor(std::string type)
 
 void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    Q_UNUSED( option ); Q_UNUSED( widget );
+    Q_UNUSED( option ) Q_UNUSED( widget )
     // Check if the object to be drawn is a tile
     if (m_gameobject->getType() == "Grassland" ||
                 m_gameobject->getType() == "Forest" ||
@@ -92,10 +92,10 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
                    MapItem::boundingRectForImages().height());
         painter->drawPixmap(pixRect, pix_);
 
-        QRect rect(MapItem::boundingRect().x()-3,
-                   MapItem::boundingRect().y()-3,
-                   MapItem::boundingRect().width(),
-                   MapItem::boundingRect().height());
+        QRect rect(static_cast<int>(MapItem::boundingRect().x()-3),
+                   static_cast<int>(MapItem::boundingRect().y()-3),
+                   static_cast<int>(MapItem::boundingRect().width()),
+                   static_cast<int>(MapItem::boundingRect().height()));
         painter->drawRoundedRect(rect, 6, 6);
 
     } else {

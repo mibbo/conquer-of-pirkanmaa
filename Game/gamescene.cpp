@@ -60,7 +60,10 @@ GameScene::GameScene(QWidget* parent,
     connect(parent, SIGNAL(buildingSignal(std::string)), this, SLOT(addButtonObject(std::string)));
     connect(parent, SIGNAL(playInTurnSignal(std::shared_ptr<Student::Player>)), this, SLOT(playerInTurnSlot(std::shared_ptr<Student::Player>)));
     playerMovesLeft_ = 5;
-    srand(time(NULL)); // Set the rand seed based on the time
+    srand(static_cast<unsigned int>(time(nullptr))); // Set the rand seed based on the time
+    width += 1;
+    height += 1;
+    scale += 1;
 }
 
 void GameScene::drawGameBoard(unsigned int size_x,
@@ -72,15 +75,15 @@ void GameScene::drawGameBoard(unsigned int size_x,
                               const std::shared_ptr<Student::Player>& playerTwo ) {
 
     // Set scale, eventhandler, objectmanager and players
-    m_width = size_x;
-    m_height = size_y;
+    m_width = static_cast<int>(size_x);
+    m_height = static_cast<int>(size_y);
     m_scale = 800/size_x;
     eventHandler_ = eventhandler;
     objectManager_ = objectmanager;
     playerOne_ = playerOne;
     playerTwo_ = playerTwo;
 
-    seed = rand();
+    seed = static_cast<unsigned int>(rand());
 
     // Create the map with worldGenerator
     Course::WorldGenerator& worldGen = Course::WorldGenerator::getInstance();
@@ -88,7 +91,7 @@ void GameScene::drawGameBoard(unsigned int size_x,
     worldGen.addConstructor<Course::Grassland>(1);
     worldGen.addConstructor<Student::Mountain>(1);
     worldGen.addConstructor<Student::Cobblestone>(1);
-    worldGen.generateMap(m_width, m_height, seed, objectManager_, eventHandler_);
+    worldGen.generateMap(static_cast<unsigned int>(m_width), static_cast<unsigned int>(m_height), seed, objectManager_, eventHandler_);
     std::vector<std::shared_ptr<Course::TileBase>> tiles = objectManager_->returnTiles();
 
     int center = m_width/2-1;
@@ -233,10 +236,10 @@ bool GameScene::event(QEvent *event)
                                 auto graphitems = items(point * m_scale);
                                 auto graphitem = graphitems.at(graphitems.size()-1);
                                 auto boundrect = static_cast<Student::MapItem*>(graphitem)->boundingRect();
-                                auto movementrect = this->addRect(QRect(boundrect.x(),
-                                                     boundrect.y(),
-                                                     boundrect.width()-3,
-                                                     boundrect.height()-3),
+                                auto movementrect = this->addRect(QRect(static_cast<int>(boundrect.x()),
+                                                     static_cast<int>(boundrect.y()),
+                                                     static_cast<int>(boundrect.width()-3),
+                                                     static_cast<int>(boundrect.height()-3)),
                                               QPen(),
                                               QBrush(playerInTurn_->getColor(), Qt::Dense3Pattern));
                                 possibleMovementTiles_.push_back(movementrect);
@@ -309,8 +312,10 @@ bool GameScene::event(QEvent *event)
                     while (true) {
                         // Randomize the damage taking warrior by getting a random tile from the vector with both players' tiles
                         // and then check its owner
-                        int randNum = rand()%(playerOneTiles.size());
-                        if (playerOneTiles.at(randNum)->getOwner() == playerOne_) {
+                        int size = static_cast<int>(playerOneTiles.size());
+                        int randNum = rand()%(size);
+                        unsigned int x = static_cast<unsigned int>(randNum);
+                        if (playerOneTiles.at(x)->getOwner() == playerOne_) {
                             warrior2->setHitPoints(warrior2->getHitPoints() - 1);
                         } else {
                             warrior1->setHitPoints(warrior1->getHitPoints() - 1);
@@ -440,10 +445,10 @@ void GameScene::generateStartingObjects()
     int leftY;
     int rightY;
     while (true) {
-        xBoundary = floor(m_width / 5);
-        leftX = floor(rand() % (xBoundary));
+        xBoundary = static_cast<int>(floor(m_width / 5));
+        leftX = static_cast<int>(floor(rand() % (xBoundary)));
         rightX = m_width - 1 - leftX;
-        leftY = floor(rand() % (m_height));
+        leftY = static_cast<int>(floor(rand() % (m_height)));
         rightY = m_height - 1 - leftY;
         if (objectManager_->getTile(Course::Coordinate(leftX, leftY))->getType() != "River" &&
                 objectManager_->getTile(Course::Coordinate(Course::Coordinate(leftX, leftY), Course::Direction::E))->getType() != "River") {
@@ -502,6 +507,7 @@ std::shared_ptr<Course::GameObject> GameScene::returnPlayerObject(std::string ob
         if (object->getType() == objectName)
             return object;
     }
+    return nullptr;
 }
 
 

@@ -40,7 +40,7 @@ void Warrior::doSpecialAction()
 
 const Course::ResourceMapDouble Warrior::tileWorkAction()
 {
-
+    return Course::ResourceMapDouble();
 }
 
 int Warrior::getHitPoints()
