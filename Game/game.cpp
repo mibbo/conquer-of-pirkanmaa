@@ -304,12 +304,6 @@ void Game::logMessageSlot(std::string message)
     }
 }
 
-void Game::logMessageSlot(QString message)
-{
-    ui->log->setPlainText(message);
-
-}
-
 void Game::enableButtonsSlot()
 {
     for (auto button : objectButtonsVector_) {

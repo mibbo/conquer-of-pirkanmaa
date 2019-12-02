@@ -25,8 +25,6 @@ public:
     QPushButton *playButton;
     QLabel *mapSizeLabel;
     QComboBox *mapSizeComboBox;
-    QLabel *versionLabel;
-    QLabel *hashLabel;
     QLineEdit *playerOne;
     QLineEdit *playerTwo;
     QLabel *playerAmountLabel_2;
@@ -38,7 +36,7 @@ public:
     {
         if (StartWindow->objectName().isEmpty())
             StartWindow->setObjectName(QString::fromUtf8("StartWindow"));
-        StartWindow->resize(400, 300);
+        StartWindow->resize(389, 293);
         playButton = new QPushButton(StartWindow);
         playButton->setObjectName(QString::fromUtf8("playButton"));
         playButton->setGeometry(QRect(300, 260, 84, 28));
@@ -48,12 +46,6 @@ public:
         mapSizeComboBox = new QComboBox(StartWindow);
         mapSizeComboBox->setObjectName(QString::fromUtf8("mapSizeComboBox"));
         mapSizeComboBox->setGeometry(QRect(250, 150, 79, 28));
-        versionLabel = new QLabel(StartWindow);
-        versionLabel->setObjectName(QString::fromUtf8("versionLabel"));
-        versionLabel->setGeometry(QRect(5, 279, 70, 20));
-        hashLabel = new QLabel(StartWindow);
-        hashLabel->setObjectName(QString::fromUtf8("hashLabel"));
-        hashLabel->setGeometry(QRect(77, 269, 160, 40));
         playerOne = new QLineEdit(StartWindow);
         playerOne->setObjectName(QString::fromUtf8("playerOne"));
         playerOne->setGeometry(QRect(190, 20, 80, 26));
@@ -84,8 +76,6 @@ public:
         StartWindow->setWindowTitle(QCoreApplication::translate("StartWindow", "Dialog", nullptr));
         playButton->setText(QCoreApplication::translate("StartWindow", "Play", nullptr));
         mapSizeLabel->setText(QCoreApplication::translate("StartWindow", "Select map size:", nullptr));
-        versionLabel->setText(QCoreApplication::translate("StartWindow", "git version:", nullptr));
-        hashLabel->setText(QCoreApplication::translate("StartWindow", "git_commit_hash", nullptr));
         playerOne->setText(QCoreApplication::translate("StartWindow", "mibbo", nullptr));
         playerTwo->setText(QCoreApplication::translate("StartWindow", "brutus", nullptr));
         playerAmountLabel_2->setText(QCoreApplication::translate("StartWindow", "Player names:", nullptr));

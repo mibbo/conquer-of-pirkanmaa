@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>389</width>
+    <height>293</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,32 +47,6 @@
      <width>79</width>
      <height>28</height>
     </rect>
-   </property>
-  </widget>
-  <widget class="QLabel" name="versionLabel">
-   <property name="geometry">
-    <rect>
-     <x>5</x>
-     <y>279</y>
-     <width>70</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>git version:</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="hashLabel">
-   <property name="geometry">
-    <rect>
-     <x>77</x>
-     <y>269</y>
-     <width>160</width>
-     <height>40</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>git_commit_hash</string>
    </property>
   </widget>
   <widget class="QLineEdit" name="playerOne">

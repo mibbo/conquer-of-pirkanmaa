@@ -80,32 +80,73 @@ public:
 signals:
     /**
      * @brief emits player whose turn it is
-     * is emitted in SetTurn method
+     * is emitted in game.cpp SetTurn method
      * @param Student::Player whose turn it is
      */
     void playInTurnSignal(std::shared_ptr<Student::Player> playerInTurn_);
 
     /**
      * @brief emits player whose turn it is
-     * is emitted in SetTurn method
+     * is emitted game.cpp sendButtonText method
+     * is connected in gamescene.cpp
      * @param Student::Player whose turn it is
      */
     void buildingSignal(std::string building);
 
 public slots:
+    /**
+     * @brief setups both players names and colors,
+     * calls drawGameboard and displays all player infos in ui
+     * @param unsigned int maps width
+     * @param unsigned int maps height
+     * @param QString player one name
+     * @param QString player two name
+     * @param QColor player one color
+     * @param QColor player two color
+     */
     void startGameSlot (unsigned int mapWidth, unsigned int mapHeight, QString playerOne, QString playerTwo,
                         QColor playerOneColor, QColor playerTwoColor);
+
+    /**
+     * @brief updates viewport so all the changes in gamescene is visible
+     */
     void updateViewSlot();
-    // Slot that sends button text.
+
+    /**
+     * @brief Slot that sends button text when pressed
+     * emits buildingsignal
+     */
     void sendButtonText();
+
+    /**
+     * @brief updates both players information in ui
+     * @param int how many moves player has
+     */
     void updateInformationSlot(int movesLeft);
+
+    /**
+     * @brief updates both players information in ui
+     * @param Student::Player a shared pointer of player who won
+     * @param int how many turns in total during the whole game
+     */
     void gameOverSlot(std::shared_ptr<Student::Player> winner, int turnCount);
+
+    /**
+     * @brief dislpays buildings and workers resource costs in ui
+     * when hovering the buttons
+     * @param message emitted
+     */
     void logMessageSlot(std::string message);
-    void logMessageSlot(QString message);
+    /**
+     * @brief unchecks buttons
+     */
     void enableButtonsSlot();
 
 
 private slots:
+    /**
+     * @brief when turnbutton clicked calls changeTurn method
+     */
     void on_turnButton_clicked();
 
 
