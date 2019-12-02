@@ -13,11 +13,11 @@ Player::Player(const std::string& name,
         objects)
 {
     m_resources = {
-        {Course::BasicResource::MONEY, 1000},
-        {Course::BasicResource::FOOD, 1000},
-        {Course::BasicResource::WOOD, 1000},
-        {Course::BasicResource::STONE, 1000},
-        {Course::BasicResource::ORE, 1000}
+        {Course::BasicResource::MONEY, 500},
+        {Course::BasicResource::FOOD, 500},
+        {Course::BasicResource::WOOD, 500},
+        {Course::BasicResource::STONE, 500},
+        {Course::BasicResource::ORE, 500}
     };
 
     m_color = Qt::black;

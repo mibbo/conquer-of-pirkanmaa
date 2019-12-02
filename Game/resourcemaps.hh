@@ -50,8 +50,8 @@ const Course::ResourceMapDouble CW_WORKER_EFFICIENCY = {
 };
 
 const Course::ResourceMap CW_RECRUITMENT_COST = {
-    {Course::MONEY, 500},
-    {Course::FOOD, 25},
+    {Course::MONEY, 100},
+    {Course::FOOD, 50},
     {Course::WOOD, 0},
     {Course::STONE, 0},
     {Course::ORE, 0},
@@ -66,42 +66,42 @@ const Course::ResourceMapDouble WARRIOR_WORKER_EFFICIENCY = {
 };
 
 const Course::ResourceMap WARRIOR_RECRUITMENT_COST = {
-    {Course::MONEY, 50},
-    {Course::FOOD, 100},
-    {Course::WOOD, 0},
-    {Course::STONE, 0},
-    {Course::ORE, 0},
+    {Course::MONEY, 600},
+    {Course::FOOD, 200},
+    {Course::WOOD, 200},
+    {Course::STONE, 200},
+    {Course::ORE, 200},
 };
 
 const Course::ResourceMap QUARRY_BUILD_COST = {
-    {Course::MONEY, 10},
-    {Course::FOOD, 5},
+    {Course::MONEY, 50},
+    {Course::FOOD, 50},
     {Course::WOOD, 50},
-    {Course::STONE, 5},
-    {Course::ORE, 5},
+    {Course::STONE, 50},
+    {Course::ORE, 50},
 };
 
 const Course::ResourceMap QUARRY_PRODUCTION = {
-    {Course::MONEY, -10},
+    {Course::MONEY, -50},
     {Course::FOOD, 0},
     {Course::WOOD, -10},
     {Course::STONE, -100},
-    {Course::ORE, 0},
+    {Course::ORE, -30},
 };
 
 const Course::ResourceMap MINE_BUILD_COST = {
-    {Course::MONEY, 10},
-    {Course::FOOD, 35},
-    {Course::WOOD, 5},
+    {Course::MONEY, 100},
+    {Course::FOOD, 100},
+    {Course::WOOD, 25},
     {Course::STONE, 50},
     {Course::ORE, 5},
 };
 
 const Course::ResourceMap MINE_PRODUCTION = {
-    {Course::MONEY, -10},
-    {Course::FOOD, 0},
+    {Course::MONEY, -50},
+    {Course::FOOD, -10},
     {Course::WOOD, 0},
-    {Course::STONE, -20},
+    {Course::STONE, -50},
     {Course::ORE, -100},
 };
 
@@ -114,17 +114,17 @@ const Course::ResourceMap FARM_PRODUCTION = {
 };
 
 const Course::ResourceMap SAWMILL_BUILD_COST = {
-    {Course::MONEY, 5},
-    {Course::FOOD, 10},
-    {Course::WOOD, 10},
-    {Course::STONE, 25},
-    {Course::ORE, 10},
+    {Course::MONEY, 50},
+    {Course::FOOD, 50},
+    {Course::WOOD, 25},
+    {Course::STONE, 100},
+    {Course::ORE, 50},
 };
 
 const Course::ResourceMap SAWMILL_PRODUCTION = {
-    {Course::MONEY, -5},
-    {Course::FOOD, 0},
-    {Course::WOOD, -35},
+    {Course::MONEY, -30},
+    {Course::FOOD, -10},
+    {Course::WOOD, -50},
     {Course::STONE, -5},
     {Course::ORE, 0},
 };

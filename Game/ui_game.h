@@ -18,7 +18,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 #include "hoverbutton.h"
@@ -30,7 +29,7 @@ class Ui_Game
 public:
     QWidget *centralwidget;
     QGraphicsView *graphicsView;
-    QPushButton *turnButton;
+    Student::HoverButton *turnButton;
     QLabel *turnLabel;
     QWidget *gridLayoutWidget;
     QGridLayout *buildingsLayout;
@@ -114,12 +113,12 @@ public:
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         graphicsView->setGeometry(QRect(10, 10, 691, 481));
-        turnButton = new QPushButton(centralwidget);
+        turnButton = new Student::HoverButton(centralwidget);
         turnButton->setObjectName(QString::fromUtf8("turnButton"));
         turnButton->setGeometry(QRect(920, 470, 151, 111));
         turnLabel = new QLabel(centralwidget);
         turnLabel->setObjectName(QString::fromUtf8("turnLabel"));
-        turnLabel->setGeometry(QRect(940, 430, 111, 31));
+        turnLabel->setGeometry(QRect(940, 430, 221, 31));
         QFont font;
         font.setFamily(QString::fromUtf8("URW Gothic"));
         font.setPointSize(14);
@@ -180,7 +179,7 @@ public:
 
         hoverInfo = new QLabel(centralwidget);
         hoverInfo->setObjectName(QString::fromUtf8("hoverInfo"));
-        hoverInfo->setGeometry(QRect(1470, 130, 63, 20));
+        hoverInfo->setGeometry(QRect(0, -10, 2001, 861));
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
         label->setGeometry(QRect(840, 10, 911, 801));
@@ -484,7 +483,6 @@ public:
         turnLabel->raise();
         gridLayoutWidget->raise();
         gridLayoutWidget_2->raise();
-        hoverInfo->raise();
         buildingNameLabel->raise();
         moneyLabel->raise();
         woodLabel->raise();
@@ -499,6 +497,7 @@ public:
         buildCostLabel->raise();
         productionLabel->raise();
         formLayoutWidget_7->raise();
+        hoverInfo->raise();
         menubar = new QMenuBar(Game);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 2006, 23));

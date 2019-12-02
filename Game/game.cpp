@@ -62,6 +62,8 @@ Game::Game(QWidget *parent):
     costVector_ = {ui->moneyLabel, ui->foodLabel, ui->woodLabel, ui->stoneLabel, ui->oreLabel};
     productionVector_ = {ui->moneyProductionLabel, ui->foodProductionLabel, ui->woodProductionLabel,
                          ui->stoneProductionLabel, ui->oreProductionLabel};
+    ui->hoverInfo->setHidden(true);
+
 }
 
 Game::~Game()
@@ -173,7 +175,10 @@ void Game::updateInformationSlot(int movesLeft)
 
 void Game::gameOverSlot(std::shared_ptr<Student::Player> winner, int turn)
 {
-    std::cout << "Olet viineri - " << winner->getName()  << std::endl;
+    ui->hoverInfo->setHidden(false);
+    ui->hoverInfo->setStyleSheet(QString("font-weight: bold; color: %1").arg(winner->getColor().name()));
+    ui->hoverInfo->setFont(QFont("URW Gothic", 100, QFont::Bold));
+    ui->hoverInfo->setText("     Winner \n      " + QString::fromStdString(winner->getName()) +  "\n     Turns: " + QString::number(turn));
 }
 
 

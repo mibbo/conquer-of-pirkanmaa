@@ -41,7 +41,7 @@ public:
             );
 
     /**
-     * @brief
+     * @brief Draws the gameboard and adds the tiles to objectManager
      *
      * @param unsigned int map x size
      * @param unsigned int map y size
@@ -68,7 +68,7 @@ public:
     void drawObject(std::shared_ptr<Course::GameObject> obj, QColor color = Qt::transparent);
 
     /**
-     * @brief simple event handler that notifies when objects or the play
+     * @brief Event handler that notifies when objects or the play
      * area is clicked.
      * @param event that has happened.
      * @return True: if event was  handled in the handler.
@@ -77,7 +77,7 @@ public:
     virtual bool event(QEvent* event) override;
 
     /**
-     * @brief
+     * @brief Adds the HQ and one BasicWorker for both players in opposite coordinates
      */
     void generateStartingObjects();
 
@@ -107,12 +107,12 @@ public:
     void reset();
 
     /**
-     * @brief
+     * @brief Draws the borders to players' owned tiles
      */
     void updateAndDrawTileOwners();
 
     /**
-     * @brief
+     * @brief Generates the resources for the playerInTurn_ at the start of the turn
      */
     void generateResources();
 
@@ -134,7 +134,7 @@ public:
     bool inRange(int low, int high, int x) ;
 
     /**
-     * @brief
+     * @brief Updates river and forest tiles so that their graphics connect
      *
      * @param std::vector that contains Course::TileBase shared pointers
      */
