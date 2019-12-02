@@ -1,5 +1,6 @@
 #include <QString>
 #include <QtTest>
+#include <QObject>
 #include "core/resourcemaps.h"
 #include "core/basicresources.h"
 #include "gameeventhandler.hh"

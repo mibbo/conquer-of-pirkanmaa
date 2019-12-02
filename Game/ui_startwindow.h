@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'startwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.13.1
+** Created by: Qt User Interface Compiler version 5.9.6
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,9 +10,12 @@
 #define UI_STARTWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -35,34 +38,34 @@ public:
     void setupUi(QDialog *StartWindow)
     {
         if (StartWindow->objectName().isEmpty())
-            StartWindow->setObjectName(QString::fromUtf8("StartWindow"));
+            StartWindow->setObjectName(QStringLiteral("StartWindow"));
         StartWindow->resize(389, 293);
         playButton = new QPushButton(StartWindow);
-        playButton->setObjectName(QString::fromUtf8("playButton"));
+        playButton->setObjectName(QStringLiteral("playButton"));
         playButton->setGeometry(QRect(300, 260, 84, 28));
         mapSizeLabel = new QLabel(StartWindow);
-        mapSizeLabel->setObjectName(QString::fromUtf8("mapSizeLabel"));
+        mapSizeLabel->setObjectName(QStringLiteral("mapSizeLabel"));
         mapSizeLabel->setGeometry(QRect(30, 160, 111, 20));
         mapSizeComboBox = new QComboBox(StartWindow);
-        mapSizeComboBox->setObjectName(QString::fromUtf8("mapSizeComboBox"));
+        mapSizeComboBox->setObjectName(QStringLiteral("mapSizeComboBox"));
         mapSizeComboBox->setGeometry(QRect(250, 150, 79, 28));
         playerOne = new QLineEdit(StartWindow);
-        playerOne->setObjectName(QString::fromUtf8("playerOne"));
+        playerOne->setObjectName(QStringLiteral("playerOne"));
         playerOne->setGeometry(QRect(190, 20, 80, 26));
         playerTwo = new QLineEdit(StartWindow);
-        playerTwo->setObjectName(QString::fromUtf8("playerTwo"));
+        playerTwo->setObjectName(QStringLiteral("playerTwo"));
         playerTwo->setGeometry(QRect(290, 20, 80, 26));
         playerAmountLabel_2 = new QLabel(StartWindow);
-        playerAmountLabel_2->setObjectName(QString::fromUtf8("playerAmountLabel_2"));
+        playerAmountLabel_2->setObjectName(QStringLiteral("playerAmountLabel_2"));
         playerAmountLabel_2->setGeometry(QRect(30, 22, 131, 20));
         colorLabel = new QLabel(StartWindow);
-        colorLabel->setObjectName(QString::fromUtf8("colorLabel"));
+        colorLabel->setObjectName(QStringLiteral("colorLabel"));
         colorLabel->setGeometry(QRect(30, 50, 141, 20));
         playerOneColor = new QPushButton(StartWindow);
-        playerOneColor->setObjectName(QString::fromUtf8("playerOneColor"));
+        playerOneColor->setObjectName(QStringLiteral("playerOneColor"));
         playerOneColor->setGeometry(QRect(190, 50, 84, 28));
         playerTwoColor = new QPushButton(StartWindow);
-        playerTwoColor->setObjectName(QString::fromUtf8("playerTwoColor"));
+        playerTwoColor->setObjectName(QStringLiteral("playerTwoColor"));
         playerTwoColor->setGeometry(QRect(290, 50, 84, 28));
 
         retranslateUi(StartWindow);
@@ -73,15 +76,15 @@ public:
 
     void retranslateUi(QDialog *StartWindow)
     {
-        StartWindow->setWindowTitle(QCoreApplication::translate("StartWindow", "Dialog", nullptr));
-        playButton->setText(QCoreApplication::translate("StartWindow", "Play", nullptr));
-        mapSizeLabel->setText(QCoreApplication::translate("StartWindow", "Select map size:", nullptr));
-        playerOne->setText(QCoreApplication::translate("StartWindow", "mibbo", nullptr));
-        playerTwo->setText(QCoreApplication::translate("StartWindow", "brutus", nullptr));
-        playerAmountLabel_2->setText(QCoreApplication::translate("StartWindow", "Player names:", nullptr));
-        colorLabel->setText(QCoreApplication::translate("StartWindow", "Select player colors:", nullptr));
-        playerOneColor->setText(QCoreApplication::translate("StartWindow", "Player1", nullptr));
-        playerTwoColor->setText(QCoreApplication::translate("StartWindow", "Player2", nullptr));
+        StartWindow->setWindowTitle(QApplication::translate("StartWindow", "Dialog", Q_NULLPTR));
+        playButton->setText(QApplication::translate("StartWindow", "Play", Q_NULLPTR));
+        mapSizeLabel->setText(QApplication::translate("StartWindow", "Select map size:", Q_NULLPTR));
+        playerOne->setText(QApplication::translate("StartWindow", "mibbo", Q_NULLPTR));
+        playerTwo->setText(QApplication::translate("StartWindow", "brutus", Q_NULLPTR));
+        playerAmountLabel_2->setText(QApplication::translate("StartWindow", "Player names:", Q_NULLPTR));
+        colorLabel->setText(QApplication::translate("StartWindow", "Select player colors:", Q_NULLPTR));
+        playerOneColor->setText(QApplication::translate("StartWindow", "Player1", Q_NULLPTR));
+        playerTwoColor->setText(QApplication::translate("StartWindow", "Player2", Q_NULLPTR));
     } // retranslateUi
 
 };
