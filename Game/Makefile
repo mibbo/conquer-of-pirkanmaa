@@ -1003,7 +1003,6 @@ game.o: game.cpp game.h \
 		player.h \
 		../Course/CourseLib/core/playerbase.h \
 		ui_game.h \
-		hoverbutton.h \
 		mapitem.h \
 		startwindow.h \
 		../Course/CourseLib/tiles/forest.h \
