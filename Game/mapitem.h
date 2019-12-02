@@ -55,6 +55,10 @@ public:
                const QStyleOptionGraphicsItem *option,
                QWidget *widget);
 
+    /**
+     * @brief boundingRectForImages
+     * @return the bounding rectangle of this item.
+     */
     QRect boundingRectForImages();
 
     /**
@@ -70,14 +74,24 @@ public:
      */
     bool isSameObj(std::shared_ptr<Course::GameObject> obj);
 
+    /**
+     * @brief returns a pixmap according to the gameobjects type
+     * @param std::string gameobjects name
+     * @return QPixmap
+     */
     QPixmap getPixMap(std::string type);
 
+    /**
+     * @brief sets mapitems color according to player color
+     * @param QColor players color
+     */
     void drawOwnership(QColor color);
 
+    /**
+     * @brief Sets the mapitem pixmap
+     * @param QPixmap image
+     */
     void setPixMap(QPixmap pix);
-
-    void hoverEnterEvent(QGraphicsSceneHoverEvent *event) override;
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) override;
 
 private:
     const std::shared_ptr<Course::GameObject> m_gameobject;

@@ -44,8 +44,26 @@ public:
      */
     bool operator==(const Player& other) const;
 
+    /**
+     * @brief Modify Player's resource. Can be used to both sum or subtract.
+     * @param player Pointer to the Player whose resource is being modified.
+     * @param resource Defines the modified resource.
+     * @param amount Defines the amount of change.
+     * @post Exception guarantee: Basic
+     * @return
+     * True - Modification was succesful. \n
+     * False - Modification failed. \n
+     */
     bool modifyResource(Course::BasicResource resource, int amount);
 
+    /**
+     * @brief Modify Player's resources. Can be used to both sum or subtract
+     * @param player Pointer to the Player whose resources are being modified.
+     * @param resources ResourceMap containing change amounts.
+     * @return
+     * True - Modification was succesful. \n
+     * False - Modification failed. \n
+     */
     bool modifyResources(Course::ResourceMap resources);
 
     /**
@@ -72,10 +90,21 @@ public:
      */
     std::vector<std::shared_ptr<Course::GameObject>> getTiles() const;
 
+    /**
+     * @brief Returns players resourceMap
+     * @return Course::ResourceMap
+     */
     Course::ResourceMap getResources();
 
+    /**
+     * @brief Returns players color
+     * @return QColor color
+     */
     QColor getColor();
 
+    /**
+     * @brief sets the players color
+     */
     void setColor(QColor color);
 
 private:

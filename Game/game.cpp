@@ -29,7 +29,6 @@ Game::Game(QWidget *parent):
 {
     ui->setupUi(this);
 
-
     // StartWindow
     dialoq_ = new StartWindow();
     connect(dialoq_, SIGNAL(startGame(unsigned int, unsigned int, QString,  QString, QColor, QColor)),
@@ -39,14 +38,13 @@ Game::Game(QWidget *parent):
         QTimer::singleShot(0, this, SLOT(close()));
     }
 
-
+    // Set the view
     Game::showMaximized();
     gameScene_->setSceneRect(0,0,795,795);
     ui->graphicsView->setFixedSize(802,802);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setAlignment(Qt::AlignTop|Qt::AlignLeft);
-    //ui->graphicsView->centerOn()
 
     // GameScene
     Student::GameScene* sgs_rawptr = gameScene_.get();
@@ -55,16 +53,15 @@ Game::Game(QWidget *parent):
     connect(sgs_rawptr, SIGNAL(updateViewSignal()), this, SLOT(updateViewSlot()));
     connect(sgs_rawptr, SIGNAL(updateInformationSignal(int)), this, SLOT(updateInformationSlot(int)));
     connect(sgs_rawptr, SIGNAL(gameOverSignal(std::shared_ptr<Student::Player>, int)), this, SLOT(gameOverSlot(std::shared_ptr<Student::Player>, int)));
-
-    // connectaa gamescenen signaalin gameen
     connect(sgs_rawptr, SIGNAL(enableButtonsSignal()), this, SLOT(enableButtonsSlot()));
 
-    //tekee ja piirtää UI setit (nappulat summuut)
+    // Create and draw UI related stuff
     displayMainMenu();
 
     // LOG
     ui->log->setReadOnly(true);
 
+    // Create the necessary vectors of labels
     costVector_ = {ui->moneyLabel, ui->foodLabel, ui->woodLabel, ui->stoneLabel, ui->oreLabel};
     productionVector_ = {ui->moneyProductionLabel, ui->foodProductionLabel, ui->woodProductionLabel,
                          ui->stoneProductionLabel, ui->oreProductionLabel};
@@ -82,7 +79,6 @@ std::shared_ptr<Student::Player> Game::getTurn()
 
 void Game::setTurn(std::shared_ptr<Student::Player> player)
 {
-
     playerInTurn_ = player;
     ui->turnLabel->setText("Turn: " + QString::fromStdString(playerInTurn_->getName()));
     std::cout << "Turn: " << playerInTurn_->getName() << std::endl;
@@ -119,8 +115,7 @@ void Game::setupPlayers(QString playerOneName, QString playerTwoName)
 
 void Game::displayMainMenu()
 {
-    qDebug() << "displaymainemenu";
-    //add buildingButtons and workerButtons to vector
+    //Add buildingButtons and workerButtons to vector
     objectButtonsVector_ = {ui->farmButton, ui->mineButton, ui->outpostButton, ui->quarryButton, ui->sawmillButton,
                               ui->basicWorkerButton, ui->constWorkerButton, ui->warriorButton};
     connectButtons();
@@ -136,7 +131,7 @@ void Game::sendButtonText() {
       if (sender != nullptr) {
         QAbstractButton* button = dynamic_cast<QAbstractButton*>(sender);
         if (button != nullptr) {
-          //emits buildingButtons name
+          // Emits buildingButtons name
           emit buildingSignal(button->text().toStdString());
             if (button->isChecked() == true) {
                 std::cout << "haloo" << std::endl;
@@ -172,6 +167,7 @@ void Game::updateInformationSlot(int movesLeft)
         ui->tilesP2->display(tileAmount);
     }
 
+    // Calculate and display the powers aka chances to win in warrior duels
     float ownedTilesAmount = playerOne_->getTiles().size() + playerTwo_->getTiles().size();
     int powerP1 = playerOne_->getTiles().size() / ownedTilesAmount * 100;
     ui->powerP1->display(powerP1);
@@ -232,6 +228,7 @@ void Game::logMessageSlot(std::string message)
     ui->buildingNameLabel->setText(QString::fromStdString(message));
     ui->buildCostLabel->setText("Cost");
 
+    // Set the cost and production displays accordingly
     const char* resourceNames[] =
       {
       stringify( Money ),
@@ -321,4 +318,3 @@ void Game::on_turnButton_clicked()
 {
     changeTurn();
 }
-

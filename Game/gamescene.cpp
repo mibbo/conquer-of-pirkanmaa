@@ -57,25 +57,15 @@ GameScene::GameScene(QWidget* parent,
     m_scale(80)
 
 {
-
-    //saa signaalin rakennusnapista ja lähettää metodiin rakennuksen nimen (string)
     connect(parent, SIGNAL(buildingSignal(std::string)), this, SLOT(addButtonObject(std::string)));
-
-
-
-
-
     connect(parent, SIGNAL(playInTurnSignal(std::shared_ptr<Student::Player>)), this, SLOT(playerInTurnSlot(std::shared_ptr<Student::Player>)));
     playerMovesLeft_ = 5;
-    srand(time(NULL));
-
+    srand(time(NULL)); // Set the rand seed based on the time
 }
 
 void GameScene::drawGameBoard(unsigned int size_x,
                               unsigned int size_y,
-
-                              unsigned int seed, //randomoidaan jossain kohtaa ja poistetaan parametreista
-
+                              unsigned int seed,
                               const std::shared_ptr<Student::ObjectManager> &objectmanager,
                               const std::shared_ptr<Student::GameEventHandler> &eventhandler,
                               const std::shared_ptr<Student::Player>& playerOne,
@@ -101,18 +91,14 @@ void GameScene::drawGameBoard(unsigned int size_x,
     worldGen.generateMap(m_width, m_height, seed, objectManager_, eventHandler_);
     std::vector<std::shared_ptr<Course::TileBase>> tiles = objectManager_->returnTiles();
 
-    // Prints tiles amount
-    //std::cout << tiles.size() << std::endl;
-    // keskikohta-muuttuja joelle
     int center = m_width/2-1;
-    // jokilaatan x muuttuja jota randomoidaan
     int randX = size_x/2-1;
 
-    // käy läpi ruudukon Y-arvot (keskeltä ylös)
+    // Loop through y-axis
     for (int y = m_height/2-1; y >= 0; y--) {
-        // käy läpi ruudukon X-arvot (vasemmalta oikealle)
+        // Loop through x-axis
         for (int x = 0; x < m_width; x++) {
-            // Kun löytää halutun x arvon --> asettaa jokilaatan siihen
+            // When ideal x-coordinate is found, place a rivertile
             if (x == randX) {
                 for (unsigned long int i = 0; i < tiles.size(); i++) {
                     std::shared_ptr<Course::TileBase> tile1 = objectManager_->getTile(Course::Coordinate(randX, y));
@@ -134,45 +120,45 @@ void GameScene::drawGameBoard(unsigned int size_x,
                 }
             }
         }
-        // 20% että pysyy paikallaan
+        // 20% chance to stay still
         if(rand() <= RAND_MAX * 0.20 or randX < 0 or randX > m_width) {
             continue;
-        //jos aikaisempi laatta keskellä niin 50% tsäänssiliikkua sivuille
+        // if previous tile was in center, 50% chacnce to move to side
         }else if (inRange(center-1, center+1, randX)) {
             if(rand() <= RAND_MAX * 0.5 or randX < 0) {
                 randX++;
             } else  {
                 randX--;
             }
-        // jos aikaisempi laatta kaksi tai kolme vasemmalla niin 60% tsäänssi mennä keskemmälle
+        // If previous tile was 2 or 3 tiles to side, 60% chance to move to middle
         }else if (inRange(center-3, center-2, randX)) {
             if(rand() <= RAND_MAX * 0.6) {
                 randX++;
             } else  {
                 randX--;
             }
-        // jos aikaisempi laatta kaksi tai kolme oikealla niin 60& tsäänssi mennä keskemmälle
+        // If previous tile was 2 or 3 tiles to side, 60% chance to move to middle
         }else if (inRange(center+2, center+3, randX)) {
             if(rand() <= RAND_MAX * 0.6  or randX >= m_width) {
                 randX--;
             } else  {
                 randX++;
             }
-        // jos aikaisempi laatta neljä vasemmalla niin 70& tsäänssi mennä keskemmälle
+        // If previous tile was 4 tiles to side, 70% chance to move to middle
         }else if (inRange(center-4, center-4, randX)) {
             if(rand() <= RAND_MAX * 0.7  or randX >= m_width) {
                 randX--;
             } else  {
                 randX++;
             }
-        // jos aikaisempi laatta neljä oikealla niin 70& tsäänssi mennä keskemmälle
+        // If previous tile was 4 tiles to side, 70% chance to move to middle
         }else if (inRange(center+4, center+4, randX)) {
             if(rand() <= RAND_MAX * 0.7  or randX >= m_width) {
                 randX--;
             } else  {
                 randX++;
             }
-        // muuuten jos laatta liian lähellä reunaa (yli 5 laattaa keskeltä) niin menee keskemmälle
+        // If the previous tile was more than 4 tiles to side, move to middle
         } else {
             if (inRange(0, center-5, randX)) {
                 randX++;
@@ -181,6 +167,7 @@ void GameScene::drawGameBoard(unsigned int size_x,
             }
         }
     }
+
     objectManager_->updateTileVector(tiles);
     for(auto x: tiles){
         GameScene::drawObject(x);
@@ -199,8 +186,10 @@ void GameScene::drawObject(std::shared_ptr<Course::GameObject> obj, QColor color
 
 bool GameScene::event(QEvent *event)
 {
+    // Check if the event was a mousepress
     if(event->type() == QEvent::GraphicsSceneMousePress)
     {
+        // Remove highlight for worker's possible movement tiles
         for (auto object : possibleMovementTiles_) {
             delete object;
         }
@@ -218,45 +207,19 @@ bool GameScene::event(QEvent *event)
 
             QGraphicsItem* pressed = itemAt(point * m_scale, QTransform());
 
-            if ( pressed == m_mapBoundRect ){
-                qDebug() << "Click on map area.";
-            }else{
-                qDebug() << "ObjID: " <<
-                            static_cast<Student::MapItem*>(pressed)
-                            ->getBoundObject()->ID << " pressed.";
-                qDebug() << " - Coordinates: (" <<
-                            static_cast<Student::MapItem*>(pressed)
-                            ->getBoundObject()->getCoordinate().x() <<
-                            "," <<
-                            static_cast<Student::MapItem*>(pressed)
-                            ->getBoundObject()->getCoordinate().y() << ") pressed.";
-
-                // Worker moving
+            if ( pressed != m_mapBoundRect ){
+                // If the mousepress was inside gamescene, get the coordinates for the clicked square
                 auto coor = static_cast<Student::MapItem*>(pressed)->getBoundObject()->getCoordinate(); // Coordinate for the pressed object
-                auto vec = objectManager_->getTile(coor)->getWorkers(); // Get the vector that has all the workers on the tile (maximum of 1
+                auto vec = objectManager_->getTile(coor)->getWorkers(); // Get the vector that has all the workers on the tile (maximum of 1)
 
-
-                  // muuttaa objectin kuvaa klikatessa
-//                QPointF point(coor.x(), coor.y());
-//                auto graphitems = items(point * m_scale);
-//                auto graphitem = graphitems.at(0);
-//                static_cast<Student::MapItem*>(graphitem)->setPixMap(QPixmap(":/images/player2.png"));
-                //updateViewSignal();
-
-                //asettaa napit painettaviksi
                 emit enableButtonsSignal();
 
-
-
-                // Check if the tile had any of in-turn player's workers
+                // Check if the tile had any of the in-turn player's workers
                 if (vec.size() > 0 && vec.at(0)->getOwner() == playerInTurn_ && playerMovesLeft_ > 0 && movableObjectSelected_ == false) {
                     movableObjectSelected_ = true;
                     movableObject_ = vec.at(0);
 
-                    // Possible moving directions
-
-                    // lisää HIGHLIGHITIT workeriä painaessa
-
+                    // Determine all tiles where the worker can move and highlight them
                     for (int y = playerMovesLeft_; y >= -playerMovesLeft_; y--) {
                         for (int x = playerMovesLeft_ - abs(y); x >= -(playerMovesLeft_ - abs(y)); x--) {
                             int x_coor = movableObject_->getCoordinate().x() + x;
@@ -281,17 +244,21 @@ bool GameScene::event(QEvent *event)
                             }
                         }
                     }
+
                 // Deselect the worker on second click to itself
                 } else if (vec.size() > 0 && vec.at(0) == movableObject_) {
                     movableObjectSelected_ = false;
-                // Check if a worker has been "selected" and if the clicked tile has any other workers
+
+                // Check if a worker has been "selected", if the clicked tile has any other workers and
+                // that the tile is not a river (because workers are not allowed to go on it)
                 } else if (movableObjectSelected_ == true && objectManager_->getTile(coor)->getWorkers().size() == 0
                            && objectManager_->getTile(coor)->getType() != "River") {
-                    // tää esti rakentamisen kun oli jo klikattu const workeriä
-                    menuBuildingButtonClicked_ = false;
-                    // Calculate the distance in tiles that player chose
+                    menuBuildingButtonClicked_ = false; // Disable building selection
+
+                    // Calculate the distance between the worker and the selected tile
                     int distance = abs(movableObject_->getCoordinate().x() - coor.x()) +
                             abs(movableObject_->getCoordinate().y() - coor.y());
+
                     // If the player has enough moves left move the object
                     if (distance <= playerMovesLeft_) {
                         playerMovesLeft_ -= distance;
@@ -301,21 +268,13 @@ bool GameScene::event(QEvent *event)
                         objectManager_->getTile(coor)->addWorker(movableObject_);
                         objectManager_->getTile(coor)->setOwner(realTileOwner);
                         GameScene::updateItem(movableObject_);
-                    } else {
-                        qDebug() << "Too far!";
                     }
-//                    if (movableObject_->getType() == "Warrior" &&
-//                            objectManager_->getTile(coor)->getBuildingCount() == 1 &&
-//                            objectManager_->getTile(coor)->getBuildings().at(0)->getType() == "HeadQuarters" &&
-//                            objectManager_->getTile(coor)->getBuildings().at(0)->getOwner() != playerInTurn_) {
-//                        emit gameOverSignal(playerInTurn_, turnCount_);
-//                    }
                     // Clear the player's selection and update the view
                     movableObjectSelected_ = false;
                     vec.clear();
                     GameScene::updateViewSignal();
 
-                // Check if two opponent warriors meet
+                // Check if two opponent warriors meet and that the player has enough moves left
                 } else if (movableObjectSelected_ == true && objectManager_->getTile(coor)->getWorkers().size() == 1
                            && objectManager_->getTile(coor)->getWorkers().at(0)->getType() == "Warrior"
                            && movableObject_->getType() == "Warrior"
@@ -323,7 +282,7 @@ bool GameScene::event(QEvent *event)
                            && (abs(movableObject_->getCoordinate().x() - coor.x()) +
                                abs(movableObject_->getCoordinate().y() - coor.y())) <= playerMovesLeft_) {
 
-                    // Remove the moves from player
+                    // Remove the right amount of moves from player
                     playerMovesLeft_ -= (abs(movableObject_->getCoordinate().x() - coor.x()) +
                             abs(movableObject_->getCoordinate().y() - coor.y()));
 
@@ -381,33 +340,34 @@ bool GameScene::event(QEvent *event)
                         GameScene::updateItem(movableObject_);
                         GameScene::removeItem(worker);
                         GameScene::updateViewSignal();
-                    // Otherwise just simply remove the in turn player's warrior
+                    // Otherwise just simply remove the in-turn player's warrior
                     } else {
                         objectManager_->getTile(movableObject_->getCoordinate())->removeWorker(movableObject_);
                         GameScene::removeItem(movableObject_);
                         GameScene::updateViewSignal();
                     }
                     movableObjectSelected_ = false;
+                // Check if a Warrior would move to enemy's HQ but there was a CW or BW blocking it
                 } else if (movableObjectSelected_ == true && movableObject_->getType() == "Warrior"
                            && objectManager_->getTile(coor)->getBuildingCount() == 1
                            && objectManager_->getTile(coor)->getBuildings().at(0)->getType() == "HeadQuarters"
                            && objectManager_->getTile(coor)->getBuildings().at(0)->getOwner() != playerInTurn_) {
-                    emit gameOverSignal(playerInTurn_, turnCount_);
+                    emit gameOverSignal(playerInTurn_, turnCount_); // If true, player in turn won
                 } else {
                     movableObjectSelected_ = false;
                     menuBuildingButtonClicked_ = false;
                 }
 
+                // Check if in-turn player's warrior is in enemy's HQ at the end of the event
                 if (objectManager_->getTile(coor)->getBuildingCount() == 1 &&
                         objectManager_->getTile(coor)->getBuildings().at(0)->getType() == "HeadQuarters" &&
                         objectManager_->getTile(coor)->getWorkerCount() == 1 &&
                         objectManager_->getTile(coor)->getWorkers().at(0)->getType() == "Warrior" &&
                         objectManager_->getTile(coor)->getWorkers().at(0)->getOwner() == playerInTurn_ &&
                         objectManager_->getTile(coor)->getBuildings().at(0)->getOwner() != playerInTurn_) {
-                    emit gameOverSignal(playerInTurn_, turnCount_);
+                    emit gameOverSignal(playerInTurn_, turnCount_); // If true, player in turn won
                 }
 
-                // kun rakennusnappia painaa niin rakentaa halutun rakennuksen (temporary variable buildingToAdd)
                 // Prevents the player from adding multiple buildings to a single tile.
                 if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0 &&
                         objectManager_->getTile(coor)->getOwner() == playerInTurn_ &&
@@ -416,21 +376,13 @@ bool GameScene::event(QEvent *event)
                         ) {
                     emit enableButtonsSignal();
 
-                    //std::cout <<  playerInTurn_->getName() << "Resources: " << std::endl;
-
-                    for (auto resource : playerInTurn_->getResources()) {
-                        //std::cout << resource.first << ": " << resource.second << std::endl;
-                    }
-                    //std::cout << "Pelaaja: " << playerInTurn_->getName()<< " --- rakentaa: " << buildingToAdd_->getType() << std::endl;
                     objectManager_->getTile(coor)->addBuilding(buildingToAdd_);
-                    //asettaa pelaajan tietoihin rakennuksen
+
+                    // Set information about the building to player and draw it
                     playerInTurn_->addObject(buildingToAdd_);
                     GameScene::drawObject(buildingToAdd_, playerInTurn_->getColor());
-                    // Tunnistaa, että rakennettavaa paikkaa on painettu -> asettaa false
                     menuBuildingButtonClicked_ = false;
                     GameScene::updateViewSignal();
-
-                    // saa tarvittavat laatat (naapurit + rakennuksen laatta)
                     std::vector<std::shared_ptr<Course::GameObject>> tiles;
                     if (buildingToAdd_->getType() == "Outpost") {
                         tiles = objectManager_->getNeighbourTiles(buildingToAdd_, 3);
@@ -447,15 +399,15 @@ bool GameScene::event(QEvent *event)
                                 break;
                             }
                         }
-                        if (!tileFound) {
+                        if (!tileFound && tile->getType() != "River") {
                             tilesToAdd.push_back(tile);
                         }
                     }
                     playerInTurn_->addTiles(tilesToAdd);
                     GameScene::updateAndDrawTileOwners();
 
-                    // TULOSTAA puuttuvien resurssien määrän
-                } else if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0 /*&& playerInTurn_->modifyResources(buildingToAdd_->BUILD_COST) == false*/) {
+                // Print the missing resources if the player had too little of them
+                } else if (menuBuildingButtonClicked_ == true && objectManager_->getTile(coor)->getBuildings().size() == 0) {
                     std::cout <<  playerInTurn_->getName() << " ei pysty rakentamaan ";
                     const char* resourceNames[] =
                       {
@@ -520,23 +472,21 @@ void GameScene::generateStartingObjects()
     objectManager_->getTile(Course::Coordinate(Course::Coordinate(leftX, leftY), Course::Direction::E))->addWorker(bw1);
     GameScene::drawObject(bw1, playerOne_->getColor());
     playerOne_->addObject(bw1);
-    
+
     std::shared_ptr<Course::BasicWorker> bw2 = std::make_shared<Course::BasicWorker>(eventHandler_, objectManager_, playerTwo_);
     objectManager_->getTile(Course::Coordinate(Course::Coordinate(rightX, rightY), Course::Direction::W))->setOwner(playerTwo_);
     objectManager_->getTile(Course::Coordinate(Course::Coordinate(rightX, rightY), Course::Direction::W))->addWorker(bw2);
     GameScene::drawObject(bw2, playerTwo_->getColor());
     playerTwo_->addObject(bw2);
 
-    //Test
+    // Draw the tile ownerships
     GameScene::updateAndDrawTileOwners();
 }
 
 void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
 {
     QList<QGraphicsItem*> items_list = items();
-    if ( items_list.size() == 1 ){
-        qDebug() << "Nothing to update.";
-    } else {
+    if ( items_list.size() != 1 ){
         for ( auto item : items_list ){
             MapItem* mapItem = static_cast<MapItem*>(item);
             if (mapItem->isSameObj(obj)){
@@ -547,7 +497,7 @@ void GameScene::updateItem(std::shared_ptr<Course::GameObject> obj)
 }
 
 
-std::shared_ptr<Course::GameObject> GameScene::returnPlayerObject(std::string objectName)  // tähän olis voinu asettaa mahdollisuudeksi laittaa myös player parametriksi: player = playerInTurn_, mutta paska ei toiminu ulisee vaa jotai
+std::shared_ptr<Course::GameObject> GameScene::returnPlayerObject(std::string objectName)
 {
     for (auto object : playerInTurn_->getObjects()) {
         if (object->getType() == objectName)
@@ -556,9 +506,9 @@ std::shared_ptr<Course::GameObject> GameScene::returnPlayerObject(std::string ob
 }
 
 
-// tarkistaa voiko rakentaa kyseistä rakennusta valitulle tiilelle ja että onko siinä construction workkeriä
 bool GameScene::BuildingTileIsCorrect(std::shared_ptr<Course::GameObject> building, std::shared_ptr<Course::TileBase> tile)
 {
+    // Check if the tile has CW and that the type is correct for the building
     if (tile->getWorkerCount() == 0) {
         return false;
     } else if (tile->getWorkers().at(0)->getType() == "ConstructionWorker"){
@@ -574,10 +524,9 @@ bool GameScene::BuildingTileIsCorrect(std::shared_ptr<Course::GameObject> buildi
        }else if (building->getType() == "Outpost") {
            wasCorrectTile = true;
        }
-
+       // If the tile was good for building, remove the possible movement highlight and worker selection
        if (wasCorrectTile) {
            movableObjectSelected_ = false;
-           // poistaa mahdollisten liikkeiden paikat
            for (auto object : possibleMovementTiles_) {
                delete object;
            }
@@ -591,25 +540,23 @@ bool GameScene::BuildingTileIsCorrect(std::shared_ptr<Course::GameObject> buildi
 
 void GameScene::addButtonObject(std::string buttonString)
 {
-    
     emit enableButtonsSignal();
-
 
     if (menuBuildingButtonClicked_ == true && buildingToAdd_->getType() == buttonString) {
         menuBuildingButtonClicked_ = false;
         return;
     }
 
-    // poistaa muiden nappien painallukset
+    // Remove other button selcetions
     movableObjectSelected_ = false;
     menuBuildingButtonClicked_ = false;
 
-    // poistaa mahdollisten liikkeiden paikat
+    // Remove the worker movement highlight
     for (auto object : possibleMovementTiles_) {
         delete object;
     }
     possibleMovementTiles_.clear();
-    //tunnistaa, että buildingButtonia on painettu->
+
     // Buildings
     if (buttonString == "Farm") {
         menuBuildingButtonClicked_ = true;
@@ -626,9 +573,11 @@ void GameScene::addButtonObject(std::string buttonString)
     } else if (buttonString == "Sawmill") {
         menuBuildingButtonClicked_ = true;
         buildingToAdd_ = std::make_shared<Student::Sawmill>(eventHandler_, objectManager_, playerInTurn_);
+
     // Check if the HQ already has a worker
     } else if (objectManager_->getTile(returnPlayerObject("HeadQuarters")->getCoordinate())->getWorkerCount() > 0) {
         return;
+
     // Workers
     } else if (buttonString == "Basic Worker") {
         if (!playerInTurn_->modifyResources(Student::ConstResourceMaps::BW_RECRUITMENT_COST)) {
@@ -669,7 +618,6 @@ void GameScene::addButtonObject(std::string buttonString)
         objectManager_->getTile(hqCoordinates)->addWorker(workerToAdd_);
         GameScene::drawObject(workerToAdd_, playerInTurn_->getColor());
         playerInTurn_->addObject(workerToAdd_);
-
     }
 }
 
@@ -680,6 +628,7 @@ void GameScene::reset()
 
 void GameScene::updateAndDrawTileOwners()
 {
+    // Loop both players' tiles and draw their ownership
     for (auto tile : playerOne_->getTiles()) {
         if (tile->getType() != "River") {
             tile->setOwner(playerOne_);
@@ -705,6 +654,7 @@ void GameScene::updateAndDrawTileOwners()
 
 void GameScene::generateResources()
 {
+    // Generate resources for the player from buildings that have BW in them
     for (auto object : playerInTurn_->getObjects()) {
         if (object->getType() == "BasicWorker") {
             auto buildingVector =
@@ -732,6 +682,8 @@ bool GameScene::inRange(int low, int high, int x)
 
 void GameScene::drawTileGraphics(std::vector<std::shared_ptr<Course::TileBase>> tiles)
 {
+    // Loop all the tiles, determine if the river or forest tile has same type tile next to it
+    // and update the tile's pixmap accordingly
     for (auto tile: tiles) {
         auto coor = tile->getCoordinate();
         std::string type = tile->getType();
@@ -768,11 +720,9 @@ void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)
     playerMovesLeft_ = 5;
     emit updateInformationSignal(playerMovesLeft_);
 
-    // poistaa muiden nappien painallukset
     movableObjectSelected_ = false;
     menuBuildingButtonClicked_ = false;
 
-    // poistaa mahdollisten liikkeiden paikat
     for (auto object : possibleMovementTiles_) {
         delete object;
     }
@@ -786,9 +736,7 @@ void GameScene::playerInTurnSlot(std::shared_ptr<Player> playerInTurn)
 void GameScene::removeItem(std::shared_ptr<Course::GameObject> obj)
 {
     QList<QGraphicsItem*> items_list = items();
-    if ( items_list.size() == 1 ){
-        qDebug() << "Nothing to be removed at the location pointed by given obj.";
-    } else {
+    if ( items_list.size() != 1 ){
         for ( auto item : items_list ){
             Student::MapItem* mapitem = static_cast<Student::MapItem*>(item);
             if ( mapitem->isSameObj(obj) ){

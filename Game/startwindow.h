@@ -24,16 +24,36 @@ public:
     ~StartWindow();
 
 private slots:
+    /**
+     * @brief emits all the data from startWindow to game.cpp
+     */
     void on_playButton_clicked();
 
+    /**
+     * @brief setups mapsize according to selected size
+     *
+     * @param const QString map size value as a string (small/normal/huge)
+     */
     void on_mapSizeComboBox_currentTextChanged(const QString &value);
 
+    /**
+     * @brief Open color selection, save the selected color to variable and update the buttoncolor
+     */
     void on_playerOneColor_clicked();
 
+    /**
+     * @brief Open color selection, save the selected color to variable and update the buttoncolor
+     */
     void on_playerTwoColor_clicked();
 
+    /**
+     * @brief Set the new name to the colorbutton
+     */
     void on_playerOne_textChanged(const QString &arg1);
 
+    /**
+     * @brief Set the new name to the colorbutton
+     */
     void on_playerTwo_textChanged(const QString &arg1);
 
 signals:

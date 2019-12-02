@@ -186,22 +186,5 @@ void MapItem::setPixMap(QPixmap pix)
     update();
 }
 
-void MapItem::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
-{
-    if(event){
-        //std::cout << m_gameobject->getType() << std::endl;
-    }
-
-}
-
-void MapItem::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
-{
-    if(event){
-        //std::cout <<  "leave" << std::endl;
-    }
-
-}
-
-
 } // namespace Student
 
