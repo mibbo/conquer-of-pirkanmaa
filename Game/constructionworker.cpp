@@ -39,6 +39,7 @@ void ConstrutionWorker::doSpecialAction()
 
 const Course::ResourceMapDouble ConstrutionWorker::tileWorkAction()
 {
+    return Course::ResourceMapDouble();
 
 }
 
