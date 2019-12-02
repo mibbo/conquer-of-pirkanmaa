@@ -1,5 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" title=" " alt="" coords="5,31,105,57"/>
-<area shape="rect" id="node2" href="$classStudent_1_1ConstrutionWorker.html" title="The ConstructionWorker class represents a worker that can be used to build buildings in the game." alt="" coords="153,5,355,32"/>
-<area shape="rect" id="node3" href="$classStudent_1_1Warrior.html" title="The Warrior class represents a worker that can be used to attack the enemy HeadQuarter&#45;building." alt="" coords="190,56,318,83"/>
-</map>

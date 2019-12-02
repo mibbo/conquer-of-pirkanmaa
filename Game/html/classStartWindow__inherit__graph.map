@@ -1,4 +1,0 @@
-<map id="StartWindow" name="StartWindow">
-<area shape="rect" id="node1" title="The StartWindow class is a custom Qdialog that pops a starting window when starting the game." alt="" coords="5,131,147,223"/>
-<area shape="rect" id="node2" href="$classQDialog.html" title=" " alt="" coords="39,5,113,83"/>
-</map>
