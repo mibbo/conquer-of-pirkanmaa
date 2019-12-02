@@ -81,7 +81,6 @@ void Game::setTurn(std::shared_ptr<Student::Player> player)
 {
     playerInTurn_ = player;
     ui->turnLabel->setText("Turn: " + QString::fromStdString(playerInTurn_->getName()));
-    std::cout << "Turn: " << playerInTurn_->getName() << std::endl;
     emit playInTurnSignal(playerInTurn_);
 }
 
