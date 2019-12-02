@@ -25,7 +25,7 @@ MapItem::MapItem(const std::shared_ptr<Course::GameObject> &obj, int size, QColo
 
     addNewColor(m_gameobject->getType());
     //Allow responding to hover
-    setAcceptHoverEvents(true);
+    //setAcceptHoverEvents(true);
     //Test
     pix_ = MapItem::getPixMap(m_gameobject->getType());
     if (m_gameobject->getType() == "Grassland" ||
@@ -98,14 +98,6 @@ void MapItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, Q
                    MapItem::boundingRect().height());
         painter->drawRoundedRect(rect, 6, 6);
 
-
-        // Create and paint a new rect from mapitem's boundingRect with few graphical adjustments
-//        QRect rect(MapItem::boundingRect().x()-3,
-//                   MapItem::boundingRect().y()-3,
-//                   MapItem::boundingRect().width(),
-//                   MapItem::boundingRect().height());
-//        painter->drawRoundedRect(rect, 1, 1);
-
     } else {
         QRect rect(MapItem::boundingRectForImages().x()-1,
                    MapItem::boundingRectForImages().y()-1,
@@ -147,13 +139,13 @@ QPixmap MapItem::getPixMap(std::string type)
     } else if (type == "Outpost") {
         return QPixmap(":/images/sprite/Outpost.png");
     }  else if (type == "Farm") {
-        return QPixmap(":/images/farm.png");
+        return QPixmap(":/images/sprite/Farm_b.png");
     } else if (type == "Warrior") {
         return QPixmap(":/images/warrior.png");
     } else if (type == "Quarry") {
-        return QPixmap(":/images/quarry.png");
+        return QPixmap(":/images/sprite/quarry_b.png");
     } else if (type == "ConstructionWorker") {
-        return QPixmap(":/images/constructionworker.png");
+        return QPixmap(":/images/player2.png");
     } else if (type == "Mine") {
         return QPixmap(":/images/sprite/Mine_b.png");
     } else if (type == "Sawmill") {
@@ -166,7 +158,7 @@ QPixmap MapItem::getPixMap(std::string type)
     } else if (type == "Mountain") {
         return QPixmap(":/images/sprite/Mountain_b.png");
     } else if (type == "Cobblestone") {
-        return QPixmap(":/images/sprite/quarry_b.png");
+        return QPixmap(":/images/sprite/cobblestone.png");
     } else if (type == "River") {
         return QPixmap(":/images/sprite/waifu2x.png");
     } else {

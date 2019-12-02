@@ -58,9 +58,6 @@ Game::Game(QWidget *parent):
     // Create and draw UI related stuff
     displayMainMenu();
 
-    // LOG
-    ui->log->setReadOnly(true);
-
     // Create the necessary vectors of labels
     costVector_ = {ui->moneyLabel, ui->foodLabel, ui->woodLabel, ui->stoneLabel, ui->oreLabel};
     productionVector_ = {ui->moneyProductionLabel, ui->foodProductionLabel, ui->woodProductionLabel,
@@ -305,6 +302,7 @@ void Game::enableButtonsSlot()
     for (auto button : objectButtonsVector_) {
         button->setChecked(false);
     }
+    ui->turnButton->setChecked(false);
 }
 
 void Game::updateViewSlot()

@@ -11,26 +11,26 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Pirkanmaan Valloitus</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>410</x>
+      <x>10</x>
       <y>10</y>
       <width>691</width>
       <height>481</height>
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="turnButton">
+   <widget class="Student::HoverButton" name="turnButton">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>50</y>
-      <width>80</width>
-      <height>26</height>
+      <x>920</x>
+      <y>470</y>
+      <width>151</width>
+      <height>111</height>
      </rect>
     </property>
     <property name="text">
@@ -40,11 +40,19 @@
    <widget class="QLabel" name="turnLabel">
     <property name="geometry">
      <rect>
-      <x>243</x>
-      <y>28</y>
-      <width>100</width>
-      <height>18</height>
+      <x>940</x>
+      <y>430</y>
+      <width>111</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Turn: </string>
@@ -53,8 +61,8 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>1270</x>
-      <y>10</y>
+      <x>920</x>
+      <y>60</y>
       <width>151</width>
       <height>171</height>
      </rect>
@@ -100,8 +108,8 @@
    <widget class="QWidget" name="gridLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>1270</x>
-      <y>200</y>
+      <x>920</x>
+      <y>250</y>
       <width>151</width>
       <height>171</height>
      </rect>
@@ -130,21 +138,11 @@
      </item>
     </layout>
    </widget>
-   <widget class="QPlainTextEdit" name="log">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>400</y>
-      <width>61</width>
-      <height>51</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="hoverInfo">
     <property name="geometry">
      <rect>
-      <x>1720</x>
-      <y>70</y>
+      <x>1470</x>
+      <y>130</y>
       <width>63</width>
       <height>20</height>
      </rect>
@@ -156,10 +154,10 @@
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>1410</x>
+      <x>840</x>
       <y>10</y>
-      <width>511</width>
-      <height>261</height>
+      <width>911</width>
+      <height>801</height>
      </rect>
     </property>
     <property name="text">
@@ -172,11 +170,20 @@
    <widget class="QLabel" name="buildingNameLabel">
     <property name="geometry">
      <rect>
-      <x>1450</x>
-      <y>120</y>
-      <width>71</width>
-      <height>18</height>
+      <x>1190</x>
+      <y>80</y>
+      <width>361</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -185,11 +192,20 @@
    <widget class="QLabel" name="moneyLabel">
     <property name="geometry">
      <rect>
-      <x>1550</x>
-      <y>70</y>
-      <width>81</width>
-      <height>18</height>
+      <x>1170</x>
+      <y>180</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -198,11 +214,20 @@
    <widget class="QLabel" name="woodLabel">
     <property name="geometry">
      <rect>
-      <x>1550</x>
-      <y>110</y>
-      <width>81</width>
-      <height>18</height>
+      <x>1170</x>
+      <y>260</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -211,11 +236,20 @@
    <widget class="QLabel" name="stoneLabel">
     <property name="geometry">
      <rect>
-      <x>1550</x>
-      <y>130</y>
-      <width>81</width>
-      <height>18</height>
+      <x>1170</x>
+      <y>300</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -224,11 +258,20 @@
    <widget class="QLabel" name="oreLabel">
     <property name="geometry">
      <rect>
-      <x>1550</x>
-      <y>150</y>
-      <width>81</width>
-      <height>18</height>
+      <x>1170</x>
+      <y>340</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -237,11 +280,20 @@
    <widget class="QLabel" name="foodLabel">
     <property name="geometry">
      <rect>
-      <x>1550</x>
-      <y>90</y>
-      <width>81</width>
-      <height>18</height>
+      <x>1170</x>
+      <y>220</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -250,11 +302,20 @@
    <widget class="QLabel" name="moneyProductionLabel">
     <property name="geometry">
      <rect>
-      <x>1640</x>
-      <y>70</y>
-      <width>81</width>
-      <height>18</height>
+      <x>1330</x>
+      <y>180</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -263,11 +324,20 @@
    <widget class="QLabel" name="foodProductionLabel">
     <property name="geometry">
      <rect>
-      <x>1640</x>
-      <y>90</y>
-      <width>81</width>
-      <height>18</height>
+      <x>1330</x>
+      <y>220</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -276,11 +346,20 @@
    <widget class="QLabel" name="woodProductionLabel">
     <property name="geometry">
      <rect>
-      <x>1640</x>
-      <y>110</y>
-      <width>81</width>
-      <height>18</height>
+      <x>1330</x>
+      <y>260</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -289,11 +368,20 @@
    <widget class="QLabel" name="stoneProductionLabel">
     <property name="geometry">
      <rect>
-      <x>1640</x>
-      <y>130</y>
-      <width>81</width>
-      <height>18</height>
+      <x>1330</x>
+      <y>300</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -302,11 +390,20 @@
    <widget class="QLabel" name="oreProductionLabel">
     <property name="geometry">
      <rect>
-      <x>1640</x>
-      <y>150</y>
-      <width>81</width>
-      <height>18</height>
+      <x>1330</x>
+      <y>340</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>14</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
+      <underline>false</underline>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -315,11 +412,20 @@
    <widget class="QLabel" name="buildCostLabel">
     <property name="geometry">
      <rect>
-      <x>1560</x>
-      <y>50</y>
-      <width>71</width>
-      <height>20</height>
+      <x>1170</x>
+      <y>140</y>
+      <width>81</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -328,11 +434,20 @@
    <widget class="QLabel" name="productionLabel">
     <property name="geometry">
      <rect>
-      <x>1640</x>
-      <y>50</y>
-      <width>81</width>
-      <height>20</height>
+      <x>1330</x>
+      <y>140</y>
+      <width>121</width>
+      <height>31</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>URW Gothic</family>
+      <pointsize>14</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <underline>true</underline>
+     </font>
     </property>
     <property name="text">
      <string/>
@@ -341,8 +456,8 @@
    <widget class="QWidget" name="formLayoutWidget_7">
     <property name="geometry">
      <rect>
-      <x>1260</x>
-      <y>380</y>
+      <x>1090</x>
+      <y>420</y>
       <width>511</width>
       <height>211</height>
      </rect>
@@ -479,7 +594,14 @@
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QLCDNumber" name="moneyP1"/>
+          <widget class="QLCDNumber" name="moneyP1">
+           <property name="font">
+            <font>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+          </widget>
          </item>
          <item row="2" column="0">
           <widget class="QLabel" name="labelFoodP1">
@@ -585,7 +707,6 @@
    <zorder>turnLabel</zorder>
    <zorder>gridLayoutWidget</zorder>
    <zorder>gridLayoutWidget_2</zorder>
-   <zorder>log</zorder>
    <zorder>hoverInfo</zorder>
    <zorder>buildingNameLabel</zorder>
    <zorder>moneyLabel</zorder>
@@ -608,7 +729,7 @@
      <x>0</x>
      <y>0</y>
      <width>2006</width>
-     <height>25</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>

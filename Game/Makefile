@@ -883,6 +883,7 @@ qrc_resources.cpp: resources.qrc \
 		sprite/NSWRiver.png \
 		sprite/NESWForest.png \
 		sprite/Forest1.png \
+		sprite/cobblestone.png \
 		sprite/NSForest.png \
 		sprite/NSWWRiver.png \
 		sprite/quarry_b.png \
