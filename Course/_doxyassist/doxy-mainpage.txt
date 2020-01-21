@@ -1,0 +1,25 @@
+/*! \mainpage Colonization of Pirkanmaa (Programming 3 - Excercise project)
+ *
+ * \section setup  Project setup
+ *
+ * This section contains information on how to clone and setup the project.
+ *
+ * \subsection setup_1 Clone
+ *
+ * Clone using --recursive
+ *
+ * \subsection setup_2 Setup the project
+ *
+ * Make sure that the project compiles
+ *
+ * \htmlinclude exercise_specifications.html
+ *
+ * \section faq Frequently Asked Questions
+ *
+ * \subsection faq_comp Compiling errors
+ *
+ *  - Invalid us of incomplete type ...
+ *    - Possible reason: Missing include for forward declaration.
+ */
+
+

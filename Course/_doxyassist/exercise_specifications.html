@@ -1,0 +1,225 @@
+<div class="content">
+  <div class="section" id="course-project-colonizing-pirkanmaa">
+<h1>Course Project: Colonizing Pirkanmaa<a class="headerlink" href="#course-project-colonizing-pirkanmaa" title="Permalink to this headline">¶</a></h1>
+<p>Register your project group by 9.9. in <a class="reference external" href="https://moodle.tuni.fi/course/view.php?id=2035">Moodle</a>. Remember to name your group or the staff will rename it for you!</p>
+<div class="section" id="deadlines">
+<h2>Deadlines:<a class="headerlink" href="#deadlines" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Final submission: 29.11</li>
+<li>Grace period ends: 9.12.</li>
+</ul>
+</div>
+<div class="section" id="project">
+<h2>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h2>
+<p>The course project is an exiting board game ? working title
+Colonizing Pirkanmaa. You can affect the game you will implement in
+many ways. The goal of the game is nonetheless for the players to gain
+new land on the mythical land of Pirkanmaa.</p>
+</div>
+<div class="section" id="gameplay">
+<h2>Gameplay<a class="headerlink" href="#gameplay" title="Permalink to this headline">¶</a></h2>
+<p>An expedition has returned from far north and is spreading stories of a
+mythical land hidden in the wilderness. This land is abundant in resources
+and has peaked interest of many citizens and merchants of neighbouring
+cities and countries.</p>
+<p>Time is of the essence. The race for the colonization of Pirkanmaa has begun.</p>
+</div>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>The game contains ready-made parts. These are:</p>
+<ul class="simple">
+<li>buildings<ul>
+<li>farm</li>
+<li>headquarters</li>
+<li>outpost</li>
+</ul>
+</li>
+<li>tiles<ul>
+<li>forest</li>
+<li>grassland</li>
+</ul>
+</li>
+<li>workers<ul>
+<li>basicworker</li>
+</ul>
+</li>
+</ul>
+<p>In addition a rudimentary class for drawing the game map is given. You can use it in the beginning of project implementation.</p>
+<p>The team needs to implement the graphical user interface, saving the game objects, player actions, goals of the game, managing the state of the game and statistics. Below a rough example of what the GUI of the game might look like:</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="https://plus.tuni.fi/graderD/static/tie0240x-a2019/_images/UI-Example.jpg"><img alt="../../_images/UI-Example.jpg" src="https://plus.tuni.fi/graderD/static/tie0240x-a2019/_images/UI-Example.jpg" style="width: 946.5500000000001px; height: 589.6px;"/></a>
+</div>
+<p>Many details of the game are left intentionally open and you can implement them as you wish. These include:</p>
+<ul class="simple">
+<li>The goals of the game: How the game ends and how success is defined?</li>
+<li>GUI: What the map looks like? How different actions in the game can be done?</li>
+<li>The start situation: What game pieces/resources the player has in the beginning and how they are placed in the game?</li>
+<li>Own game mechanics: Do the game objects have any special actions? Can the players trade with each other?</li>
+<li>Game state: Whose turn it is? When the game ends?</li>
+</ul>
+<div class="section" id="id1">
+<h3>Gameplay<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The following order of actions depicts the start and funtionality of the game. This is an example. Your game can be different from what is depicted here.</p>
+<ul class="simple">
+<li>The game starts with the help of a self-implemented main program. The game asks with a separate configuration window the number of players and other information needed by the game. After this the main window implemented by the group is opened. On it, there is the game board with tiles, the players gamepieces and other necessary information.</li>
+<li>The player starts the game by clicking a game piece in the main window.</li>
+<li>The player chooses a game piece or pieces to move and the tile they move to. The pieces move on the board.</li>
+<li>The player chooses a tile where they build an outpost.</li>
+<li>The player chooses a tile where they add a worker.</li>
+<li>The player end their turn, the next player starts their turn.</li>
+<li>The game ends when Pirkanmaa has been colonialized. The player with most land and resources wins the game.</li>
+</ul>
+</div>
+<div class="section" id="learning-outcomes">
+<h3>Learning outcomes<a class="headerlink" href="#learning-outcomes" title="Permalink to this headline">¶</a></h3>
+<p>You practice the following things:</p>
+<ul class="simple">
+<li>Getting familiar with existing code and using it by provided interfaces (applying design by contract)</li>
+<li>Adding functionality to an application based on given interfaces (following design by contract)</li>
+<li>Implementing a GUI as a part of program</li>
+<li>Exception handling and error control</li>
+<li>Unit testing of your own code.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>You must implement at least certain basic features to get the project work accepted. Moreover, there some optional additional features, and by implementing them you can increase your grade.</p>
+<p>Minimum requirements (Max Grade 1):</p>
+<ul class="simple">
+<li>Successfully compiling game.</li>
+<li>Some kind of game-mechanics implemented (e.g. player turns, scoring)</li>
+<li>One dialog-window (e.g. Start menu to specify amount of players, goals etc.)</li>
+<li>At least one own Tile-class</li>
+<li>At least one own Building-class</li>
+<li>UnitTests for both interface -implementations.</li>
+<li>Final document that must contain:<ul>
+<li>Game-rules</li>
+<li>Game-controls</li>
+<li>Class responsibilities (class diagram is good tool in this)</li>
+<li>Division of labour.</li>
+</ul>
+</li>
+</ul>
+<p>Intermediate requirements (Max Grade 3):</p>
+<ul class="simple">
+<li>Meets minimum requirements.</li>
+<li>Own graphics fully implemented by the team (no using the course library drawing)</li>
+<li>At least 3 own unique Tile-classes</li>
+<li>At least 2 own unique Building-classes</li>
+<li>At least 2 own unique Worker-classes</li>
+<li>Bonuspoints can compensate up to one grade?s worth of mistakes.</li>
+</ul>
+<p>Top-grade requirements (Max Grade 5):</p>
+<ul class="simple">
+<li>Must meet minimum and intermediate requirements</li>
+<li>At least 2 additional features.</li>
+<li>Bonuspoints can compensate up to one grade?s worth of mistakes.</li>
+</ul>
+<div class="section" id="grade-calculation">
+<h3>Grade calculation<a class="headerlink" href="#grade-calculation" title="Permalink to this headline">¶</a></h3>
+<p>Grading will consist of smaller sections and bonus-points.
+Final grade is limited by requirements specified in previous subsection
+After meeting intermediate requirements, bonus points can compensate 1 grade.
+After implementing 2 additional features, bonus points can give 2 extra grades.</p>
+<p>Graded sections:</p>
+<ul class="simple">
+<li>Overall design and structure</li>
+<li>Class design and implementation<ul>
+<li>Proper principles in object-oriented programming</li>
+<li>Class documentation</li>
+</ul>
+</li>
+<li>Exception handling<ul>
+<li>Proper usage and handling of exceptions</li>
+</ul>
+</li>
+<li>Code quality<ul>
+<li>Following good programming principles.</li>
+<li>Style</li>
+</ul>
+</li>
+<li>Version history &amp; Teamwork</li>
+<li>Bonus points<ul>
+<li>Awared from additional features.</li>
+</ul>
+</li>
+</ul>
+<p>Scoring from graded sections:</p>
+<ul class="simple">
+<li>50% =&gt; 1</li>
+<li>70% =&gt; 2</li>
+<li>90% =&gt; 3</li>
+</ul>
+<p>Examples of additional features:</p>
+<ul class="simple">
+<li>New game mechanics (up to 1 grade)<ul>
+<li>Commerce in the game</li>
+<li>Buildings and workers that affect collection of other resources</li>
+</ul>
+</li>
+<li>AI-players (up to 1 grade)</li>
+<li>High-score system (up to 0.5 grades)</li>
+<li>Own ideas for additional features (depends on the complexity)</li>
+<li>Storing the game state and continuing game play from the stored state (max. 1 grade)</li>
+<li>ALL ADDITIONAL FEATURES MUST BE DOCUMENTED IN THE FINAL DOCUMENT IN ORDER TO BE APPLICABLE FOR BONUS POINTS!!!</li>
+</ul>
+<p>Extra work qualified for bonus points:</p>
+<ul class="simple">
+<li>Additional (well implemented) unittests (up to 0.5 grades)</li>
+<li>Additional Tiles, Buildings and Workers (up to 0.5 grades)</li>
+<li>Nice graphics (up to 1 grade)</li>
+<li>A very good GUI (up to one grade)</li>
+<li>Back story and depiction of the game world (up to 0.5 grades)</li>
+</ul>
+<p>Examples:</p>
+<ul class="simple">
+<li>Only minimum requirements met and perfect score in graded sections, no bonus-points ( 3 + 0 =&gt; 1)</li>
+<li>Minimum and intermediate requirements met 75% of graded section score, 0.5 grades worth of bonus-points ( 2 + 0.5 =&gt; 2.5)</li>
+<li>Minimum and intermediate requirements met 60% of graded section score, 2 additional features and total of 3.5 grades worth of bonus points (1 + 3.5 =&gt; 4 )<ul>
+<li>Only 3 points are taken in account from the 3.5 (1 for graded section compensation, 2 for extra grades)</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="environment">
+<h3>Environment<a class="headerlink" href="#environment" title="Permalink to this headline">¶</a></h3>
+<p>The working environment is in GitLab. Each team has a repository named based on the name of the team. It is worth to note that some team names were adjusted to match suitable names for a GitLab project. The parts implemented by the course are given also through version control.</p>
+</div>
+<div class="section" id="class-diagram">
+<h3>Class Diagram<a class="headerlink" href="#class-diagram" title="Permalink to this headline">¶</a></h3>
+<p>The relevant classses in the program.</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="https://plus.tuni.fi/graderD/static/tie0240x-a2019/_images/Prg3-project-classdiagram_v2.png"><img alt="../../_images/Prg3-project-classdiagram_v2.png" src="https://plus.tuni.fi/graderD/static/tie0240x-a2019/_images/Prg3-project-classdiagram_v2.png" style="width: 964.1500000000001px; height: 682.0px;"/></a>
+</div>
+<p><a class="reference download internal" download="" href="https://plus.tuni.fi/graderD/static/tie0240x-a2019/_downloads/Prg3-project-classdiagram_v2.pdf"><code class="xref download docutils literal"><span class="pre">Class</span> <span class="pre">diagram</span></code></a></p>
+<p>NOTE! The part depicting the students? implementation is completely fictitious. There can be (and should be) more classes and there relationships can be completely different.</p>
+<p>You can generate the Doxygen documentation of the interfaces directly from the project. Read the README for more information.</p>
+</div>
+<div class="section" id="hints">
+<h3>Hints<a class="headerlink" href="#hints" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Check what is implemented on the course side</li>
+<li>When designing the project:<ul>
+<li>Make your own class diagram that clarifies the structure and division of work</li>
+<li>Go the functionality of the game through with the help of the class diagram and/or sequence diagram</li>
+</ul>
+</li>
+<li>Start coding only once you have a clear plan in order to be able to concentrate on solving codebased problems</li>
+<li>You can inherit own versions of course library buildings, tiles and workers if you what to modify costs, production or add functionality</li>
+<li>All game objects can be given additional text based metadata</li>
+<li>You can ask for bug corrections and additions to the course code<ul>
+<li>NOTE! Additions to the library should be asked as early as possible in order to allow enough time to implement them. Do the design early and with care.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+                  </div>
+                
+    </div>
+  </div>
+</div>
